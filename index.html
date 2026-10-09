@@ -1887,6 +1887,23 @@
     }, 700);
   }
 
+  // ── Konversi Google Ads: "Mengirim formulir lead" ──
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    if (typeof gtag !== 'function') { callback(); return false; }
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18478181378/8BFECI6C5JYdEILYiutE',
+        'value': 1.0,
+        'currency': 'IDR',
+        'event_callback': callback
+    });
+    return false;
+  }
+
   // ── FORM KIRIM → WhatsApp ──
   function kirimForm() {
     const nama   = document.getElementById('f-nama').value.trim();
@@ -1916,6 +1933,9 @@
     const oriHTML   = submitBtn.innerHTML;
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<span class="spin">⟳</span>&nbsp; Mengirim...';
+
+    // Catat konversi lead (tanpa redirect; WA dibuka lewat window.open di bawah)
+    try { gtag_report_conversion(); } catch (e) {}
 
     // 2. Buka WA DULU (harus dipanggil langsung dari user gesture, sebelum proses lain)
     //    Kalau dipanggil setelah fetch, browser menganggapnya bukan user gesture → popup diblokir.
