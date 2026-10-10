@@ -10,7 +10,7 @@
   "categories": ["Paket", "Tips", "Promo", "Teknologi"],
   "comments": {
     "enabled": true,
-    "endpoint": "",
+    "endpoint": "https://script.google.com/macros/s/AKfycbzpYXnS_jX8ZQk7CDkuBL2bSRf2f46X02zk-xSxxxKtkPrAK-_eP70BEs8LfAhmE9DY/exec",
     "maxLength": 1000
   }
 }
