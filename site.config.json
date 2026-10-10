@@ -1,0 +1,16 @@
+{
+  "siteUrl": "https://wifi-xl.com",
+  "siteName": "XL SATU",
+  "owner": "Rizky Sepliansyah",
+  "defaultAuthor": "Rizky Sepliansyah",
+  "wa": "6287810963528",
+  "phone": "087810963528",
+  "email": "Donmarcosguevara@gmail.com",
+  "gtagId": "AW-18478181378",
+  "categories": ["Paket", "Tips", "Promo", "Teknologi"],
+  "comments": {
+    "enabled": true,
+    "endpoint": "",
+    "maxLength": 1000
+  }
+}

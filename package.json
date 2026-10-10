@@ -1,0 +1,6 @@
+{
+  "name": "xlsatu-blog",
+  "private": true,
+  "type": "module",
+  "scripts": { "build": "node scripts/build.mjs" }
+}

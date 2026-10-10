@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin Blog XL SATU</title>
+<link rel="icon" href="../images/favicon/favicon-32.png">
+<style>
+:root{--blue:#0033A0;--blue-mid:#0052CC;--teal:#00A79D;--sky:#E8F4FF;--gray-light:#F5F7FA;--gray-mid:#8899AA;--gray-text:#4A5568;--dark:#0A1628;--line:#E2E8F0;--ok:#0b7a4b;--err:#b42318}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--gray-light);color:var(--dark);line-height:1.5}
+header{background:#fff;box-shadow:0 2px 12px rgba(0,51,160,.08);position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;padding:10px 20px}
+header img{height:34px}
+header h1{font-size:16px;color:var(--blue);flex:1}
+button,.btn{font:inherit;font-weight:600;font-size:14px;border-radius:8px;padding:9px 18px;cursor:pointer;border:1.5px solid var(--blue);background:#fff;color:var(--blue);text-decoration:none;display:inline-block}
+button:hover,.btn:hover{background:var(--sky)}
+button.primary{background:var(--blue);color:#fff}button.primary:hover{background:var(--blue-mid)}
+button.danger{border-color:var(--err);color:var(--err)}button.danger:hover{background:#fef3f2}
+button:disabled{opacity:.55;cursor:wait}
+main{max-width:1100px;margin:0 auto;padding:20px}
+.card{background:#fff;border-radius:14px;box-shadow:0 4px 24px rgba(0,51,160,.08);padding:20px;margin-bottom:16px}
+h2{font-size:20px;color:var(--blue);margin-bottom:12px}
+label{display:block;font-size:13px;font-weight:700;margin:0 0 4px;color:var(--dark)}
+.hint{font-size:12.5px;color:var(--gray-mid);margin-top:3px;font-weight:400}
+input[type=text],input[type=password],input[type=date],select,textarea{width:100%;font:inherit;font-size:15px;padding:9px 11px;border:1.5px solid #CBD5E1;border-radius:8px;background:#fff;color:var(--dark)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,82,204,.15)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.field{margin-bottom:14px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.spacer{flex:1}
+.msg{padding:10px 14px;border-radius:10px;font-size:14px;margin-bottom:14px}
+.msg.ok{background:#ecfdf3;color:var(--ok)}.msg.err{background:#fef3f2;color:var(--err)}.msg.info{background:var(--sky);color:var(--blue)}
+.post{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.post:last-child{border-bottom:0}
+.post .t{font-weight:700;flex:1;min-width:0}
+.post .t small{display:block;font-weight:400;color:var(--gray-mid);font-size:12.5px}
+.tag{font-size:12px;font-weight:700;padding:2px 9px;border-radius:99px;background:var(--sky);color:var(--blue)}
+.tag.draft{background:#fff4e5;color:#b25e00}.tag.sched{background:#f3e8ff;color:#6b21a8}
+.tools{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.tools button{padding:5px 11px;font-size:13px}
+#body{min-height:420px;font-family:ui-monospace,Consolas,monospace;font-size:14px;line-height:1.6;resize:vertical}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+iframe{width:100%;height:520px;border:1.5px solid #CBD5E1;border-radius:8px;background:#fff}
+.tabs{display:none;gap:8px;margin-bottom:10px}
+.imgprev{max-width:100%;max-height:130px;object-fit:cover;border-radius:10px;margin-top:8px;display:block}
+.check{display:flex;gap:8px;align-items:center;font-weight:600;font-size:14px}
+.check input{width:18px;height:18px}
+.hidden{display:none!important}
+@media(max-width:800px){.grid2,.grid3,.split{grid-template-columns:1fr}.tabs{display:flex}main{padding:12px}header{padding:10px 12px}}
+</style>
+</head>
+<body>
+<header>
+  <img src="../images/logo.png" alt="XL SATU">
+  <h1>Admin Blog</h1>
+  <a class="btn" href="../blog.html" target="_blank" rel="noopener">Lihat blog</a>
+  <button id="btn-settings">Pengaturan</button>
+</header>
+<main>
+  <div id="msg"></div>
+
+  <!-- PENGATURAN / LOGIN -->
+  <section id="v-settings" class="card hidden">
+    <h2>Hubungkan ke GitHub</h2>
+    <p class="hint" style="margin-bottom:14px">Cukup sekali. Data disimpan di browser perangkat ini saja, tidak dikirim ke mana pun selain ke GitHub.</p>
+    <div class="grid2">
+      <div class="field"><label for="s-repo">Repo GitHub</label><input type="text" id="s-repo" placeholder="namaakun/nama-repo"><div class="hint">Contoh: <code>rizky/xlsatu</code></div></div>
+      <div class="field"><label for="s-branch">Branch</label><input type="text" id="s-branch" placeholder="main"></div>
+    </div>
+    <div class="field"><label for="s-token">Token GitHub</label><input type="password" id="s-token" placeholder="github_pat_..." autocomplete="off">
+      <div class="hint">Buat di GitHub &rsaquo; Settings &rsaquo; Developer settings &rsaquo; Personal access tokens &rsaquo; Fine-grained tokens. Pilih <b>hanya repo ini</b>, izin <b>Contents: Read and write</b>. Jangan dipakai di perangkat umum.</div></div>
+    <div class="row"><button class="primary" id="s-save">Simpan &amp; hubungkan</button><button id="s-logout" class="danger">Hapus data login</button></div>
+  </section>
+
+  <!-- DAFTAR -->
+  <section id="v-list" class="hidden">
+    <div class="row" style="margin-bottom:14px"><h2 style="margin:0">Artikel</h2><span class="spacer"></span><button id="btn-refresh">Muat ulang</button><button class="primary" id="btn-new">+ Artikel baru</button></div>
+    <div class="card" id="list"></div>
+  </section>
+
+  <!-- EDITOR -->
+  <section id="v-edit" class="hidden">
+    <div class="row" style="margin-bottom:14px"><h2 style="margin:0" id="e-heading">Artikel baru</h2><span class="spacer"></span><button id="e-back">&larr; Kembali</button></div>
+    <div class="card">
+      <div class="field"><label for="f-title">Judul</label><input type="text" id="f-title" maxlength="140"></div>
+      <div class="grid3">
+        <div class="field"><label for="f-slug">Alamat (slug)</label><input type="text" id="f-slug" placeholder="otomatis dari judul"><div class="hint" id="f-slug-hint">/blog/<span id="slug-show">...</span>.html</div></div>
+        <div class="field"><label for="f-date">Tanggal tayang</label><input type="date" id="f-date"><div class="hint">Isi tanggal depan = tayang otomatis di hari itu.</div></div>
+        <div class="field"><label for="f-cat">Kategori</label><select id="f-cat"></select></div>
+      </div>
+      <div class="field"><label for="f-desc">Deskripsi (untuk Google, 1-2 kalimat) <span id="desc-count" class="hint"></span></label><textarea id="f-desc" rows="2" maxlength="300"></textarea></div>
+      <div class="grid2">
+        <div class="field"><label for="f-author">Penulis</label><input type="text" id="f-author"></div>
+        <div class="field"><label for="f-image">Gambar banner</label>
+          <select id="f-image"></select>
+          <div class="row" style="margin-top:8px"><input type="file" id="f-upload" accept="image/*" class="hidden"><button type="button" id="btn-upload">Upload gambar baru</button><span class="hint" id="up-hint">Otomatis dipotong 3:1 dan dikompres (WebP).</span></div>
+          <img id="img-prev" class="imgprev hidden" alt="">
+        </div>
+      </div>
+      <div class="row" style="margin-bottom:6px">
+        <label class="check"><input type="checkbox" id="f-draft"> Simpan sebagai draft (belum tayang)</label>
+        <label class="check"><input type="checkbox" id="f-comments" checked> Komentar aktif</label>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tabs"><button type="button" id="tab-w" class="primary">Tulis</button><button type="button" id="tab-p">Pratinjau</button></div>
+      <div class="tools" id="tools">
+        <button type="button" data-a="h2">Subjudul</button><button type="button" data-a="h3">Sub-sub</button>
+        <button type="button" data-a="b"><b>B</b></button><button type="button" data-a="i"><i>I</i></button>
+        <button type="button" data-a="ul">• Daftar</button><button type="button" data-a="ol">1. Daftar</button>
+        <button type="button" data-a="link">Link</button><button type="button" data-a="note">Kotak info</button><button type="button" data-a="cta">Kotak ajakan</button>
+      </div>
+      <div class="split">
+        <div id="pane-w"><textarea id="body" placeholder="Tulis isi artikel di sini (format markdown)…"></textarea></div>
+        <div id="pane-p"><iframe id="preview" title="Pratinjau"></iframe></div>
+      </div>
+      <p class="hint" style="margin-top:8px">Kotak "Cek Coverage / Chat WhatsApp" dan "Baca juga" ditambahkan otomatis di akhir artikel.</p>
+    </div>
+
+    <div class="row">
+      <button class="primary" id="e-save">Simpan &amp; terbitkan</button>
+      <button id="e-delete" class="danger hidden">Hapus artikel</button>
+      <span class="hint" id="e-status"></span>
+    </div>
+  </section>
+</main>
+
+<script type="module">
+import { render } from '../scripts/md.mjs';
+
+const $ = (id) => document.getElementById(id);
+const LS = 'xlsatu-admin';
+const CATS_DEFAULT = ['Paket', 'Tips', 'Promo', 'Teknologi'];
+let conf = {}; try { conf = JSON.parse(localStorage.getItem(LS) || '{}'); } catch (e) {}
+let site = {}; let styleCss = '';
+let state = { posts: [], images: [], editing: null /* {path, sha, isNew} */, pendingImage: null };
+
+/* ---------- util ---------- */
+function msg(text, cls = 'info') { const m = $('msg'); m.innerHTML = ''; if (!text) return; const d = document.createElement('div'); d.className = 'msg ' + cls; d.textContent = text; m.appendChild(d); if (cls === 'ok') setTimeout(() => { if (m.firstChild === d) m.innerHTML = ''; }, 9000); }
+function show(view) { for (const v of ['settings', 'list', 'edit']) $('v-' + v).classList.toggle('hidden', v !== view); window.scrollTo(0, 0); }
+const slugify = (s) => s.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80);
+const today = () => new Date(Date.now() + 7 * 3600e3).toISOString().slice(0, 10);
+function b64(str) { const u = new TextEncoder().encode(str); let s = ''; for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(s); }
+function unb64(b) { const s = atob(b.replace(/\n/g, '')); const u = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return new TextDecoder().decode(u); }
+
+/* ---------- GitHub API ---------- */
+async function gh(path, opts = {}) {
+  const r = await fetch('https://api.github.com/repos/' + conf.repo + path, {
+    cache: 'no-store', ...opts,
+    headers: { Accept: 'application/vnd.github+json', Authorization: 'Bearer ' + conf.token, ...(opts.headers || {}) }
+  });
+  if (!r.ok) {
+    let t = ''; try { t = (await r.json()).message; } catch (e) {}
+    const hint = r.status === 401 ? 'Token salah/kedaluwarsa.' : r.status === 403 ? 'Token tidak punya izin (perlu Contents: Read and write).' : r.status === 404 ? 'Repo/file tidak ditemukan (cek nama repo & izin token).' : r.status === 409 || r.status === 422 ? 'Konflik: file berubah di GitHub. Muat ulang lalu coba lagi.' : '';
+    const e = new Error((hint || 'Gagal') + (t ? ' (' + t + ')' : '')); e.status = r.status; throw e;
+  }
+  return r.status === 204 ? null : r.json();
+}
+const ref = () => '?ref=' + encodeURIComponent(conf.branch || 'main');
+async function putFile(path, contentB64, message, sha) {
+  return gh('/contents/' + path.split('/').map(encodeURIComponent).join('/'), {
+    method: 'PUT', body: JSON.stringify({ message, content: contentB64, branch: conf.branch || 'main', ...(sha ? { sha } : {}) })
+  });
+}
+
+/* ---------- frontmatter ---------- */
+function parse(raw) {
+  const m = raw.replace(/\r\n?/g, '\n').match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  const meta = {}; if (!m) return { meta, body: raw };
+  for (const line of m[1].split('\n')) {
+    const k = line.match(/^([\w-]+):\s*(.*)$/); if (!k) continue;
+    let v = k[2].trim(); if (/^(".*"|'.*')$/.test(v)) v = v.slice(1, -1);
+    meta[k[1]] = v === 'true' ? true : v === 'false' ? false : v;
+  }
+  return { meta, body: m[2].trim() };
+}
+function yamlVal(v) { v = String(v).replace(/\s*\n\s*/g, ' ').trim(); return /^[#&*!|>'"%@`{}\[\],?:-]|:\s|\s#/.test(v) ? (v.includes('"') ? "'" + v.replace(/'/g, '’') + "'" : '"' + v + '"') : v; }
+function serialize(f) {
+  const L = ['---', 'title: ' + yamlVal(f.title), 'date: ' + f.date, 'category: ' + yamlVal(f.category)];
+  if (f.image) L.push('image: ' + f.image);
+  L.push('description: ' + yamlVal(f.description));
+  if (f.author) L.push('author: ' + yamlVal(f.author));
+  if (f.draft) L.push('draft: true');
+  if (!f.comments) L.push('comments: false');
+  if (f.updated) L.push('updated: ' + f.updated);
+  if (f.extra) for (const [k, v] of Object.entries(f.extra)) L.push(k + ': ' + yamlVal(v));
+  L.push('---', '', f.body.trim(), '');
+  return L.join('\n');
+}
+
+/* ---------- daftar ---------- */
+async function loadList() {
+  $('list').textContent = 'Memuat…';
+  try {
+    const files = (await gh('/contents/content/posts' + ref())).filter((f) => f.name.endsWith('.md'));
+    const posts = await Promise.all(files.map(async (f) => {
+      const raw = await (await fetch(f.download_url + '?t=' + Date.now(), { cache: 'no-store' })).text();
+      const { meta } = parse(raw); return { name: f.name, path: f.path, sha: f.sha, slug: f.name.replace(/\.md$/, ''), ...meta };
+    }));
+    posts.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+    state.posts = posts;
+    const box = $('list'); box.textContent = '';
+    if (!posts.length) box.textContent = 'Belum ada artikel.';
+    for (const p of posts) {
+      const row = document.createElement('div'); row.className = 'post';
+      const t = document.createElement('div'); t.className = 't'; t.textContent = p.title || p.slug;
+      const sm = document.createElement('small'); sm.textContent = (p.date || '') + ' · ' + (p.category || '') + ' · /blog/' + p.slug + '.html'; t.appendChild(sm);
+      row.appendChild(t);
+      if (p.draft) row.appendChild(tag('Draft', 'draft')); else if (p.date > today()) row.appendChild(tag('Terjadwal', 'sched')); else row.appendChild(tag('Tayang'));
+      const eb = document.createElement('button'); eb.textContent = 'Edit'; eb.onclick = () => openEditor(p); row.appendChild(eb);
+      box.appendChild(row);
+    }
+  } catch (e) { $('list').textContent = ''; msg(e.message, 'err'); }
+}
+function tag(t, c = '') { const s = document.createElement('span'); s.className = 'tag ' + c; s.textContent = t; return s; }
+
+async function loadImages() {
+  try { state.images = (await gh('/contents/images' + ref())).filter((f) => f.type === 'file' && /\.(webp|png|jpe?g)$/i.test(f.name) && !/-mobile\./.test(f.name)).map((f) => f.name); } catch (e) { state.images = []; }
+}
+function fillImages(sel) {
+  const s = $('f-image'); s.textContent = '';
+  const none = new Option('(tanpa gambar)', ''); s.add(none);
+  const names = [...state.images]; if (sel && !names.includes(sel.replace(/^images\//, ''))) names.unshift(sel.replace(/^images\//, ''));
+  for (const n of names) s.add(new Option(n, 'images/' + n));
+  s.value = sel || ''; imgPrev();
+}
+function imgPrev() {
+  const v = $('f-image').value, im = $('img-prev');
+  if (state.pendingImage && v === state.pendingImage.path) im.src = state.pendingImage.url;
+  else im.src = v ? '../' + v : '';
+  im.classList.toggle('hidden', !v);
+}
+
+/* ---------- editor ---------- */
+function fillCats(sel) {
+  const cats = [...(site.categories || CATS_DEFAULT)]; if (sel && !cats.includes(sel)) cats.push(sel);
+  const s = $('f-cat'); s.textContent = ''; cats.forEach((c) => s.add(new Option(c, c))); s.add(new Option('+ Kategori baru…', '__new')); s.value = sel || cats[0];
+}
+async function openEditor(p) {
+  msg(''); state.pendingImage = null; $('e-status').textContent = '';
+  await loadImages();
+  if (p) {
+    const f = await gh('/contents/' + p.path + ref());
+    const { meta, body } = parse(unb64(f.content));
+    state.editing = { path: p.path, sha: f.sha, isNew: false, meta };
+    $('e-heading').textContent = 'Edit artikel'; $('e-delete').classList.remove('hidden');
+    $('f-title').value = meta.title || ''; $('f-slug').value = p.slug; $('f-slug').disabled = true;
+    $('f-date').value = meta.date || today(); fillCats(meta.category); $('f-desc').value = meta.description || '';
+    $('f-author').value = meta.author || ''; fillImages(meta.image || ''); $('f-draft').checked = !!meta.draft; $('f-comments').checked = meta.comments !== false;
+    $('body').value = body;
+  } else {
+    state.editing = { path: null, sha: null, isNew: true, meta: {} };
+    $('e-heading').textContent = 'Artikel baru'; $('e-delete').classList.add('hidden');
+    $('f-title').value = ''; $('f-slug').value = ''; $('f-slug').disabled = false; $('f-date').value = today(); fillCats('');
+    $('f-desc').value = ''; $('f-author').value = site.defaultAuthor || ''; fillImages(''); $('f-draft').checked = false; $('f-comments').checked = true; $('body').value = '';
+  }
+  slugShow(); descCount(); updatePreview(); show('edit');
+}
+function slugShow() { $('slug-show').textContent = $('f-slug').value || slugify($('f-title').value) || '...'; }
+function descCount() { const n = $('f-desc').value.length; $('desc-count').textContent = '(' + n + ' karakter, ideal 120-160)'; }
+
+let pt; function updatePreview() { clearTimeout(pt); pt = setTimeout(() => {
+  const body = render($('body').value.replace(/\bpost:([\w-]+)/g, 'post:$1')).replace(/(href|src)="post:([\w-]+)"/g, '$1="#"').replace(/(href|src)="(?!https?:|\/\/|#|mailto:|data:)([^"]*)"/g, '$1="../$2"').replace(/<div class="cta">\n([\s\S]*?)\n<\/div>/, '<div class="box">$1</div>');
+  const img = $('img-prev').getAttribute('src');
+  $('preview').srcdoc = '<!DOCTYPE html><html><head><base target="_blank"><style>' + styleCss + 'nav,footer{display:none}body{padding:0}</style></head><body><article><h1>' + esc($('f-title').value || 'Judul artikel') + '</h1><p class="meta">' + esc($('f-date').value) + ' · Oleh ' + esc($('f-author').value) + '</p>' + (img && !$('img-prev').classList.contains('hidden') ? '<img class="hero" src="' + (img.startsWith('blob:') || img.startsWith('data:') ? img : new URL(img, location.href).href) + '">' : '') + body + '</article></body></html>';
+}, 250); }
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+function tool(a) {
+  const t = $('body'), s = t.selectionStart, e = t.selectionEnd, sel = t.value.slice(s, e);
+  const wrap = (pre, post, ph) => { const x = sel || ph; t.setRangeText(pre + x + post, s, e, 'end'); if (!sel) t.setSelectionRange(s + pre.length, s + pre.length + ph.length); };
+  const line = (pre, ph) => { const x = (sel || ph).split('\n').map((l, i) => (pre === '#. ' ? (i + 1) + '. ' : pre) + l).join('\n'); t.setRangeText((s && t.value[s - 1] !== '\n' ? '\n' : '') + x + '\n', s, e, 'end'); };
+  if (a === 'h2') line('## ', 'Subjudul'); else if (a === 'h3') line('### ', 'Sub-sub');
+  else if (a === 'b') wrap('**', '**', 'teks tebal'); else if (a === 'i') wrap('*', '*', 'teks miring');
+  else if (a === 'ul') line('- ', 'poin'); else if (a === 'ol') line('#. ', 'langkah');
+  else if (a === 'link') { const u = prompt('Alamat link (https://… atau index.html#daftar atau post:slug-artikel):'); if (!u) return; wrap('[', '](' + u + ')', 'teks link'); }
+  else if (a === 'note') wrap('\n::: note\n', '\n:::\n', '**Intinya:** …');
+  else if (a === 'cta') wrap('\n::: cta\n', '\n:::\n', '**Judul ajakan**  \nKalimat ajakan.');
+  t.focus(); updatePreview();
+}
+
+/* ---------- upload gambar ---------- */
+async function pickImage(file) {
+  const bmp = await createImageBitmap(file);
+  const W = 1080, H = 360, c = document.createElement('canvas'); c.width = W; c.height = H;
+  const sc = Math.max(W / bmp.width, H / bmp.height), w = bmp.width * sc, h = bmp.height * sc;
+  c.getContext('2d').drawImage(bmp, (W - w) / 2, (H - h) / 2, w, h);
+  const blob = await new Promise((r) => c.toBlob(r, 'image/webp', 0.85));
+  const base = slugify($('f-slug').value || $('f-title').value) || 'banner';
+  let name = 'banner-' + base + '.webp', n = 2; while (state.images.includes(name)) name = 'banner-' + base + '-' + n++ + '.webp';
+  const url = URL.createObjectURL(blob);
+  state.pendingImage = { path: 'images/' + name, blob, url, name };
+  const s = $('f-image'); s.add(new Option(name + ' (baru)', 'images/' + name)); s.value = 'images/' + name; imgPrev(); updatePreview();
+}
+async function blobB64(blob) { const buf = new Uint8Array(await blob.arrayBuffer()); let s = ''; for (let i = 0; i < buf.length; i += 0x8000) s += String.fromCharCode.apply(null, buf.subarray(i, i + 0x8000)); return btoa(s); }
+
+/* ---------- simpan / hapus ---------- */
+async function save() {
+  const f = { title: $('f-title').value.trim(), date: $('f-date').value, category: $('f-cat').value, description: $('f-desc').value.trim(), author: $('f-author').value.trim(), image: $('f-image').value, draft: $('f-draft').checked, comments: $('f-comments').checked, body: $('body').value };
+  if (f.category === '__new') { f.category = (prompt('Nama kategori baru:') || '').trim(); if (!f.category) return; }
+  const slug = $('f-slug').value.trim() ? slugify($('f-slug').value) : slugify(f.title);
+  if (!f.title) return msg('Judul wajib diisi.', 'err');
+  if (!slug) return msg('Alamat (slug) tidak valid.', 'err');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(f.date)) return msg('Tanggal wajib diisi.', 'err');
+  if (!f.description) return msg('Deskripsi wajib diisi (dipakai Google).', 'err');
+  if (f.body.trim().length < 20) return msg('Isi artikel masih kosong.', 'err');
+  const ed = state.editing;
+  if (ed.isNew && state.posts.some((p) => p.slug === slug)) return msg('Alamat "' + slug + '" sudah dipakai artikel lain.', 'err');
+  if (!ed.isNew) { f.extra = {}; for (const k of Object.keys(ed.meta)) if (!['title', 'date', 'category', 'image', 'description', 'author', 'draft', 'comments', 'updated'].includes(k)) f.extra[k] = ed.meta[k]; if (f.date <= today() && ed.meta.date && ed.meta.date < today()) f.updated = today(); }
+  $('e-save').disabled = true; $('e-status').textContent = 'Menyimpan…'; msg('');
+  try {
+    if (state.pendingImage && f.image === state.pendingImage.path) {
+      await putFile(state.pendingImage.path, await blobB64(state.pendingImage.blob), 'image: ' + state.pendingImage.name);
+      state.images.push(state.pendingImage.name); state.pendingImage = null;
+    }
+    const path = ed.path || 'content/posts/' + slug + '.md';
+    const res = await putFile(path, b64(serialize(f)), (ed.isNew ? 'post: tambah ' : 'post: ubah ') + slug, ed.sha);
+    ed.path = path; ed.sha = res.content.sha; ed.isNew = false; ed.meta = { ...ed.meta, ...f };
+    $('f-slug').value = slug; $('f-slug').disabled = true; $('e-delete').classList.remove('hidden'); $('e-heading').textContent = 'Edit artikel';
+    $('e-status').textContent = '';
+    msg(f.draft ? 'Draft tersimpan.' : 'Tersimpan. Halaman blog sedang dibuat otomatis oleh GitHub, tayang dalam ±1-2 menit di /blog/' + slug + '.html', 'ok');
+  } catch (e) { msg(e.message, 'err'); $('e-status').textContent = ''; }
+  $('e-save').disabled = false;
+}
+async function del() {
+  const ed = state.editing; if (!ed || ed.isNew) return;
+  if (!confirm('Hapus artikel ini permanen? (riwayatnya tetap ada di GitHub)')) return;
+  try {
+    await gh('/contents/' + ed.path + '', { method: 'DELETE', body: JSON.stringify({ message: 'post: hapus ' + ed.path, sha: ed.sha, branch: conf.branch || 'main' }) });
+    msg('Artikel dihapus. Halamannya hilang dari blog dalam ±1-2 menit.', 'ok'); await loadList(); show('list');
+  } catch (e) { msg(e.message, 'err'); }
+}
+
+/* ---------- init ---------- */
+async function connect() {
+  if (!conf.repo || !conf.token) { $('s-repo').value = conf.repo || ''; $('s-branch').value = conf.branch || 'main'; show('settings'); return; }
+  try {
+    const r = await gh('' ); // cek repo + izin
+    if (r.permissions && !r.permissions.push) throw new Error('Token hanya bisa membaca. Perlu izin Contents: Read and write.');
+  } catch (e) { msg(e.message, 'err'); $('s-repo').value = conf.repo; $('s-branch').value = conf.branch || 'main'; show('settings'); return; }
+  show('list'); loadList();
+}
+$('s-save').onclick = () => {
+  const repo = $('s-repo').value.trim().replace(/^https?:\/\/github\.com\//, '').replace(/\.git$/, '').replace(/\/$/, '');
+  const token = $('s-token').value.trim() || conf.token;
+  if (!/^[\w.-]+\/[\w.-]+$/.test(repo)) return msg('Format repo: namaakun/nama-repo', 'err');
+  if (!token) return msg('Token wajib diisi.', 'err');
+  conf = { repo, branch: $('s-branch').value.trim() || 'main', token }; localStorage.setItem(LS, JSON.stringify(conf)); $('s-token').value = ''; msg(''); connect();
+};
+$('s-logout').onclick = () => { localStorage.removeItem(LS); conf = {}; $('s-repo').value = ''; $('s-token').value = ''; msg('Data login dihapus dari browser ini.', 'ok'); };
+$('btn-settings').onclick = () => { $('s-repo').value = conf.repo || ''; $('s-branch').value = conf.branch || 'main'; show('settings'); };
+$('btn-refresh').onclick = loadList;
+$('btn-new').onclick = () => openEditor(null);
+$('e-back').onclick = () => { msg(''); show('list'); loadList(); };
+$('e-save').onclick = save; $('e-delete').onclick = del;
+$('tools').onclick = (e) => { const a = e.target.dataset && e.target.dataset.a; if (a) tool(a); };
+$('btn-upload').onclick = () => $('f-upload').click();
+$('f-upload').onchange = async (e) => { const f = e.target.files[0]; e.target.value = ''; if (f) try { await pickImage(f); } catch (x) { msg('Gambar tidak bisa dibaca.', 'err'); } };
+$('f-image').onchange = () => { imgPrev(); updatePreview(); };
+$('f-title').oninput = () => { slugShow(); updatePreview(); };
+$('f-slug').oninput = slugShow; $('f-desc').oninput = descCount;
+$('f-cat').onchange = () => { if ($('f-cat').value === '__new') { const n = (prompt('Nama kategori baru:') || '').trim(); if (n) { const s = $('f-cat'); s.add(new Option(n, n), s.options.length - 1); s.value = n; } else s.selectedIndex = 0; } };
+for (const id of ['body', 'f-date', 'f-author']) $(id).oninput = updatePreview;
+$('tab-w').onclick = () => { $('pane-w').classList.remove('hidden'); $('pane-p').classList.add('hidden'); $('tab-w').classList.add('primary'); $('tab-p').classList.remove('primary'); };
+$('tab-p').onclick = () => { $('pane-p').classList.remove('hidden'); $('pane-w').classList.add('hidden'); $('tab-p').classList.add('primary'); $('tab-w').classList.remove('primary'); updatePreview(); };
+const mq = matchMedia('(max-width:800px)'); const mqf = () => { if (!mq.matches) { $('pane-w').classList.remove('hidden'); $('pane-p').classList.remove('hidden'); } else $('tab-w').click(); }; mq.addEventListener('change', mqf); mqf();
+
+(async () => {
+  try { site = await (await fetch('../site.config.json', { cache: 'no-store' })).json(); } catch (e) {}
+  try { styleCss = await (await fetch('../templates/style.css')).text(); } catch (e) {}
+  if (!conf.repo && site.github && site.github.repo) conf.repo = site.github.repo;
+  connect();
+})();
+</script>
+</body>
+</html>
