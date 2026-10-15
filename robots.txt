@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /apps-script/
+
+Sitemap: https://wifi-xl.com/sitemap.xml

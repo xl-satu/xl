@@ -7,10 +7,25 @@
   "phone": "087810963528",
   "email": "Donmarcosguevara@gmail.com",
   "gtagId": "AW-18478181378",
-  "categories": ["Paket", "Tips", "Promo", "Teknologi"],
+  "categories": [
+    "Paket",
+    "Tips",
+    "Promo",
+    "Teknologi"
+  ],
   "comments": {
     "enabled": true,
     "endpoint": "https://script.google.com/macros/s/AKfycbzpYXnS_jX8ZQk7CDkuBL2bSRf2f46X02zk-xSxxxKtkPrAK-_eP70BEs8LfAhmE9DY/exec",
     "maxLength": 1000
-  }
+  },
+  "staticPages": [
+    {
+      "path": "",
+      "lastmod": "2026-10-15"
+    },
+    {
+      "path": "privacy-policy.html",
+      "lastmod": "2026-09-30"
+    }
+  ]
 }

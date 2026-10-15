@@ -154,4 +154,11 @@ const urls = [{ loc: `${cfg.siteUrl}/blog.html`, mod: posts[0]?.updated || posts
   ...posts.map((p) => ({ loc: `${cfg.siteUrl}/blog/${p.slug}.html`, mod: p.updated || p.date }))];
 fs.writeFileSync(P('sitemap-blog.xml'), `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>${u.loc}</loc><lastmod>${u.mod}</lastmod></url>`).join('')}</urlset>`);
 
+// sitemap.xml lengkap: homepage + halaman statis + blog + semua artikel
+const allUrls = [
+  ...(cfg.staticPages || []).map((s) => ({ loc: `${cfg.siteUrl}/${s.path}`, mod: s.lastmod })),
+  ...urls,
+];
+fs.writeFileSync(P('sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${allUrls.map((u) => `<url><loc>${u.loc}</loc><lastmod>${u.mod}</lastmod></url>`).join('\n')}\n</urlset>\n`);
+
 console.log(`OK: ${posts.length} artikel -> ${posts.map((p) => p.slug).join(', ')}`);
