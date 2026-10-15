@@ -22,6 +22,16 @@ nav img { height: 44px; }
 .nav-links { display: flex; gap: 28px; align-items: center; }
 .nav-links a { text-decoration: none; color: var(--blue); font-weight: 500; font-size: 14px; }
 .nav-links a:hover, .nav-links a.on { color: var(--teal); }
+.nav-more{display:none;position:relative}
+.nav-more-btn{width:40px;height:40px;border:none;background:transparent;color:var(--blue);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.nav-more-btn:hover,.nav-more-btn[aria-expanded="true"]{background:var(--sky)}
+.nav-more-menu{position:absolute;right:0;top:calc(100% + 10px);min-width:200px;background:var(--white);border-radius:12px;box-shadow:0 10px 30px rgba(0,40,120,.22);padding:6px;z-index:130}
+.nav-more-menu[hidden]{display:none}
+.nav-more-menu a{display:block;padding:12px 14px;border-radius:8px;color:var(--blue);font-weight:600;font-size:14px;text-decoration:none}
+.nav-more-menu a:hover{background:var(--sky)}
+.nav-more-menu .nav-more-cta{margin-top:6px;background:var(--blue);color:#fff;text-align:center}
+.nav-more-menu .nav-more-cta:hover{background:var(--blue-mid)}
+@media(max-width:768px){.nav-cta-desktop{display:none}.nav-more{display:block}}
 footer { background: var(--dark); color: rgba(255,255,255,0.75); padding: 48px 32px 24px; }
 .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
 .footer-logo { margin-bottom: 16px; }
@@ -100,9 +110,19 @@ article img.hero{width:100%;border-radius:14px;margin:18px 0}
  <a href="index.html#bantuan">Hubungi Kami</a>
  </div>
  <div class="nav-cta-group">
- <a href="index.html#daftar" class="nav-cta nav-cta-outline">Cek Coverage</a>
+ <a href="index.html#daftar" class="nav-cta nav-cta-desktop">Cek Coverage</a>
+ <div class="nav-more">
+ <button type="button" class="nav-more-btn" id="navMoreBtn" aria-label="Buka menu" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button>
+ <div class="nav-more-menu" id="navMoreMenu" role="menu" hidden>
+ <a role="menuitem" href="index.html#paket">Paket</a>
+ <a role="menuitem" href="index.html#faq">FAQ</a>
+ <a role="menuitem" href="blog.html">Blog</a>
+ <a role="menuitem" href="index.html#bantuan">Hubungi Kami</a>
+ <a role="menuitem" class="nav-more-cta" href="index.html#daftar">Cek Coverage</a>
  </div>
-</nav><div id="page-privacy">
+ </div>
+ </div>
+</nav><script>(function(){var b=document.getElementById('navMoreBtn'),m=document.getElementById('navMoreMenu');if(!b||!m)return;function c(){m.hidden=true;b.setAttribute('aria-expanded','false')}b.addEventListener('click',function(e){e.stopPropagation();var o=m.hidden;m.hidden=!o;b.setAttribute('aria-expanded',String(o))});document.addEventListener('click',function(e){if(!e.target.closest('.nav-more'))c()});document.addEventListener('keydown',function(e){if(e.key==='Escape')c()})})();</script><div id="page-privacy">
  <a href="index.html" style="display:inline-block;margin-bottom:32px;color:var(--blue);font-weight:600;text-decoration:none;">&larr; Kembali ke Beranda</a>
  <h1>Kebijakan Privasi</h1>
  <p class="updated">Terakhir diperbarui: September 2026</p>

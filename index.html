@@ -99,7 +99,8 @@
  .nav-more-menu[hidden] { display: none; }
  .nav-more-menu a { display: block; padding: 12px 14px; border-radius: 8px; color: var(--blue); font-weight: 600; font-size: 14px; text-decoration: none; }
  .nav-more-menu a:hover { background: var(--sky); }
- .nav-more-menu .nav-more-cta { margin-top: 4px; border-top: 1px solid #E2EAF8; border-radius: 0 0 8px 8px; color: var(--teal); }
+ .nav-more-menu .nav-more-cta { margin-top: 6px; background: var(--blue); color: #fff; text-align: center; }
+ .nav-more-menu .nav-more-cta:hover { background: var(--blue-mid); }
  @media (max-width: 768px) { .nav-cta-desktop { display: none; } .nav-more { display: block; } nav { padding-right: 16px; } }
  .nav-links { display: flex; gap: 28px; align-items: center; }
  .nav-links a { text-decoration: none; color: var(--blue); font-weight: 500; font-size: 14px; }
@@ -745,9 +746,9 @@
  <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>
  </div>
  <div class="nav-cta-group">
- <a href="#daftar" onclick="bukaCekCoverage();return false;" class="nav-cta nav-cta-outline nav-cta-desktop">Cek Coverage</a>
+ <a href="#daftar" onclick="bukaCekCoverage();return false;" class="nav-cta nav-cta-desktop">Cek Coverage</a>
  <div class="nav-more">
- <button type="button" class="nav-more-btn" id="navMoreBtn" aria-label="Menu lainnya" aria-haspopup="true" aria-expanded="false" onclick="toggleNavMenu(event)"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="5" r="2.2" fill="currentColor"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/><circle cx="12" cy="19" r="2.2" fill="currentColor"/></svg></button>
+ <button type="button" class="nav-more-btn" id="navMoreBtn" aria-label="Buka menu" aria-haspopup="true" aria-expanded="false" onclick="toggleNavMenu(event)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button>
  <div class="nav-more-menu" id="navMoreMenu" role="menu" hidden>
  <a role="menuitem" href="#paket" onclick="closeNavMenu();goToSection('paket');return false;">Paket</a>
  <a role="menuitem" href="#faq" onclick="closeNavMenu();goToSection('faq');return false;">FAQ</a>
@@ -1925,7 +1926,7 @@
 })();
 </script>
 <script>
-// Menu titik tiga (mobile)
+// Menu garis tiga (mobile)
 function closeNavMenu(){ var m=document.getElementById('navMoreMenu'), b=document.getElementById('navMoreBtn'); if(m){m.hidden=true;} if(b){b.setAttribute('aria-expanded','false');} }
 function toggleNavMenu(e){ e.stopPropagation(); var m=document.getElementById('navMoreMenu'), b=document.getElementById('navMoreBtn'); var open=m.hidden; m.hidden=!open; b.setAttribute('aria-expanded', String(open)); }
 document.addEventListener('click', function(e){ if(!e.target.closest('.nav-more')) closeNavMenu(); });
