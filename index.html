@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta name="google-site-verification" content="wQzz0QjG40Zl1P6EicYsc1nMQXc5VPt3eFHPeuon1pU" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://maps.googleapis.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; worker-src blob:; child-src blob:; frame-src https://www.google.com https://td.doubleclick.net https://www.googletagmanager.com; img-src 'self' data: blob: https://maps.googleapis.com https://maps.gstatic.com https://*.googleapis.com https://*.gstatic.com https://*.ggpht.com https://www.google.com https://*.google.com https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.google.co.id https://www.googleadservices.com; connect-src 'self' https://maps.googleapis.com https://nominatim.openstreetmap.org https://www.google.com https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.google.co.id https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net; object-src 'none'; base-uri 'self'; form-action 'self'">
@@ -100,7 +99,8 @@
  .nav-more-menu[hidden] { display: none; }
  .nav-more-menu a { display: block; padding: 12px 14px; border-radius: 8px; color: var(--blue); font-weight: 600; font-size: 14px; text-decoration: none; }
  .nav-more-menu a:hover { background: var(--sky); }
- .nav-more-menu .nav-more-cta { margin-top: 4px; border-top: 1px solid #E2EAF8; border-radius: 0 0 8px 8px; color: var(--teal); }
+ .nav-more-menu .nav-more-cta { margin-top: 6px; background: var(--blue); color: #fff; text-align: center; }
+ .nav-more-menu .nav-more-cta:hover { background: var(--blue-mid); }
  @media (max-width: 768px) { .nav-cta-desktop { display: none; } .nav-more { display: block; } nav { padding-right: 16px; } }
  .nav-links { display: flex; gap: 28px; align-items: center; }
  .nav-links a { text-decoration: none; color: var(--blue); font-weight: 500; font-size: 14px; }
@@ -392,7 +392,8 @@
    display: flex; align-items: center; gap: 14px; padding: 10px 18px; border-radius: 999px;
    color: #fff; text-decoration: none; line-height: 1.1; min-height: 62px; transition: transform 0.15s, filter 0.15s;
  }
- .help-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+ a.help-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+ div.help-btn { cursor: default; user-select: none; }
  .help-btn svg { flex: none; width: 40px; height: 40px; }
  .help-btn small { display: block; font-size: 14px; font-weight: 600; }
  .help-btn strong { display: block; font-size: 24px; font-weight: 800; letter-spacing: -0.01em; }
@@ -746,9 +747,9 @@
  <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>
  </div>
  <div class="nav-cta-group">
- <a href="#daftar" onclick="bukaCekCoverage();return false;" class="nav-cta nav-cta-outline nav-cta-desktop">Cek Coverage</a>
+ <a href="#daftar" onclick="bukaCekCoverage();return false;" class="nav-cta nav-cta-desktop">Cek Coverage</a>
  <div class="nav-more">
- <button type="button" class="nav-more-btn" id="navMoreBtn" aria-label="Menu lainnya" aria-haspopup="true" aria-expanded="false" onclick="toggleNavMenu(event)"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="5" r="2.2" fill="currentColor"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/><circle cx="12" cy="19" r="2.2" fill="currentColor"/></svg></button>
+ <button type="button" class="nav-more-btn" id="navMoreBtn" aria-label="Buka menu" aria-haspopup="true" aria-expanded="false" onclick="toggleNavMenu(event)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button>
  <div class="nav-more-menu" id="navMoreMenu" role="menu" hidden>
  <a role="menuitem" href="#paket" onclick="closeNavMenu();goToSection('paket');return false;">Paket</a>
  <a role="menuitem" href="#faq" onclick="closeNavMenu();goToSection('faq');return false;">FAQ</a>
@@ -1434,13 +1435,13 @@
      <p class="help-desc">Kami siap bantu kamu untuk semua informasi tentang XL SATU</p>
      <div class="help-label">Sales Center</div>
      <div class="help-btns">
-      <a class="help-btn xl" href="tel:8200"><svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 8h5l3 8-4 3a22 22 0 0 0 10 10l3-4 8 3v5a4 4 0 0 1-4 4C22 37 11 26 11 12a4 4 0 0 1 4-4z"/><path d="M30 8a10 10 0 0 1 10 10M30 14a4 4 0 0 1 4 4"/></svg><span><small>Pengguna XL</small><strong>8200</strong></span></a>
-      <a class="help-btn non" href="tel:0818123820"><svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 8h5l3 8-4 3a22 22 0 0 0 10 10l3-4 8 3v5a4 4 0 0 1-4 4C22 37 11 26 11 12a4 4 0 0 1 4-4z"/><path d="M30 8a10 10 0 0 1 10 10M30 14a4 4 0 0 1 4 4"/></svg><span><small>Pengguna Non-XL</small><strong>0818 123 820</strong></span></a>
+      <div class="help-btn xl"><svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 8h5l3 8-4 3a22 22 0 0 0 10 10l3-4 8 3v5a4 4 0 0 1-4 4C22 37 11 26 11 12a4 4 0 0 1 4-4z"/><path d="M30 8a10 10 0 0 1 10 10M30 14a4 4 0 0 1 4 4"/></svg><span><small>Pengguna XL</small><strong>8200</strong></span></div>
+      <div class="help-btn non"><svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 8h5l3 8-4 3a22 22 0 0 0 10 10l3-4 8 3v5a4 4 0 0 1-4 4C22 37 11 26 11 12a4 4 0 0 1 4-4z"/><path d="M30 8a10 10 0 0 1 10 10M30 14a4 4 0 0 1 4 4"/></svg><span><small>Pengguna Non-XL</small><strong>0818 123 820</strong></span></div>
      </div>
      <div class="help-label">Customer Service</div>
      <div class="help-btns">
-      <a class="help-btn xl" href="tel:820"><svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 8h5l3 8-4 3a22 22 0 0 0 10 10l3-4 8 3v5a4 4 0 0 1-4 4C22 37 11 26 11 12a4 4 0 0 1 4-4z"/><path d="M30 8a10 10 0 0 1 10 10M30 14a4 4 0 0 1 4 4"/></svg><span><small>Pengguna XL</small><strong>820</strong></span></a>
-      <a class="help-btn non" href="tel:08170123442"><svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 8h5l3 8-4 3a22 22 0 0 0 10 10l3-4 8 3v5a4 4 0 0 1-4 4C22 37 11 26 11 12a4 4 0 0 1 4-4z"/><path d="M30 8a10 10 0 0 1 10 10M30 14a4 4 0 0 1 4 4"/></svg><span><small>Pengguna Non-XL</small><strong>0817 0123 442</strong></span></a>
+      <div class="help-btn xl"><svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 8h5l3 8-4 3a22 22 0 0 0 10 10l3-4 8 3v5a4 4 0 0 1-4 4C22 37 11 26 11 12a4 4 0 0 1 4-4z"/><path d="M30 8a10 10 0 0 1 10 10M30 14a4 4 0 0 1 4 4"/></svg><span><small>Pengguna XL</small><strong>820</strong></span></div>
+      <div class="help-btn non"><svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 8h5l3 8-4 3a22 22 0 0 0 10 10l3-4 8 3v5a4 4 0 0 1-4 4C22 37 11 26 11 12a4 4 0 0 1 4-4z"/><path d="M30 8a10 10 0 0 1 10 10M30 14a4 4 0 0 1 4 4"/></svg><span><small>Pengguna Non-XL</small><strong>0817 0123 442</strong></span></div>
       <a class="help-btn chat" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20dengan%20paket%20XL%20HOME.%20Boleh%20minta%20info%20promo%20dan%20ketersediaan%20di%20area%20saya%3F" target="_blank" rel="noopener noreferrer" onclick="try{gtag_report_conversion()}catch(e){}"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#25D366"/><path d="M14 35l1.8-6.2A10.5 10.5 0 1 1 20 33l-6 2z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><path d="M20 19c0 5 4 9 9 9l1.5-2-3-1.5-1.2 1c-1.5-.6-2.6-1.7-3.2-3.2l1-1.2-1.5-3z" fill="#fff"/></svg><span>Chat WA Sales</span></a>
      </div>
      <img class="help-agent" src="images/cs-agent.webp" alt="Customer Service XL SATU siap membantu" loading="lazy" width="260" height="310">
@@ -1926,7 +1927,7 @@
 })();
 </script>
 <script>
-// Menu titik tiga (mobile)
+// Menu garis tiga (mobile)
 function closeNavMenu(){ var m=document.getElementById('navMoreMenu'), b=document.getElementById('navMoreBtn'); if(m){m.hidden=true;} if(b){b.setAttribute('aria-expanded','false');} }
 function toggleNavMenu(e){ e.stopPropagation(); var m=document.getElementById('navMoreMenu'), b=document.getElementById('navMoreBtn'); var open=m.hidden; m.hidden=!open; b.setAttribute('aria-expanded', String(open)); }
 document.addEventListener('click', function(e){ if(!e.target.closest('.nav-more')) closeNavMenu(); });
