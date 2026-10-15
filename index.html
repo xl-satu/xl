@@ -92,6 +92,15 @@
    cursor: pointer; text-decoration: none; transition: background 0.2s, color 0.2s;
  }
  .nav-cta-outline:hover { background: var(--sky); }
+ .nav-more { display: none; position: relative; }
+ .nav-more-btn { width: 40px; height: 40px; border: none; background: transparent; color: var(--blue); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+ .nav-more-btn:hover, .nav-more-btn[aria-expanded="true"] { background: var(--sky); }
+ .nav-more-menu { position: absolute; right: 0; top: calc(100% + 10px); min-width: 180px; background: var(--white); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,40,120,.22); padding: 6px; z-index: 130; }
+ .nav-more-menu[hidden] { display: none; }
+ .nav-more-menu a { display: block; padding: 12px 14px; border-radius: 8px; color: var(--blue); font-weight: 600; font-size: 14px; text-decoration: none; }
+ .nav-more-menu a:hover { background: var(--sky); }
+ .nav-more-menu .nav-more-cta { margin-top: 4px; border-top: 1px solid #E2EAF8; border-radius: 0 0 8px 8px; color: var(--teal); }
+ @media (max-width: 768px) { .nav-cta-desktop { display: none; } .nav-more { display: block; } nav { padding-right: 16px; } }
  .nav-links { display: flex; gap: 28px; align-items: center; }
  .nav-links a { text-decoration: none; color: var(--blue); font-weight: 500; font-size: 14px; }
  .nav-links a:hover { color: var(--teal); }
@@ -736,7 +745,17 @@
  <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>
  </div>
  <div class="nav-cta-group">
- <a href="#daftar" onclick="bukaCekCoverage();return false;" class="nav-cta nav-cta-outline">Cek Coverage</a>
+ <a href="#daftar" onclick="bukaCekCoverage();return false;" class="nav-cta nav-cta-outline nav-cta-desktop">Cek Coverage</a>
+ <div class="nav-more">
+ <button type="button" class="nav-more-btn" id="navMoreBtn" aria-label="Menu lainnya" aria-haspopup="true" aria-expanded="false" onclick="toggleNavMenu(event)"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="5" r="2.2" fill="currentColor"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/><circle cx="12" cy="19" r="2.2" fill="currentColor"/></svg></button>
+ <div class="nav-more-menu" id="navMoreMenu" role="menu" hidden>
+ <a role="menuitem" href="#paket" onclick="closeNavMenu();goToSection('paket');return false;">Paket</a>
+ <a role="menuitem" href="#faq" onclick="closeNavMenu();goToSection('faq');return false;">FAQ</a>
+ <a role="menuitem" href="blog.html">Blog</a>
+ <a role="menuitem" href="#bantuan" onclick="closeNavMenu();goToSection('bantuan');return false;">Hubungi Kami</a>
+ <a role="menuitem" class="nav-more-cta" href="#daftar" onclick="closeNavMenu();bukaCekCoverage();return false;">Cek Coverage</a>
+ </div>
+ </div>
  </div>
 </nav>
 <div class="brand-note">Info: layanan <strong>XL SATU</strong> kini juga dikenal dengan nama <strong>XL HOME</strong>. Paket dan layanannya tetap sama.</div>
@@ -763,7 +782,7 @@
 
  <!-- QUICK LINKS -->
  <div class="quick-links" role="navigation" aria-label="Akses cepat">
-  <a class="ql-card" href="#daftar" onclick="setModeForm('daftar');goToSection('daftar');return false;">
+  <a class="ql-card" href="#daftar" onclick="goToSection('paket');return false;">
    <span class="ql-icon"><svg viewBox="0 0 52 52" fill="none" stroke="#0B3D91" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="10" width="40" height="36" rx="6"/><path d="M6 20h40M16 5v9M36 5v9"/><path d="M19 33a7 7 0 0 1 12-4M33 33a7 7 0 0 1-12 4" stroke="#1F7AE0"/><path d="M31 25v4h-4M21 41v-4h4" stroke="#1F7AE0"/></svg></span>
    <span><span class="ql-title">Mau Berlangganan?</span><span class="ql-link">Daftar Sekarang <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M5 2l5 5-5 5"/></svg></span></span>
   </a>
@@ -872,7 +891,6 @@
  </div>
 
  </div>
- <p style="text-align:center;font-size:13px;color:#8899AA;margin-top:24px;"> FWA memakai jaringan nirkabel dan dipasang teknisi di lokasi, tanpa tarik kabel fiber ke rumah.</p>
  </div>
 
  <!-- FTTH TAB -->
@@ -987,9 +1005,6 @@
  </div>
 
  </div>
- <div class="nudge"><span><b>Kini lebih ngebut lagi.</b> Dari 250 Mbps (Rp229rb) ke 300 Mbps cuma <b>+Rp10rb/bln</b> (Rp239rb).</span><button onclick="pilihPaket('FTTH 300 Mbps — Rp239.000/bln');trackEvt('nudge_click',{to:'ftth_300'})">Ambil 300 Mbps</button></div>
- <p style="text-align:center;font-size:13px;color:#8899AA;margin-top:24px;"> FTTH menggunakan kabel fiber optik langsung ke rumah — koneksi lebih stabil untuk kebutuhan jangka panjang.</p>
- <p style="text-align:center;font-size:12px;color:#8899AA;margin-top:8px;">Harga flat selama berlangganan, khusus pelanggan baru. Benefit speed upgrade berlaku 12 bulan dan dapat diperpanjang selama pembayaran lancar. Minimum berlangganan 12 bulan; berhenti sebelum 12 bulan dikenakan penalti Rp1.000.000. Paket 1 Gbps hanya tersedia di area tertentu. Ketersediaan paket mengikuti coverage di alamat kamu. Harga belum termasuk PPN 11%.</p>
  </div>
 
  <div class="tab-content" id="tab-fmc">
@@ -1064,7 +1079,6 @@
  </div>
 
  </div>
- <p style="text-align:center;font-size:12px;color:#8899AA;margin-top:12px;">Harga flat selama berlangganan, khusus pelanggan baru. Minimum berlangganan 12 bulan; berhenti sebelum 12 bulan dikenakan penalti Rp1.000.000. Speed booster berlaku 6 bulan lalu kembali ke speed normal. Berlaku di DSA, Telesales, dan XL Center. Harga belum termasuk PPN 11%.</p>
  </div>
 
  <div class="tab-content" id="tab-combo">
@@ -1170,15 +1184,14 @@
  </div>
 
  </div>
- <p style="text-align:center;font-size:12px;color:#8899AA;margin-top:12px;">Khusus pelanggan baru di area jaringan XL SATU (HFC/FTTH). Jumlah channel dan OTT dapat berubah sewaktu-waktu sesuai kebijakan XL SATU. Harga flat, minimum berlangganan 12 bulan, penalti Rp1.000.000 bila berhenti lebih awal. Berlaku di DSA, Telesales, dan XL Center. Harga belum termasuk PPN 11%.</p>
  </div>
 
  <div class="tab-content" id="tab-promo">
- <h3 class="cat-title">Paket Hemat Bayar di Muka — FTTH</h3>
+ <h3 class="cat-title">Paket Hemat Bayar di Muka — FWA</h3>
  <div class="pkg-grid">
  <div class="pkg-card">
  <span class="pkg-badge save">HEMAT ±Rp36rb/BLN</span>
-  <div class="pkg-type">Fiber Optik · Bayar di Muka</div>
+  <div class="pkg-type">Fixed Wireless · Bayar di Muka</div>
  <div class="pkg-speed">50<span> Mbps</span></div>
  <div class="pkg-upspeed">Bayar 3 dapat 4 bulan</div>
  <ul class="pkg-uses">
@@ -1190,12 +1203,12 @@
  <div class="pkg-label">Harga dasar (4 bulan)</div>
  <div class="pkg-price">Rp650.000</div>
  <div class="pkg-note">Setara ±Rp162.500/bln · lanjut Rp199.000/bln · Belum termasuk PPN</div>
- <button class="pkg-btn" onclick="pilihPaket('FTTH 50 Mbps — Rp650.000 (4 bln)')">Pesan via WhatsApp</button>
+ <button class="pkg-btn" onclick="pilihPaket('FWA 50 Mbps — Rp650.000 (4 bln)')">Pesan via WhatsApp</button>
  </div>
 
  <div class="pkg-card">
  <span class="pkg-badge save">HEMAT ±Rp22rb/BLN</span>
-  <div class="pkg-type">Fiber Optik · Bayar di Muka</div>
+  <div class="pkg-type">Fixed Wireless · Bayar di Muka</div>
  <div class="pkg-speed">100<span> Mbps</span></div>
  <div class="pkg-upspeed">Bayar 3 dapat 4 bulan</div>
  <ul class="pkg-uses">
@@ -1207,11 +1220,11 @@
  <div class="pkg-label">Harga dasar (4 bulan)</div>
  <div class="pkg-price">Rp790.000</div>
  <div class="pkg-note">Setara ±Rp197.500/bln · lanjut Rp219.000/bln · Belum termasuk PPN</div>
- <button class="pkg-btn" onclick="pilihPaket('FTTH 100 Mbps — Rp790.000 (4 bln)')">Pesan via WhatsApp</button>
+ <button class="pkg-btn" onclick="pilihPaket('FWA 100 Mbps — Rp790.000 (4 bln)')">Pesan via WhatsApp</button>
  </div>
 
  <div class="pkg-card">
- <div class="pkg-type">Fiber Optik · Bayar di Muka</div>
+ <div class="pkg-type">Fixed Wireless · Bayar di Muka</div>
  <div class="pkg-speed">100<span> Mbps</span></div>
  <div class="pkg-upspeed">Bayar 3 dapat 3 bulan</div>
  <ul class="pkg-uses">
@@ -1223,7 +1236,7 @@
  <div class="pkg-label">Harga dasar (3 bulan)</div>
  <div class="pkg-price">Rp650.000</div>
  <div class="pkg-note">Setara ±Rp216.667/bln · lanjut Rp219.000/bln · Belum termasuk PPN</div>
- <button class="pkg-btn" onclick="pilihPaket('FTTH 100 Mbps — Rp650.000 (3 bln)')">Pesan via WhatsApp</button>
+ <button class="pkg-btn" onclick="pilihPaket('FWA 100 Mbps — Rp650.000 (3 bln)')">Pesan via WhatsApp</button>
  </div>
 
  </div>
@@ -1392,7 +1405,6 @@
  </div>
 
  </div>
- <p style="text-align:center;font-size:12px;color:#8899AA;margin-top:24px;">Promo bayar di muka hanya untuk pelanggan baru, tidak dapat digabung dengan promo diskon bulanan, dan tidak bisa ditambah add-on selama masa program. Setelah masa promo, tagihan kembali ke harga normal bulanan. Berlaku di DSA, Telesales, dan XL Center. Harga belum termasuk PPN 11%.</p>
  </div>
 
  </div>
@@ -1408,13 +1420,9 @@
 
  <!-- FORMULIR PENDAFTARAN -->
  <div class="section reg-section" id="daftar">
- <div class="section-title">Daftar & Cek Ketersediaan Jaringan</div>
- <div class="section-sub">Isi data dan alamat pemasangan kamu, lalu lanjut chat WhatsApp. Membagikan titik lokasi bersifat opsional</div>
+ <div class="section-title">Cek Ketersediaan Jaringan</div>
+ <div class="section-sub">Cukup isi nama, WhatsApp, dan alamat. Tim kami cek jangkauan di alamatmu dan kabari paket yang tersedia</div>
  <div class="reg-form-wrap">
- <div class="reg-mode" role="group" aria-label="Pilih keperluan">
- <button type="button" id="mode-daftar" class="active" aria-pressed="true" onclick="setModeForm('daftar')">Daftar Paket</button>
- <button type="button" id="mode-cek" aria-pressed="false" onclick="setModeForm('cek')">Cek Coverage Saja</button>
- </div>
  <form id="regForm" onsubmit="event.preventDefault(); kirimForm();">
  <label for="f-nama">Nama Lengkap</label>
  <input type="text" id="f-nama" required placeholder="Nama Lengkap">
@@ -1433,16 +1441,9 @@
  <a id="maps-link" href="#" target="_blank" rel="noopener noreferrer" style="font-size:13px;color:var(--blue);font-weight:600;">Lihat titik lokasi di Google Maps</a>
  </div>
 
- <label id="paket-chosen-label">Paket yang Diminati (opsional)</label>
- <input type="hidden" id="f-paket" value="">
- <div id="paket-chosen-box" style="border:1.5px dashed var(--blue);border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--sky);">
- <span id="paket-chosen-text" style="font-size:14px;color:var(--gray-text);">Belum pilih paket? Tidak apa-apa, kamu tetap bisa lanjut ke WhatsApp dan tim kami bantu rekomendasikan. Atau klik salah satu paket di atas.</span>
- <a href="#paket" onclick="goToSection('paket');return false;" style="font-size:13px;font-weight:700;color:var(--blue);white-space:nowrap;">Lihat &amp; Pilih Paket</a>
- </div>
-
  <div style="position:absolute;left:-9999px;" aria-hidden="true"><label for="f-website">Website</label><input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
  <label style="display:flex;gap:8px;align-items:flex-start;font-weight:400;font-size:13px;margin-top:14px;"><input type="checkbox" id="f-setuju" style="margin-top:3px;width:auto;"><span>Saya setuju dengan <a href="privacy-policy.html" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;">kebijakan privasi</a></span></label>
- <button type="submit" class="form-submit reg-submit" id="regSubmitBtn">Daftar &amp; Lanjut ke WhatsApp</button>
+ <button type="submit" class="form-submit reg-submit" id="regSubmitBtn">Cek Coverage via WhatsApp</button>
  </form>
  </div>
  </div>
@@ -1454,7 +1455,7 @@
    <div class="vid-text">
     <div class="section-title" id="vid-title">Kenalan dengan XL SATU</div>
     <p>Lihat sekilas layanan internet rumah XL SATU: koneksi fiber stabil untuk streaming, kerja, dan belajar seisi rumah.</p>
-    <a class="vid-cta" href="#daftar" onclick="goToSection('daftar');return false;">Daftar Sekarang</a>
+    <a class="vid-cta" href="#paket" onclick="goToSection('paket');return false;">Daftar Sekarang</a>
    </div>
    <div class="vid-frame" id="vidFrame" data-src="video/xl-home.mp4">
     <img class="vid-poster" src="video/xl-home-poster.jpg" alt="Video tentang XL SATU" width="360" height="640" loading="lazy" decoding="async">
@@ -1492,7 +1493,7 @@
      <div class="help-btns">
       <a class="help-btn xl" href="tel:820"><svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 8h5l3 8-4 3a22 22 0 0 0 10 10l3-4 8 3v5a4 4 0 0 1-4 4C22 37 11 26 11 12a4 4 0 0 1 4-4z"/><path d="M30 8a10 10 0 0 1 10 10M30 14a4 4 0 0 1 4 4"/></svg><span><small>Pengguna XL</small><strong>820</strong></span></a>
       <a class="help-btn non" href="tel:08170123442"><svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 8h5l3 8-4 3a22 22 0 0 0 10 10l3-4 8 3v5a4 4 0 0 1-4 4C22 37 11 26 11 12a4 4 0 0 1 4-4z"/><path d="M30 8a10 10 0 0 1 10 10M30 14a4 4 0 0 1 4 4"/></svg><span><small>Pengguna Non-XL</small><strong>0817 0123 442</strong></span></a>
-      <a class="help-btn chat" href="#daftar" onclick="goToSection('daftar');return false;"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#25D366"/><path d="M14 35l1.8-6.2A10.5 10.5 0 1 1 20 33l-6 2z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><path d="M20 19c0 5 4 9 9 9l1.5-2-3-1.5-1.2 1c-1.5-.6-2.6-1.7-3.2-3.2l1-1.2-1.5-3z" fill="#fff"/></svg><span>Chat WA Sales</span></a>
+      <a class="help-btn chat" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20dengan%20paket%20XL%20HOME.%20Boleh%20minta%20info%20promo%20dan%20ketersediaan%20di%20area%20saya%3F" target="_blank" rel="noopener noreferrer" onclick="try{gtag_report_conversion()}catch(e){}"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#25D366"/><path d="M14 35l1.8-6.2A10.5 10.5 0 1 1 20 33l-6 2z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><path d="M20 19c0 5 4 9 9 9l1.5-2-3-1.5-1.2 1c-1.5-.6-2.6-1.7-3.2-3.2l1-1.2-1.5-3z" fill="#fff"/></svg><span>Chat WA Sales</span></a>
      </div>
      <img class="help-agent" src="images/cs-agent.webp" alt="Customer Service XL SATU siap membantu" loading="lazy" width="260" height="310">
     </div>
@@ -1591,7 +1592,7 @@
  <div class="footer-col">
  <h4>Navigasi</h4>
  <a href="#paket" onclick="goToSection('paket');return false;">Paket Internet</a>
- <a href="#daftar" onclick="goToSection('daftar');return false;">Daftar</a>
+ <a href="#paket" onclick="goToSection('paket');return false;">Daftar</a>
  <a href="blog.html">Blog</a>
  <a href="#bantuan" onclick="goToSection('bantuan');return false;">Hubungi Kami</a>
  <a href="privacy-policy.html" target="_blank" rel="noopener">Kebijakan Privasi</a>
@@ -1869,25 +1870,9 @@
     );
   }
 
-  // ── Mode form: Daftar Paket vs Cek Coverage Saja ──
-  window.__modeForm = 'daftar';
-  function setModeForm(mode) {
-    const cek = (mode === 'cek');
-    window.__modeForm = cek ? 'cek' : 'daftar';
-    const paketLbl = document.getElementById('paket-chosen-label');
-    const paketBox = document.getElementById('paket-chosen-box');
-    if (paketLbl) paketLbl.style.display = cek ? 'none' : '';
-    if (paketBox) paketBox.style.display = cek ? 'none' : '';
-    document.getElementById('mode-daftar').classList.toggle('active', !cek);
-    document.getElementById('mode-cek').classList.toggle('active', cek);
-    document.getElementById('mode-daftar').setAttribute('aria-pressed', String(!cek));
-    document.getElementById('mode-cek').setAttribute('aria-pressed', String(cek));
-    const sub = document.querySelector('#daftar .section-sub');
-    if (sub) sub.textContent = cek
-      ? 'Cukup isi nama, WhatsApp, dan alamat. Tim kami cek jangkauan di alamatmu dan kabari paket yang tersedia, tanpa perlu daftar dulu'
-      : 'Isi data dan alamat pemasangan kamu, lalu lanjut chat WhatsApp. Membagikan titik lokasi bersifat opsional';
-    document.getElementById('regSubmitBtn').innerHTML = cek ? 'Cek Coverage via WhatsApp' : 'Daftar &amp; Lanjut ke WhatsApp';
-  }
+  // Form hanya untuk Cek Coverage. setModeForm dipertahankan (no-op) supaya pemanggil lama tidak error.
+  window.__modeForm = 'cek';
+  function setModeForm() {}
 
   // Tombol "Cek Coverage": buka mode cek dan scroll ke form (lokasi TIDAK diminta otomatis)
   function bukaCekCoverage() {
@@ -1916,22 +1901,15 @@
     return false;
   }
 
-  // ── FORM KIRIM → WhatsApp ──
+  // ── FORM CEK COVERAGE → WhatsApp ──
   function kirimForm() {
     const nama   = document.getElementById('f-nama').value.trim();
     const wa     = document.getElementById('f-wa').value.trim();
     const alamat = document.getElementById('f-alamat').value.trim();
-    const cekOnly = (window.__modeForm === 'cek');
-    const paketDipilih = document.getElementById('f-paket').value;
-    const belumPilih = !cekOnly && !paketDipilih;
-    const paket  = cekOnly ? 'Cek Coverage — belum tahu paketnya' : (paketDipilih || 'Belum memilih paket — mohon rekomendasi');
     const mapLink = document.getElementById('maps-link');
     const mapsHref = (mapLink && mapLink.href && !mapLink.href.endsWith('#')) ? mapLink.href : '';
 
-    if (!nama || !wa || !alamat) {
-      alert('Mohon lengkapi semua field terlebih dahulu.');
-      return;
-    }
+    if (!nama || !wa || !alamat) { alert('Mohon lengkapi semua field terlebih dahulu.'); return; }
     if (document.getElementById('f-website').value) return; // honeypot: bot
     if (Date.now() - PAGE_T0 < 4000) { alert('Mohon tunggu sebentar, lalu kirim lagi.'); return; }
     if (!document.getElementById('f-setuju').checked) { alert('Mohon centang persetujuan penggunaan data.'); return; }
@@ -1939,49 +1917,21 @@
     if (nama.length > 100 || alamat.length > 300) { alert('Nama atau alamat terlalu panjang.'); return; }
     try { const last = +localStorage.getItem('lastSubmit') || 0; if (Date.now() - last < 30000) { alert('Tunggu 30 detik sebelum mengirim lagi.'); return; } localStorage.setItem('lastSubmit', Date.now()); } catch (e) {}
 
-    const tglFormatted = '-';
-
-    const submitBtn = document.querySelector('.form-submit');
-    const oriHTML   = submitBtn.innerHTML;
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span class="spin">⟳</span>&nbsp; Mengirim...';
-
-    // Catat konversi lead (tanpa redirect; WA dibuka lewat window.open di bawah)
     try { gtag_report_conversion(); } catch (e) {}
 
-    // 2. Buka WA DULU (harus dipanggil langsung dari user gesture, sebelum proses lain)
-    //    Kalau dipanggil setelah fetch, browser menganggapnya bukan user gesture → popup diblokir.
-    const pesan = (cekOnly || belumPilih) ?
-      'Halo, saya ingin cek ketersediaan jaringan XL SATU (Fiber/FWA) di alamat saya:%0A%0A' +
-      '*Nama:* '             + encodeURIComponent(nama)         + '%0A' +
-      '*No. WA:* '           + encodeURIComponent(wa)           + '%0A' +
-      '*Alamat:* '           + encodeURIComponent(alamat)       + '%0A' +
+    // WA dibuka langsung dari user gesture supaya tidak diblokir popup blocker
+    const pesan = 'Halo, saya ingin cek ketersediaan jaringan XL SATU (Fiber/FWA) di alamat saya:%0A%0A' +
+      '*Nama:* '   + encodeURIComponent(nama)   + '%0A' +
+      '*No. WA:* ' + encodeURIComponent(wa)     + '%0A' +
+      '*Alamat:* ' + encodeURIComponent(alamat) + '%0A' +
       (mapsHref ? '*Lokasi Maps:* ' + encodeURIComponent(mapsHref) + '%0A' : '') +
-      (belumPilih ? '%0ASaya belum memilih paket. Mohon dicek coverage-nya dan dibantu rekomendasi paket yang sesuai di alamat ini. Terima kasih!' : '%0AMohon dicek coverage-nya dan paket apa yang tersedia di alamat ini. Terima kasih!') :
-      'Halo, saya ingin mendaftar paket XL SATU:%0A%0A' +
-      '*Nama:* '             + encodeURIComponent(nama)         + '%0A' +
-      '*No. WA:* '           + encodeURIComponent(wa)           + '%0A' +
-      '*Alamat:* '           + encodeURIComponent(alamat)       + '%0A' +
-      (mapsHref ? '*Lokasi Maps:* ' + encodeURIComponent(mapsHref) + '%0A' : '') +
-      '*Paket:* '            + encodeURIComponent(paket)        + '%0A%0A' +
-      'Mohon info ketersediaan dan proses selanjutnya. Terima kasih!';
-
+      '%0AMohon dicek coverage-nya dan paket apa yang tersedia di alamat ini. Terima kasih!';
     window.open('https://wa.me/6287810963528?text=' + pesan, '_blank', 'noopener,noreferrer');
 
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = oriHTML;
-
-    // 3. Reset form
     setTimeout(() => {
-      document.getElementById('f-nama').value    = '';
-      document.getElementById('f-wa').value      = '';
-      document.getElementById('f-alamat').value  = '';
-      document.getElementById('f-paket').value   = '';
-      const paketTxt = document.getElementById('paket-chosen-text');
-      const paketBox2 = document.getElementById('paket-chosen-box');
-      if (paketTxt) paketTxt.textContent = 'Belum pilih paket? Tidak apa-apa, kamu tetap bisa lanjut ke WhatsApp dan tim kami bantu rekomendasikan. Atau klik salah satu paket di atas.';
-      if (paketBox2) { paketBox2.style.borderStyle = 'dashed'; paketBox2.style.borderColor = 'var(--blue)'; }
-      setModeForm('daftar');
+      document.getElementById('f-nama').value   = '';
+      document.getElementById('f-wa').value     = '';
+      document.getElementById('f-alamat').value = '';
       document.getElementById('maps-link-wrap').style.display = 'none';
     }, 800);
   }
@@ -2027,6 +1977,13 @@
   });
 })();
 </script>
+<script>
+// Menu titik tiga (mobile)
+function closeNavMenu(){ var m=document.getElementById('navMoreMenu'), b=document.getElementById('navMoreBtn'); if(m){m.hidden=true;} if(b){b.setAttribute('aria-expanded','false');} }
+function toggleNavMenu(e){ e.stopPropagation(); var m=document.getElementById('navMoreMenu'), b=document.getElementById('navMoreBtn'); var open=m.hidden; m.hidden=!open; b.setAttribute('aria-expanded', String(open)); }
+document.addEventListener('click', function(e){ if(!e.target.closest('.nav-more')) closeNavMenu(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeNavMenu(); });
+</script>
 <!-- anti-clickjack; dijalankan di awal body supaya efektif -->
 <script>
   if (window.top !== window.self) { try { window.top.location = window.self.location; } catch (e) { document.body.innerHTML = ''; } }
@@ -2070,7 +2027,7 @@
     } else if (s === 'cekarea') {
       setModeForm('cek'); goToSection('daftar');
     } else if (s === 'daftar') {
-      goToSection('daftar');
+      goToSection('paket');
     } else if (s === 'faq') {
       goToSection('faq');
     }
