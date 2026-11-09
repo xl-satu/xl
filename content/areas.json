@@ -1,0 +1,176 @@
+{
+  "packages": [
+    {
+      "name": "Fiber Starter",
+      "speed": "20 Mbps",
+      "price": 185000,
+      "tag": "Hemat",
+      "points": [
+        "Browsing & media sosial harian",
+        "Streaming SD, video call standar",
+        "Biaya instalasi Rp100.000"
+      ],
+      "schemaDesc": "Internet fiber 20 Mbps, biaya instalasi Rp100.000. Harga belum termasuk PPN."
+    },
+    {
+      "name": "FWA 5G Reguler",
+      "speed": "100 Mbps",
+      "price": 219000,
+      "tag": "Pasang cepat",
+      "points": [
+        "Jaringan 5G + router WiFi 6, hingga 7 perangkat",
+        "Tanpa tarik kabel fiber",
+        "Daftar hari ini, terpasang besok (sesuai ketersediaan)"
+      ],
+      "schemaDesc": "Fixed Wireless 5G 100 Mbps dengan router WiFi 6, hingga 7 perangkat. Harga belum termasuk PPN."
+    },
+    {
+      "name": "Fiber 100 Mbps",
+      "speed": "100 Mbps",
+      "price": 229000,
+      "tag": "Paling seimbang",
+      "points": [
+        "Hingga 10 perangkat, streaming 4K",
+        "Cocok untuk WFH & CCTV / smart device",
+        "Gratis instalasi"
+      ],
+      "schemaDesc": "Internet fiber 100 Mbps, gratis instalasi. Harga belum termasuk PPN."
+    },
+    {
+      "name": "FMC Internet + Kuota HP",
+      "speed": "100 Mbps",
+      "price": 319000,
+      "tag": "Sekeluarga",
+      "points": [
+        "Internet 100 Mbps + kuota HP 25 GB (dibagi 2 member)",
+        "Gratis 2 SIM XL Prabayar dari teknisi",
+        "Gratis instalasi"
+      ],
+      "schemaDesc": "Internet 100 Mbps + kuota HP 25 GB untuk 2 member, gratis instalasi. Harga belum termasuk PPN."
+    }
+  ],
+  "areas": [
+    {
+      "slug": "jakarta-pusat",
+      "name": "Jakarta Pusat",
+      "other": "jakarta-barat",
+      "title": "Pasang WiFi XL SATU Jakarta Pusat | FWA 5G & Fiber",
+      "desc": "Pasang WiFi XL SATU (XL HOME) di Jakarta Pusat: Menteng, Tanah Abang, Kemayoran, Senen. FWA 5G & Fiber mulai Rp185rb/bln. Cek coverage gratis.",
+      "h1": "Pasang WiFi XL SATU di Jakarta Pusat",
+      "lead": "Cari internet rumah yang stabil untuk rumah, kos, atau ruko di Jakarta Pusat? Kami mitra penyalur resmi XL SATU (XL HOME) yang membantu cek coverage di alamat kamu, memilih paket, sampai proses pendaftaran lewat WhatsApp.",
+      "about": [
+        "Hunian di Jakarta Pusat umumnya padat: permukiman, gang sempit, rumah tapak, kos-kosan, dan ruko di sekitar pusat kota. Karena ketersediaan jaringan berbeda di tiap gang dan tiap jalan, cara paling akurat adalah cek langsung per alamat.",
+        "Kalau fiber belum tersedia di alamat kamu, paket Fixed Wireless (FWA) 5G dengan router WiFi 6 bisa jadi alternatif tanpa tarik kabel, selama sinyal 5G di lokasi kamu mendukung."
+      ],
+      "districts": [
+        "Gambir",
+        "Sawah Besar",
+        "Kemayoran",
+        "Senen",
+        "Cempaka Putih",
+        "Menteng",
+        "Tanah Abang",
+        "Johar Baru"
+      ],
+      "fits": [
+        {
+          "t": "Rumah, kos & ruko",
+          "d": "Kirim alamat lengkap atau titik lokasi. Untuk kos atau ruko, pastikan pemilik bangunan mengizinkan pemasangan."
+        },
+        {
+          "t": "Kerja dari rumah",
+          "d": "Fiber 100 Mbps atau FWA 5G 100 Mbps cukup untuk video call, upload file, dan streaming bersamaan."
+        },
+        {
+          "t": "Butuh cepat terpasang",
+          "d": "Pilih FWA 5G: daftar hari ini, terpasang besok bila sinyal 5G dan jadwal teknisi tersedia."
+        }
+      ],
+      "faq": [
+        [
+          "Apakah XL SATU tersedia di semua wilayah Jakarta Pusat?",
+          "Ketersediaan mengikuti alamat pemasangan. Kirim alamat lengkap lewat WhatsApp atau form cek coverage, lalu tim kami memeriksa apakah Fiber atau FWA 5G tersedia di lokasi kamu."
+        ],
+        [
+          "Berapa lama pemasangan di Jakarta Pusat?",
+          "Paket FWA 5G bisa terpasang sehari setelah pendaftaran bila jaringan tersedia. Untuk Fiber, jadwal ditentukan setelah coverage terkonfirmasi dan jadwal teknisi tersedia."
+        ],
+        [
+          "Apakah bisa pasang di apartemen atau rusun?",
+          "Mohon maaf, saat ini kami belum melayani pemasangan di apartemen dan rusun. Untuk rumah tinggal, kos, dan ruko, kirim alamat lengkap supaya kami cek ketersediaannya."
+        ],
+        [
+          "Apa saja syarat pendaftaran?",
+          "Lokasi terjangkau jaringan XL SATU, KTP/SIM/Paspor/KITAS, serta nomor kontak dan email yang valid."
+        ],
+        [
+          "Apakah harga di halaman ini sudah termasuk PPN?",
+          "Belum. Harga adalah harga dasar per bulan belum termasuk PPN. Promo dan harga dapat berubah, jadi konfirmasi dulu lewat WhatsApp."
+        ]
+      ]
+    },
+    {
+      "slug": "jakarta-barat",
+      "name": "Jakarta Barat",
+      "other": "jakarta-pusat",
+      "title": "Pasang WiFi XL SATU Jakarta Barat | FWA 5G & Fiber",
+      "desc": "Pasang WiFi XL SATU (XL HOME) di Jakarta Barat: Kebon Jeruk, Kembangan, Cengkareng, Grogol. FWA 5G & Fiber mulai Rp185rb/bln. Cek coverage gratis.",
+      "h1": "Pasang WiFi XL SATU di Jakarta Barat",
+      "lead": "Tinggal di perumahan, kos, atau punya ruko di Jakarta Barat dan butuh WiFi yang stabil? Kami mitra penyalur resmi XL SATU (XL HOME) yang membantu cek coverage alamatmu, memilih paket yang pas, dan mengurus pendaftaran lewat WhatsApp.",
+      "about": [
+        "Jakarta Barat punya campuran perumahan, cluster, kos-kosan, ruko, dan kawasan padat penduduk, dari Kebon Jeruk dan Kembangan sampai Cengkareng dan Tambora. Ketersediaan jaringan bisa berbeda di tiap kompleks dan jalan, jadi pengecekan per alamat paling akurat.",
+        "Keluarga dengan banyak perangkat, kerja dari rumah, atau anak belajar online bisa mulai dari paket 100 Mbps. Kalau ingin cepat terpasang tanpa tarik kabel, paket FWA 5G dengan router WiFi 6 layak dipertimbangkan."
+      ],
+      "districts": [
+        "Cengkareng",
+        "Grogol Petamburan",
+        "Taman Sari",
+        "Tambora",
+        "Kebon Jeruk",
+        "Kalideres",
+        "Palmerah",
+        "Kembangan"
+      ],
+      "fits": [
+        {
+          "t": "Perumahan, cluster & kos",
+          "d": "Kirim nama perumahan dan blok. Kami cek jaringan di alamatmu dan info aturan pengelola bila ada."
+        },
+        {
+          "t": "Keluarga banyak perangkat",
+          "d": "Paket 100 Mbps ke atas cocok untuk streaming 4K, belajar online, dan gaming ringan secara bersamaan."
+        },
+        {
+          "t": "Ruko & usaha rumahan",
+          "d": "Butuh koneksi lebih besar? Tanyakan paket 300 Mbps hingga 1 Gbps atau XL SATU BIZ via WhatsApp."
+        }
+      ],
+      "faq": [
+        [
+          "Apakah XL SATU tersedia di semua wilayah Jakarta Barat?",
+          "Ketersediaan mengikuti alamat pemasangan. Kirim alamat lengkap atau titik lokasi lewat WhatsApp, lalu tim kami memeriksa apakah Fiber atau FWA 5G tersedia di tempatmu."
+        ],
+        [
+          "Bisa pasang di perumahan atau cluster?",
+          "Bisa dicek. Beberapa cluster punya aturan pengelola untuk instalasi, jadi sebutkan nama perumahan dan blok saat menghubungi kami."
+        ],
+        [
+          "Apakah bisa pasang di apartemen atau rusun?",
+          "Mohon maaf, saat ini kami belum melayani pemasangan di apartemen dan rusun. Untuk rumah tinggal, kos, dan ruko, kirim alamat lengkap supaya kami cek ketersediaannya."
+        ],
+        [
+          "Mana yang lebih cocok, Fiber atau FWA 5G?",
+          "Fiber cocok untuk koneksi kabel yang stabil dan banyak perangkat. FWA 5G cocok kalau ingin cepat terpasang tanpa tarik kabel dan sinyal 5G di lokasimu mendukung."
+        ],
+        [
+          "Apa saja syarat pendaftaran?",
+          "Lokasi terjangkau jaringan XL SATU, KTP/SIM/Paspor/KITAS, serta nomor kontak dan email yang valid."
+        ],
+        [
+          "Apakah harga di halaman ini sudah termasuk PPN?",
+          "Belum. Harga adalah harga dasar per bulan belum termasuk PPN. Promo dan harga dapat berubah, jadi konfirmasi dulu lewat WhatsApp."
+        ]
+      ]
+    }
+  ]
+}
