@@ -93,13 +93,30 @@ article img.hero{width:100%;border-radius:14px;margin:18px 0}
 #page-privacy p,#page-privacy li{font-size:15px;color:var(--gray-text);line-height:1.75;margin-bottom:10px}
 #page-privacy ul{padding-left:20px}
 </style><!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18478181378"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18504855653"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'AW-18478181378');
+  gtag('config', 'AW-18504855653');
+
+  // Konversi Google Ads: klik tombol WhatsApp (sama seperti di index.html)
+  function gtag_report_conversion(url) {
+    var callback = function () { if (typeof(url) != 'undefined') { window.location = url; } };
+    if (typeof gtag !== 'function') { callback(); return false; }
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18504855653/HoirCKbN5JcdEOXg5vdE',
+        'value': 1.0,
+        'currency': 'IDR',
+        'event_callback': callback
+    });
+    return false;
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href*="wa.me"]') : null;
+    if (a) { try { gtag_report_conversion(); } catch (err) {} }
+  });
 </script>
 </head><body><nav>
  <a href="index.html" class="logo-link" aria-label="Kembali ke beranda"><img src="images/logo.png" alt="XL SATU - Internet Rumah untuk Keluarga"></a>
