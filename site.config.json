@@ -6,7 +6,8 @@
   "wa": "6287810963528",
   "phone": "087810963528",
   "email": "Donmarcosguevara@gmail.com",
-  "gtagId": "AW-18478181378",
+  "gtagId": "AW-18504855653",
+  "gtagConversion": "AW-18504855653/HoirCKbN5JcdEOXg5vdE",
   "categories": [
     "Paket",
     "Tips",
@@ -21,11 +22,19 @@
   "staticPages": [
     {
       "path": "",
-      "lastmod": "2026-10-15"
+      "lastmod": "2026-11-09"
     },
     {
       "path": "privacy-policy.html",
       "lastmod": "2026-09-30"
+    },
+    {
+      "path": "jakarta-pusat.html",
+      "lastmod": "2026-11-09"
+    },
+    {
+      "path": "jakarta-barat.html",
+      "lastmod": "2026-11-09"
     }
   ]
 }
