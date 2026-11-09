@@ -83,7 +83,7 @@ ${cfg.gtagConversion ? `
 function fixLinks(html, root) {
   return html
     .replace(/(href|src)="post:([\w-]+)"/g, (_, a, s) => `${a}="${root}blog/${s}.html"`)
-    .replace(/(href|src)="(?!https?:|\/\/|#|mailto:|tel:|data:|\/)([^"]*)"/g, (_, a, u) => `${a}="${root}${u}"`);
+    .replace(/(href|src)="(?!https?:|\/\/|#|mailto:|tel:|data:|\/|\.\.\/)([^"]*)"/g, (_, a, u) => `${a}="${root}${u}"`);
 }
 
 function head({ title, desc, canonical, image, type, extra = '', root }) {
