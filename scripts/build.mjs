@@ -63,8 +63,11 @@ ${cfg.gtagConversion ? `
   // Konversi Google Ads: klik tombol WhatsApp (sama seperti di index.html)
   function gtag_report_conversion(url) {
     var callback = function () { if (typeof(url) != 'undefined') { window.location = url; } };
+    var now = Date.now();
+    if (window.__cvAt && now - window.__cvAt < 1500) { if (typeof(url) != 'undefined') { callback(); } return false; }
+    window.__cvAt = now;
     if (typeof gtag !== 'function') { callback(); return false; }
-    gtag('event', 'conversion', {
+${cfg.gtagOutbound ? `    gtag('event', 'conversion', {'send_to': '${cfg.gtagOutbound}', 'value': 1.0, 'currency': 'IDR'}); // Klik keluar\n` : ''}    gtag('event', 'conversion', {
         'send_to': '${cfg.gtagConversion}',
         'value': 1.0,
         'currency': 'IDR',
