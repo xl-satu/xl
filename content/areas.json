@@ -1,52 +1,64 @@
 {
   "packages": [
     {
-      "name": "Fiber Starter",
-      "speed": "20 Mbps",
-      "price": 185000,
-      "tag": "Hemat",
-      "points": [
-        "Browsing & media sosial harian",
-        "Streaming SD, video call standar",
-        "Biaya instalasi Rp100.000"
-      ],
-      "schemaDesc": "Internet fiber 20 Mbps, biaya instalasi Rp100.000. Harga belum termasuk PPN."
-    },
-    {
-      "name": "FWA 5G Reguler",
-      "speed": "100 Mbps",
-      "price": 219000,
-      "tag": "Pasang cepat",
-      "points": [
-        "Jaringan 5G + router WiFi 6, hingga 7 perangkat",
-        "Tanpa tarik kabel fiber",
-        "Daftar hari ini, terpasang besok (sesuai ketersediaan)"
-      ],
-      "schemaDesc": "Fixed Wireless 5G 100 Mbps dengan router WiFi 6, hingga 7 perangkat. Harga belum termasuk PPN."
-    },
-    {
-      "name": "Fiber 100 Mbps",
-      "speed": "100 Mbps",
+      "name": "XL HOME",
+      "speed": "250 Mbps",
       "price": 229000,
+      "tag": "Promo terbatas",
+      "points": [
+        "Hingga 10 perangkat",
+        "Gratis biaya instalasi",
+        "Harga setelah PPN Rp254.190"
+      ],
+      "schemaDesc": "Internet rumah 250 Mbps, hingga 10 perangkat, gratis biaya instalasi. Harga belum termasuk PPN."
+    },
+    {
+      "name": "XL HOME",
+      "speed": "300 Mbps",
+      "price": 239000,
       "tag": "Paling seimbang",
       "points": [
-        "Hingga 10 perangkat, streaming 4K",
-        "Cocok untuk WFH & CCTV / smart device",
-        "Gratis instalasi"
+        "Hingga 12 perangkat",
+        "Gratis biaya instalasi",
+        "Harga setelah PPN Rp265.290"
       ],
-      "schemaDesc": "Internet fiber 100 Mbps, gratis instalasi. Harga belum termasuk PPN."
+      "schemaDesc": "Internet rumah 300 Mbps, hingga 12 perangkat, gratis biaya instalasi. Harga belum termasuk PPN."
     },
     {
-      "name": "FMC Internet + Kuota HP",
-      "speed": "100 Mbps",
-      "price": 319000,
-      "tag": "Sekeluarga",
+      "name": "XL HOME",
+      "speed": "400 Mbps",
+      "price": 299000,
+      "tag": "Promo terbatas",
       "points": [
-        "Internet 100 Mbps + kuota HP 25 GB (dibagi 2 member)",
-        "Gratis 2 SIM XL Prabayar dari teknisi",
-        "Gratis instalasi"
+        "Hingga 14 perangkat",
+        "Gratis biaya instalasi",
+        "Harga setelah PPN Rp331.890"
       ],
-      "schemaDesc": "Internet 100 Mbps + kuota HP 25 GB untuk 2 member, gratis instalasi. Harga belum termasuk PPN."
+      "schemaDesc": "Internet rumah 400 Mbps, hingga 14 perangkat, gratis biaya instalasi. Harga belum termasuk PPN."
+    },
+    {
+      "name": "XL HOME",
+      "speed": "500 Mbps",
+      "price": 399000,
+      "tag": "Promo terbatas",
+      "points": [
+        "Hingga 16 perangkat",
+        "Gratis biaya instalasi",
+        "Harga setelah PPN Rp442.890"
+      ],
+      "schemaDesc": "Internet rumah 500 Mbps, hingga 16 perangkat, gratis biaya instalasi. Harga belum termasuk PPN."
+    },
+    {
+      "name": "XL HOME",
+      "speed": "1 Gbps",
+      "price": 899000,
+      "tag": "Promo terbatas",
+      "points": [
+        "Hingga 20 perangkat",
+        "Gratis biaya instalasi",
+        "Harga setelah PPN Rp997.890"
+      ],
+      "schemaDesc": "Internet rumah 1 Gbps, hingga 20 perangkat, gratis biaya instalasi. Harga belum termasuk PPN."
     }
   ],
   "areas": [
@@ -55,7 +67,7 @@
       "name": "Jakarta Pusat",
       "other": "jakarta-barat",
       "title": "Pasang WiFi XL SATU Jakarta Pusat | FWA 5G & Fiber",
-      "desc": "Pasang WiFi XL SATU (XL HOME) di Jakarta Pusat: Menteng, Tanah Abang, Kemayoran, Senen. FWA 5G & Fiber mulai Rp185rb/bln. Cek coverage gratis.",
+      "desc": "Pasang WiFi XL SATU (XL HOME) di Jakarta Pusat: Menteng, Tanah Abang, Kemayoran, Senen. Internet rumah mulai Rp229rb/bln. Cek coverage gratis.",
       "h1": "Pasang WiFi XL SATU di Jakarta Pusat",
       "lead": "Cari internet rumah yang stabil untuk rumah, kos, atau ruko di Jakarta Pusat? Kami mitra penyalur resmi XL SATU (XL HOME) yang membantu cek coverage di alamat kamu, memilih paket, sampai proses pendaftaran lewat WhatsApp.",
       "about": [
@@ -114,7 +126,7 @@
       "name": "Jakarta Barat",
       "other": "jakarta-pusat",
       "title": "Pasang WiFi XL SATU Jakarta Barat | FWA 5G & Fiber",
-      "desc": "Pasang WiFi XL SATU (XL HOME) di Jakarta Barat: Kebon Jeruk, Kembangan, Cengkareng, Grogol. FWA 5G & Fiber mulai Rp185rb/bln. Cek coverage gratis.",
+      "desc": "Pasang WiFi XL SATU (XL HOME) di Jakarta Barat: Kebon Jeruk, Kembangan, Cengkareng, Grogol. Internet rumah mulai Rp229rb/bln. Cek coverage gratis.",
       "h1": "Pasang WiFi XL SATU di Jakarta Barat",
       "lead": "Tinggal di perumahan, kos, atau punya ruko di Jakarta Barat dan butuh WiFi yang stabil? Kami mitra penyalur resmi XL SATU (XL HOME) yang membantu cek coverage alamatmu, memilih paket yang pas, dan mengurus pendaftaran lewat WhatsApp.",
       "about": [
