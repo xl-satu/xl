@@ -265,7 +265,7 @@ function renderArea(a) {
   const covSection = `<!-- CAKUPAN KELURAHAN -->
   <div class="section cov" id="coverage">
   <h2 class="section-title">Cakupan Kelurahan di ${esc(a.name)}</h2>
-  <div class="section-sub">${kecs.length} kecamatan &middot; ${totalKel} kelurahan. Ketuk kelurahanmu untuk langsung chat sales dan cek jaringan XL SATU. Tanpa isi form</div>
+  <div class="section-sub">${kecs.length} kecamatan &middot; ${totalKel} kelurahan. Ketuk kelurahanmu untuk langsung chat sales dan cek jaringan XL SATU.</div>
   <div class="cov-about">${a.about.map((t) => `<p>${esc(t)}</p>`).join('')}</div>
   <div class="cov-search"><input type="search" id="cov-q" placeholder="Cari kelurahan atau kecamatan..." aria-label="Cari kelurahan atau kecamatan" autocomplete="off"></div>
   <div class="cov-grid">
@@ -331,9 +331,9 @@ function renderCek() {
   const root = '';
   const url = `${cfg.siteUrl}/cek-coverage.html`;
   const title = 'Cek Coverage WiFi XL SATU (XL HOME) Gratis | Jakarta & Jabodetabek';
-  const desc = 'Cek ketersediaan WiFi XL SATU (XL HOME) di alamatmu. Gratis, tanpa komitmen, tanpa isi form. Chat sales via WhatsApp atau pilih kelurahan di Jakarta Pusat dan Jakarta Barat.';
+  const desc = 'Cek ketersediaan WiFi XL SATU (XL HOME) di alamatmu. Gratis. Chat sales via WhatsApp atau pilih kelurahan di Jakarta Pusat dan Jakarta Barat.';
   const faq = [
-    ['Apakah cek coverage dikenakan biaya?', 'Tidak. Cek coverage gratis dan tanpa komitmen.'],
+    ['Apakah cek coverage dikenakan biaya?', 'Tidak. Cek coverage gratis.'],
     ['Apakah saya harus mengisi form untuk cek coverage?', 'Tidak. Kamu bisa langsung chat sales lewat WhatsApp. Mengirim kelurahan atau titik lokasi bersifat opsional, hanya supaya pengecekan lebih cepat.'],
     ['Kenapa ketersediaan jaringan dicek per alamat?', 'Ketersediaan Fiber atau FWA 5G berbeda di tiap gang dan tiap jalan, jadi kami cek langsung per alamat pemasangan kamu.'],
     ['Apa yang terjadi setelah saya chat?', 'Tim kami mengecek jangkauan di alamatmu, lalu mengabari paket yang tersedia.'],

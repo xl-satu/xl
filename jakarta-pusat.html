@@ -455,6 +455,9 @@
  .footer-bottom a { color: rgba(255,255,255,0.5); text-decoration: underline; }
 
  /* LOGO -> balik ke header/beranda */
+ .brand { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+ .brand-sub { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--teal); line-height: 1; white-space: nowrap; }
+ @media (max-width: 768px) { .brand-sub { font-size: 9.5px; } }
  .logo-link { display: inline-flex; line-height: 0; cursor: pointer; }
  .footer-logo a { display: inline-flex; line-height: 0; cursor: pointer; }
 
@@ -707,13 +710,17 @@
  /* PAKET XL HOME (kartu mengikuti home.xl.co.id) */
  .xp-heading { text-align:center; font-size:22px; font-weight:800; color:var(--blue); margin:0 0 20px; }
  .xp-swipe { display:none; text-align:center; font-size:12px; color:var(--gray-mid); margin:-8px 0 8px; }
- .xp-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; align-items:stretch; }
+ .xp-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; align-items:stretch; }
  .xp-card { background:#fff; border:1px solid #E2EAF8; border-radius:20px; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column; transition:transform .2s, box-shadow .2s; }
  .xp-card:hover { transform:translateY(-3px); }
  .xp-head { padding:20px 20px 16px; color:#fff; }
  .xp-head h3 { font-size:20px; font-weight:800; line-height:1.25; }
  .xp-value .xp-head { background:linear-gradient(135deg,#0B3D91,#1F7AE0); }
  .xp-smart .xp-head { background:linear-gradient(135deg,#0052CC,#00A79D); }
+ .xp-fwa .xp-head { background:linear-gradient(135deg,#00897F,#00A79D); position:relative; }
+ .xp-fwa-badge { position:absolute; top:14px; right:14px; background:#fff; color:#00897F; font-size:11px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; border-radius:999px; padding:4px 10px; }
+ .xp-fwa .xp-head h3 { padding-right:96px; }
+ .xp-fwa .xp-meter { max-width:240px; }
  .xp-family .xp-head { background:linear-gradient(135deg,#1B2F7A,#6C4BD8); }
  .xp-body { padding:16px 20px 22px; display:flex; flex-direction:column; flex:1; }
  .xp-meter { display:block; width:100%; max-width:240px; height:auto; margin:0 auto 6px; }
@@ -825,9 +832,12 @@
 
 <!-- NAV -->
 <nav id="header">
+ <div class="brand">
  <a href="index.html" class="logo-link" aria-label="Kembali ke beranda">
  <img src="images/logo.png" alt="XL SATU - Internet Rumah untuk Keluarga">
  </a>
+ <span class="brand-sub">Authorized Sales Partner</span>
+ </div>
  <div class="nav-links">
  <a href="#paket" onclick="goToSection('paket');return false;">Paket</a>
   <a href="#coverage" onclick="goToSection('coverage');return false;">Kelurahan</a>
@@ -890,12 +900,12 @@
   </a>
  </div>
 
- <!-- TANYA CEPAT VIA WA (tanpa form) -->
+ <!-- TANYA CEPAT VIA WA -->
  <div class="wq" id="tanya-cepat">
   <img class="wq-agent" src="images/cs-agent.webp" alt="Sales XL SATU siap membantu" width="56" height="56" loading="lazy">
   <div class="wq-body">
    <p class="wq-title">Mau tanya apa? Langsung chat sales di WhatsApp</p>
-   <p class="wq-sub">Gratis cek area &middot; tanpa komitmen &middot; tanpa isi form</p>
+   <p class="wq-sub">Gratis cek area</p>
    <div class="wq-chips"><a class="wq-chip" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20mau%20cek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20area%20Jakarta%20Pusat." target="_blank" rel="noopener noreferrer">Cek area saya</a><a class="wq-chip" href="https://wa.me/6287810963528?text=Halo%2C%20promo%20XL%20HOME%20apa%20yang%20lagi%20ada%20hari%20ini%3F" target="_blank" rel="noopener noreferrer">Promo hari ini</a><a class="wq-chip" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20bingung%20pilih%20paket%20XL%20HOME.%20Bisa%20dibantu%20rekomendasi%20sesuai%20kebutuhan%20saya%3F" target="_blank" rel="noopener noreferrer">Paket mana yang cocok?</a><a class="wq-chip" href="https://wa.me/6287810963528?text=Halo%2C%20berapa%20total%20biaya%20awal%20pasang%20XL%20HOME%20%28instalasi%20dan%20tagihan%20pertama%29%3F" target="_blank" rel="noopener noreferrer">Biaya pasang</a></div>
   </div>
  </div>
@@ -907,6 +917,26 @@
  <div class="section-sub">Paket internet rumah XL SATU (XL HOME) untuk Jakarta Pusat. Ketersediaan mengikuti alamat pemasangan</div>
  <h2 class="xp-heading">Pilihan paket sesuai kebutuhan internet rumah Anda</h2>
  <div class="xp-grid">
+ <article class="xp-card xp-fwa">
+  <header class="xp-head"><span class="xp-fwa-badge">Paling Dipilih</span><h3>100 Mbps Internet 1 Bulan</h3></header>
+  <div class="xp-body">
+   <svg class="xp-meter" viewBox="0 0 320 160" role="img" aria-label="Meter kecepatan 100 Mbps" width="320" height="160"><path d="M60.0 140.0 A100 100 0 0 1 260.0 140.0" fill="none" stroke="#E2EAF8" stroke-width="16" stroke-linecap="round"/><path d="M60.0 140.0 A100 100 0 0 1 64.9 109.1" fill="none" stroke="#00A79D" stroke-width="16" stroke-linecap="round"/><text x="160" y="124" text-anchor="middle" font-size="40" font-weight="900" fill="#0B3D91" font-family="inherit">100</text><text x="160" y="146" text-anchor="middle" font-size="14" font-weight="700" fill="#8A97B0" font-family="inherit">Mbps</text></svg>
+   <p class="xp-spdlabel">Fixed Wireless 5G &middot; Paket Bulanan Reguler</p><p class="xp-spd"><b>100Mbps</b></p>
+   <p class="xp-ideal-t">Ideal untuk kamu</p>
+   <ul class="xp-ideal"><li>Streaming HD &amp; 4K</li><li>Video Call &amp; WFH</li><li>Game Online Ringan&ndash;Sedang</li></ul>
+   <ul class="xp-perks">
+    <li><svg class="xp-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#00A79D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="14" height="10" rx="1.5"/><path d="M8 18h4M10 14v4"/><rect x="18" y="8" width="3" height="9" rx="1"/></svg>Hingga 7 Perangkat</li>
+    <li><svg class="xp-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#00A79D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/></svg>Jaringan 5G + Router WiFi 6</li>
+    <li><svg class="xp-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#00A79D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M8 3v4M16 3v4M3.5 10h17M9 15l2 2 4-4"/></svg>Daftar Hari Ini, Terpasang Besok</li>
+   </ul>
+   <div class="xp-price">
+    <p class="xp-now">Rp219.000/bulan<sup>*</sup></p>
+    <p class="xp-ppn">Harga setelah PPN Rp243.090 &middot; &plusmn;Rp7rb per hari</p>
+   </div>
+   <a class="xp-btn xp-btn-wa" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20paket%20XL%20HOME%20FWA%205G%20100%20Mbps%20-%20Rp219.000%2Fbulan.%20Kalau%20daftar%20hari%20ini%2C%20bisa%20terpasang%20besok%20di%20area%20saya%3F" onclick="try{gtag_report_conversion()}catch(e){}" target="_blank" rel="noopener noreferrer" data-paket="XL HOME FWA 5G 100 Mbps - Rp219.000/bulan"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>Daftar, Pasang Besok</a>
+   <p class="xp-wa-note">Gratis cek area</p>
+  </div>
+ </article>
  <article class="xp-card xp-value">
   <header class="xp-head"><h3>250 Mbps Internet 1 Bulan</h3></header>
   <div class="xp-body">
@@ -925,7 +955,7 @@
     <p class="xp-ppn">Harga setelah PPN Rp254.190</p>
    </div>
    <a class="xp-btn xp-btn-wa" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20paket%20XL%20HOME%20250%20Mbps%20-%20Rp229.000%2Fbulan.%20Boleh%20dicek%20apakah%20bisa%20dipasang%20di%20area%20Jakarta%20Pusat%3F" target="_blank" rel="noopener noreferrer" data-paket="XL HOME 250 Mbps - Rp229.000/bulan"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg> Pilih &amp; Chat WA</a>
-   <p class="xp-wa-note">Gratis cek area &middot; tanpa isi form</p>
+   <p class="xp-wa-note">Gratis cek area</p>
   </div>
  </article>
  <article class="xp-card xp-smart">
@@ -946,7 +976,7 @@
     <p class="xp-ppn">Harga setelah PPN Rp265.290</p>
    </div>
    <a class="xp-btn xp-btn-wa" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20paket%20XL%20HOME%20300%20Mbps%20-%20Rp239.000%2Fbulan.%20Boleh%20dicek%20apakah%20bisa%20dipasang%20di%20area%20Jakarta%20Pusat%3F" target="_blank" rel="noopener noreferrer" data-paket="XL HOME 300 Mbps - Rp239.000/bulan"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg> Pilih &amp; Chat WA</a>
-   <p class="xp-wa-note">Gratis cek area &middot; tanpa isi form</p>
+   <p class="xp-wa-note">Gratis cek area</p>
   </div>
  </article>
  <article class="xp-card xp-family">
@@ -967,7 +997,7 @@
     <p class="xp-ppn">Harga setelah PPN Rp331.890</p>
    </div>
    <a class="xp-btn xp-btn-wa" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20paket%20XL%20HOME%20400%20Mbps%20-%20Rp299.000%2Fbulan.%20Boleh%20dicek%20apakah%20bisa%20dipasang%20di%20area%20Jakarta%20Pusat%3F" target="_blank" rel="noopener noreferrer" data-paket="XL HOME 400 Mbps - Rp299.000/bulan"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg> Pilih &amp; Chat WA</a>
-   <p class="xp-wa-note">Gratis cek area &middot; tanpa isi form</p>
+   <p class="xp-wa-note">Gratis cek area</p>
   </div>
  </article>
  <article class="xp-card xp-value">
@@ -988,7 +1018,7 @@
     <p class="xp-ppn">Harga setelah PPN Rp442.890</p>
    </div>
    <a class="xp-btn xp-btn-wa" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20paket%20XL%20HOME%20500%20Mbps%20-%20Rp399.000%2Fbulan.%20Boleh%20dicek%20apakah%20bisa%20dipasang%20di%20area%20Jakarta%20Pusat%3F" target="_blank" rel="noopener noreferrer" data-paket="XL HOME 500 Mbps - Rp399.000/bulan"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg> Pilih &amp; Chat WA</a>
-   <p class="xp-wa-note">Gratis cek area &middot; tanpa isi form</p>
+   <p class="xp-wa-note">Gratis cek area</p>
   </div>
  </article>
  <article class="xp-card xp-smart">
@@ -1009,7 +1039,7 @@
     <p class="xp-ppn">Harga setelah PPN Rp997.890</p>
    </div>
    <a class="xp-btn xp-btn-wa" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20paket%20XL%20HOME%201%20Gbps%20-%20Rp899.000%2Fbulan.%20Boleh%20dicek%20apakah%20bisa%20dipasang%20di%20area%20Jakarta%20Pusat%3F" target="_blank" rel="noopener noreferrer" data-paket="XL HOME 1 Gbps - Rp899.000/bulan"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg> Pilih &amp; Chat WA</a>
-   <p class="xp-wa-note">Gratis cek area &middot; tanpa isi form</p>
+   <p class="xp-wa-note">Gratis cek area</p>
   </div>
  </article>
  </div>
@@ -1020,7 +1050,7 @@
  <!-- CAKUPAN KELURAHAN -->
   <div class="section cov" id="coverage">
   <h2 class="section-title">Cakupan Kelurahan di Jakarta Pusat</h2>
-  <div class="section-sub">8 kecamatan &middot; 44 kelurahan. Ketuk kelurahanmu untuk langsung chat sales dan cek jaringan XL SATU. Tanpa isi form</div>
+  <div class="section-sub">8 kecamatan &middot; 44 kelurahan. Ketuk kelurahanmu untuk langsung chat sales dan cek jaringan XL SATU.</div>
   <div class="cov-about"><p>Hunian di Jakarta Pusat umumnya padat: permukiman, gang sempit, rumah tapak, kos-kosan, dan ruko di sekitar pusat kota. Karena ketersediaan jaringan berbeda di tiap gang dan tiap jalan, cara paling akurat adalah cek langsung per alamat.</p><p>Kalau fiber belum tersedia di alamat kamu, paket Fixed Wireless (FWA) 5G dengan router WiFi 6 bisa jadi alternatif tanpa tarik kabel, selama sinyal 5G di lokasi kamu mendukung.</p></div>
   <div class="cov-search"><input type="search" id="cov-q" placeholder="Cari kelurahan atau kecamatan..." aria-label="Cari kelurahan atau kecamatan" autocomplete="off"></div>
   <div class="cov-grid">
@@ -1065,11 +1095,11 @@
  <!-- CEK COVERAGE (ringkas). Form lengkap ada di cek-coverage.html. id="daftar" dipertahankan supaya link lama (#daftar, ?s=cekarea) tetap mendarat di sini -->
  <div class="section reg-section cek-cta" id="daftar">
  <h2 class="section-title">Cek Ketersediaan Jaringan</h2>
- <div class="section-sub">Gratis dan tanpa komitmen. Chat saja, tim kami yang cek jangkauan di alamatmu</div>
+ <div class="section-sub">Gratis. Chat saja, tim kami yang cek jangkauan di alamatmu</div>
  <div class="cek-grid">
   <a class="cek-card cek-wa" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20mau%20cek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20area%20Jakarta%20Pusat." target="_blank" rel="noopener noreferrer">
    <strong>Chat WA, Cek Area Saya</strong>
-   <span>Langsung ke sales. Tidak perlu isi form.</span>
+   <span>Langsung chat dengan sales.</span>
   </a>
   <a class="cek-card" href="cek-coverage.html">
    <strong>Cek per Kelurahan / Alamat</strong>
@@ -1183,7 +1213,7 @@
  </span>
  <span class="wa-float-text">
  <strong>Cek Area Gratis via WA</strong>
- <span>Tanpa isi form &middot; tanpa komitmen</span>
+ <span>Langsung chat dengan sales</span>
  </span>
  <img src="images/logo.png" alt="" class="wa-float-brand">
 </a>

@@ -13,6 +13,9 @@ nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 100; backgr
  box-shadow: 0 2px 12px rgba(0,51,160,0.08); display: flex; align-items: center; justify-content: space-between; padding: 12px 32px; }
 nav img { height: 44px; }
 .logo-link { display: inline-flex; line-height: 0; cursor: pointer; }
+.brand { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+.brand-sub { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--teal); line-height: 1; white-space: nowrap; }
+@media (max-width: 768px) { .brand-sub { font-size: 9.5px; } }
 .nav-cta { background: var(--blue); color: var(--white); border: none; border-radius: 8px; padding: 10px 22px;
  font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; transition: background 0.2s; }
 .nav-cta:hover { background: var(--blue-mid); }
@@ -259,7 +262,7 @@ article img{max-width:100%;height:auto;border-radius:12px}
   });
 </script>
 </head><body><nav>
- <a href="../index.html" class="logo-link" aria-label="Kembali ke beranda"><img src="../images/logo.png" alt="XL SATU - Internet Rumah untuk Keluarga"></a>
+ <div class="brand"><a href="../index.html" class="logo-link" aria-label="Kembali ke beranda"><img src="../images/logo.png" alt="XL SATU - Internet Rumah untuk Keluarga"></a><span class="brand-sub">Authorized Sales Partner</span></div>
  <div class="nav-links">
  <a href="../index.html#paket">Paket</a>
  <a href="../index.html#faq">FAQ</a>
