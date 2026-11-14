@@ -602,23 +602,6 @@
   }
 
   /* ── POPUP PILIH TITIK LOKASI ── */
-  #peta-overlay { position: fixed; inset: 0; background: rgba(10,20,40,0.55); z-index: 10000; display: none; align-items: center; justify-content: center; padding: 16px; }
-  #peta-overlay.open { display: flex; }
-  .peta-modal { background: #fff; border-radius: 24px; width: 100%; max-width: 640px; max-height: 96vh; overflow-y: auto; padding: 28px; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
-  .peta-close { position: absolute; top: 18px; right: 20px; background: none; border: none; font-size: 28px; line-height: 1; cursor: pointer; color: #111; }
-  .peta-modal h3 { font-size: 22px; font-weight: 800; color: #111; margin: 0 40px 6px 0; }
-  .peta-modal .peta-sub { font-size: 14px; color: var(--gray-text); margin-bottom: 14px; }
-  .peta-box { position: relative; height: 380px; border-radius: 16px; overflow: hidden; background: #e8eef7; }
-  #peta-canvas { position: absolute; inset: 0; }
-  .peta-search { position: absolute; top: 12px; left: 12px; right: 12px; z-index: 5; display: flex; align-items: center; gap: 8px; background: #fff; border-radius: 14px; padding: 4px 6px 4px 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.18); }
-  .peta-search input { flex: 1; min-width: 0; border: none !important; outline: none; font-size: 14px; font-family: inherit; padding: 11px 0 !important; background: transparent; box-shadow: none !important; }
-  .peta-search button { border: none; background: var(--blue); color: #fff; border-radius: 10px; padding: 9px 14px; font-weight: 700; font-size: 13px; cursor: pointer; font-family: inherit; }
-  .peta-locate { position: absolute; right: 12px; bottom: 28px; z-index: 5; width: 46px; height: 46px; border-radius: 50%; border: none; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.25); cursor: pointer; display: flex; align-items: center; justify-content: center; }
-  .peta-hint { font-size: 12.5px; color: var(--gray-text); margin: 10px 0 14px; }
-  .peta-err { display: none; color: #dc2626; font-size: 12.5px; margin-bottom: 10px; }
-  .peta-confirm { width: 100%; padding: 15px; border: none; border-radius: 12px; background: var(--blue); color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; }
-  .peta-confirm:disabled { background: var(--gray-mid); cursor: not-allowed; }
-  @media (max-width: 520px) { .peta-modal { padding: 20px 16px; border-radius: 20px; } .peta-box { height: 340px; } }
   @keyframes spin { to { transform: rotate(360deg); } }
   .spin { animation: spin 0.8s linear infinite; display: inline-block; }
 
@@ -756,6 +739,50 @@
   .xp-grid { display:flex; flex-direction:column; overflow:visible; gap:16px; padding:4px 0 8px; }
   .xp-card { flex:0 0 auto; width:100%; max-width:none; }
  }
+
+ /* ── Lead ke WA: chip tanya cepat, tombol card, blok cek coverage ── */
+ .wq { display: flex; align-items: center; gap: 16px; max-width: 1100px; margin: 22px auto 0; padding: 16px 20px; background: #F0FBF4; border: 1px solid #BFE8CF; border-radius: 18px; }
+ .wq-agent { flex: none; width: 56px; height: 56px; border-radius: 50%; object-fit: cover; object-position: top; background: #fff; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+ .wq-title { font-size: 17px; font-weight: 800; color: var(--dark); line-height: 1.35; }
+ .wq-sub { font-size: 13.5px; color: var(--gray-text); margin-top: 2px; }
+ .wq-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+ .wq-chip { display: inline-block; text-decoration: none; background: #fff; color: #0E7A3F; border: 1.5px solid #25D366; border-radius: 999px; padding: 7px 14px; font-size: 14px; font-weight: 700; transition: background .15s, color .15s; }
+ .wq-chip:hover { background: #25D366; color: #073B1D; }
+ .xp-btn-wa { display: flex; align-items: center; justify-content: center; gap: 8px; background: #128C4A; text-decoration: none; text-align: center; }
+ .xp-btn-wa:hover { background: #0E7A3F; }
+ .xp-wa-note { text-align: center; font-size: 12px; color: var(--gray-text); margin-top: 6px; }
+ .cek-grid { max-width: 760px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+ .cek-card { display: flex; flex-direction: column; gap: 4px; text-decoration: none; background: #fff; color: var(--dark); border: 1.5px solid #D5E0F5; border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow); transition: transform .15s, border-color .15s; }
+ .cek-card:hover { transform: translateY(-2px); border-color: var(--blue-mid); }
+ .cek-card strong { font-size: 18px; color: var(--blue); }
+ .cek-card span { font-size: 14px; color: var(--gray-text); line-height: 1.5; }
+ .cek-card.cek-wa { background: #128C4A; border-color: #128C4A; }
+ .cek-card.cek-wa strong, .cek-card.cek-wa span { color: #fff; }
+ .cek-cta .reg-note a { color: var(--blue); font-weight: 600; }
+ @media (max-width: 720px) {
+  .wq { margin: 16px 12px 0; padding: 14px; align-items: flex-start; }
+  .wq-agent { width: 44px; height: 44px; }
+  .wq-title { font-size: 15.5px; }
+  .cek-grid { grid-template-columns: 1fr; }
+ }
+
+ /* Bar WA di bawah layar (mobile) + bubble ajakan */
+ .wa-nudge { display: none; }
+ @media (max-width: 720px) {
+  .wa-float { left: 12px; right: 12px; bottom: 12px; width: auto; height: 58px; border-radius: 16px; background: #128C4A; justify-content: flex-start; gap: 10px; padding: 0 16px 0 8px; animation: none; box-shadow: 0 6px 20px rgba(0,0,0,.28); }
+  .wa-float-icon { width: 44px; height: 44px; }
+  .wa-float-icon svg { width: 44px; height: 44px; }
+  .wa-float-text { display: flex; flex-direction: column; color: #fff; line-height: 1.25; }
+  .wa-float-text strong { font-size: 15.5px; font-weight: 800; }
+  .wa-float-text span { font-size: 12px; opacity: .92; }
+  .wa-tip { display: none; }
+  footer { padding-bottom: 96px; }
+  .wa-nudge { display: flex; align-items: center; gap: 4px; position: fixed; left: 12px; right: 12px; bottom: 80px; z-index: 998; background: #fff; border-radius: 14px; box-shadow: 0 6px 22px rgba(0,51,160,.25); padding: 10px 6px 10px 14px; animation: tipIn .4s ease both; }
+  .wa-nudge[hidden] { display: none; }
+  .wa-nudge a { flex: 1; text-decoration: none; color: var(--blue); font-size: 14.5px; line-height: 1.3; }
+  .wa-nudge small { display: block; font-size: 12px; font-weight: 500; color: var(--gray-text); }
+  .wa-nudge button { border: none; background: none; font-size: 24px; line-height: 1; color: var(--gray-mid); padding: 4px 10px; cursor: pointer; }
+ }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18504855653"></script>
@@ -778,7 +805,7 @@
  .cov-kec h3 { font-size: 17px; font-weight: 800; color: var(--blue); }
  .cov-kec header span { font-size: 12px; color: var(--gray-mid); white-space: nowrap; }
  .cov-kec ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
- .cov-kel { font: inherit; font-size: 13px; color: var(--blue-mid); background: var(--sky); border: 1px solid transparent; border-radius: 999px; padding: 6px 12px; cursor: pointer; transition: border-color .15s, background .15s; }
+ .cov-kel { display: inline-block; text-decoration: none; font: inherit; font-size: 13px; color: var(--blue-mid); background: var(--sky); border: 1px solid transparent; border-radius: 999px; padding: 6px 12px; cursor: pointer; transition: border-color .15s, background .15s; }
  .cov-kel:hover { border-color: var(--blue-mid); background: #fff; }
  .cov-kel.ok { background: #E6F7F5; color: #067A72; }
  .cov-kel i { font-style: normal; font-size: 10px; font-weight: 700; margin-left: 6px; background: var(--teal); color: #fff; border-radius: 999px; padding: 1px 6px; }
@@ -791,7 +818,7 @@
 </head>
 <body>
 <!-- PAGE_T0 harus dideklarasikan PERTAMA sebelum semua script lain,
-     supaya nilai Date.now() saat halaman dimuat tersedia saat kirimForm() dipanggil.
+     supaya nilai Date.now() saat halaman dimuat tersedia saat halaman dimuat (dipertahankan untuk kompatibilitas).
      Kalau dideklarasikan terlambat (di bawah), nilai t yang dikirim ke Apps Script
      menjadi NaN sehingga semua lead DITOLAK oleh cek !(Number(d.t) >= 4000). -->
 <script>var PAGE_T0 = Date.now();</script>
@@ -810,7 +837,7 @@
  <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>
  </div>
  <div class="nav-cta-group">
- <a href="#daftar" onclick="bukaCekCoverage();return false;" class="nav-cta nav-cta-desktop">Cek Coverage</a>
+ <a href="cek-coverage.html" class="nav-cta nav-cta-desktop">Cek Coverage</a>
  <div class="nav-more">
  <button type="button" class="nav-more-btn" id="navMoreBtn" aria-label="Buka menu" aria-haspopup="true" aria-expanded="false" onclick="toggleNavMenu(event)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button>
  <div class="nav-more-menu" id="navMoreMenu" role="menu" hidden>
@@ -820,7 +847,7 @@
  <a role="menuitem" href="#faq" onclick="closeNavMenu();goToSection('faq');return false;">FAQ</a>
  <a role="menuitem" href="blog.html">Blog</a>
  <a role="menuitem" href="#bantuan" onclick="closeNavMenu();goToSection('bantuan');return false;">Hubungi Kami</a>
- <a role="menuitem" class="nav-more-cta" href="#daftar" onclick="closeNavMenu();bukaCekCoverage();return false;">Cek Coverage</a>
+ <a role="menuitem" class="nav-more-cta" href="cek-coverage.html">Cek Coverage</a>
  </div>
  </div>
  </div>
@@ -849,7 +876,7 @@
 
  <!-- QUICK LINKS -->
  <div class="quick-links" role="navigation" aria-label="Akses cepat">
-  <a class="ql-card" href="#daftar" onclick="goToSection('paket');return false;">
+  <a class="ql-card" href="#paket" onclick="goToSection('paket');return false;">
    <span class="ql-icon"><svg viewBox="0 0 52 52" fill="none" stroke="#0B3D91" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="10" width="40" height="36" rx="6"/><path d="M6 20h40M16 5v9M36 5v9"/><path d="M19 33a7 7 0 0 1 12-4M33 33a7 7 0 0 1-12 4" stroke="#1F7AE0"/><path d="M31 25v4h-4M21 41v-4h4" stroke="#1F7AE0"/></svg></span>
    <span><span class="ql-title">Mau Berlangganan?</span><span class="ql-link">Daftar Sekarang <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M5 2l5 5-5 5"/></svg></span></span>
   </a>
@@ -857,10 +884,20 @@
    <span class="ql-icon"><svg viewBox="0 0 52 52" fill="none" stroke="#1F7AE0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="26" cy="19" r="4.5" stroke="#0B3D91"/><path d="M26 24v22M20 46h12" stroke="#0B3D91"/><path d="M17 12a12 12 0 0 0 0 14M35 12a12 12 0 0 1 0 14M10 7a21 21 0 0 0 0 24M42 7a21 21 0 0 1 0 24"/></svg></span>
    <span><span class="ql-title">Cari Paket Internet?</span><span class="ql-link">Lihat Paket <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M5 2l5 5-5 5"/></svg></span></span>
   </a>
-  <a class="ql-card" id="ql-lacak" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20ingin%20menanyakan%20status%20pesanan%20pemasangan%20XL%20HOME.%0A%0A*Nama%3A*%20%0A*No.%20WA%20yang%20didaftarkan%3A*%20" target="_blank" rel="noopener noreferrer">
+  <a class="ql-card" id="ql-lacak" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20ingin%20menanyakan%20status%20pesanan%20pemasangan%20XL%20HOME." target="_blank" rel="noopener noreferrer">
    <span class="ql-icon"><svg viewBox="0 0 52 52" fill="none" stroke="#0B3D91" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="23" cy="23" r="12"/><path d="M32 32l13 13" stroke-width="5"/><path d="M17 23a6 6 0 0 1 6-6" stroke="#1F7AE0"/></svg></span>
    <span><span class="ql-title">Status Pesanan</span><span class="ql-link">Lacak Sekarang <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M5 2l5 5-5 5"/></svg></span></span>
   </a>
+ </div>
+
+ <!-- TANYA CEPAT VIA WA (tanpa form) -->
+ <div class="wq" id="tanya-cepat">
+  <img class="wq-agent" src="images/cs-agent.webp" alt="Sales XL SATU siap membantu" width="56" height="56" loading="lazy">
+  <div class="wq-body">
+   <p class="wq-title">Mau tanya apa? Langsung chat sales di WhatsApp</p>
+   <p class="wq-sub">Gratis cek area &middot; tanpa komitmen &middot; tanpa isi form</p>
+   <div class="wq-chips"><a class="wq-chip" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20mau%20cek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20area%20Jakarta%20Barat." target="_blank" rel="noopener noreferrer">Cek area saya</a><a class="wq-chip" href="https://wa.me/6287810963528?text=Halo%2C%20promo%20XL%20HOME%20apa%20yang%20lagi%20ada%20hari%20ini%3F" target="_blank" rel="noopener noreferrer">Promo hari ini</a><a class="wq-chip" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20bingung%20pilih%20paket%20XL%20HOME.%20Bisa%20dibantu%20rekomendasi%20sesuai%20kebutuhan%20saya%3F" target="_blank" rel="noopener noreferrer">Paket mana yang cocok?</a><a class="wq-chip" href="https://wa.me/6287810963528?text=Halo%2C%20berapa%20total%20biaya%20awal%20pasang%20XL%20HOME%20%28instalasi%20dan%20tagihan%20pertama%29%3F" target="_blank" rel="noopener noreferrer">Biaya pasang</a></div>
+  </div>
  </div>
 
  <!-- PAKET SECTION -->
@@ -887,7 +924,8 @@
     <p class="xp-now">Rp229.000/bulan<sup>*</sup></p>
     <p class="xp-ppn">Harga setelah PPN Rp254.190</p>
    </div>
-   <button type="button" class="xp-btn" onclick="pilihPaket('XL HOME 250 Mbps - Rp229.000/bulan')">Saya Pilih Ini</button>
+   <a class="xp-btn xp-btn-wa" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20paket%20XL%20HOME%20250%20Mbps%20-%20Rp229.000%2Fbulan.%20Boleh%20dicek%20apakah%20bisa%20dipasang%20di%20area%20Jakarta%20Barat%3F" target="_blank" rel="noopener noreferrer" data-paket="XL HOME 250 Mbps - Rp229.000/bulan"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg> Pilih &amp; Chat WA</a>
+   <p class="xp-wa-note">Gratis cek area &middot; tanpa isi form</p>
   </div>
  </article>
  <article class="xp-card xp-smart">
@@ -907,7 +945,8 @@
     <p class="xp-now">Rp239.000/bulan<sup>*</sup></p>
     <p class="xp-ppn">Harga setelah PPN Rp265.290</p>
    </div>
-   <button type="button" class="xp-btn" onclick="pilihPaket('XL HOME 300 Mbps - Rp239.000/bulan')">Saya Pilih Ini</button>
+   <a class="xp-btn xp-btn-wa" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20paket%20XL%20HOME%20300%20Mbps%20-%20Rp239.000%2Fbulan.%20Boleh%20dicek%20apakah%20bisa%20dipasang%20di%20area%20Jakarta%20Barat%3F" target="_blank" rel="noopener noreferrer" data-paket="XL HOME 300 Mbps - Rp239.000/bulan"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg> Pilih &amp; Chat WA</a>
+   <p class="xp-wa-note">Gratis cek area &middot; tanpa isi form</p>
   </div>
  </article>
  <article class="xp-card xp-family">
@@ -927,7 +966,8 @@
     <p class="xp-now">Rp299.000/bulan<sup>*</sup></p>
     <p class="xp-ppn">Harga setelah PPN Rp331.890</p>
    </div>
-   <button type="button" class="xp-btn" onclick="pilihPaket('XL HOME 400 Mbps - Rp299.000/bulan')">Saya Pilih Ini</button>
+   <a class="xp-btn xp-btn-wa" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20paket%20XL%20HOME%20400%20Mbps%20-%20Rp299.000%2Fbulan.%20Boleh%20dicek%20apakah%20bisa%20dipasang%20di%20area%20Jakarta%20Barat%3F" target="_blank" rel="noopener noreferrer" data-paket="XL HOME 400 Mbps - Rp299.000/bulan"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg> Pilih &amp; Chat WA</a>
+   <p class="xp-wa-note">Gratis cek area &middot; tanpa isi form</p>
   </div>
  </article>
  <article class="xp-card xp-value">
@@ -947,7 +987,8 @@
     <p class="xp-now">Rp399.000/bulan<sup>*</sup></p>
     <p class="xp-ppn">Harga setelah PPN Rp442.890</p>
    </div>
-   <button type="button" class="xp-btn" onclick="pilihPaket('XL HOME 500 Mbps - Rp399.000/bulan')">Saya Pilih Ini</button>
+   <a class="xp-btn xp-btn-wa" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20paket%20XL%20HOME%20500%20Mbps%20-%20Rp399.000%2Fbulan.%20Boleh%20dicek%20apakah%20bisa%20dipasang%20di%20area%20Jakarta%20Barat%3F" target="_blank" rel="noopener noreferrer" data-paket="XL HOME 500 Mbps - Rp399.000/bulan"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg> Pilih &amp; Chat WA</a>
+   <p class="xp-wa-note">Gratis cek area &middot; tanpa isi form</p>
   </div>
  </article>
  <article class="xp-card xp-smart">
@@ -967,7 +1008,8 @@
     <p class="xp-now">Rp899.000/bulan<sup>*</sup></p>
     <p class="xp-ppn">Harga setelah PPN Rp997.890</p>
    </div>
-   <button type="button" class="xp-btn" onclick="pilihPaket('XL HOME 1 Gbps - Rp899.000/bulan')">Saya Pilih Ini</button>
+   <a class="xp-btn xp-btn-wa" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20paket%20XL%20HOME%201%20Gbps%20-%20Rp899.000%2Fbulan.%20Boleh%20dicek%20apakah%20bisa%20dipasang%20di%20area%20Jakarta%20Barat%3F" target="_blank" rel="noopener noreferrer" data-paket="XL HOME 1 Gbps - Rp899.000/bulan"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg> Pilih &amp; Chat WA</a>
+   <p class="xp-wa-note">Gratis cek area &middot; tanpa isi form</p>
   </div>
  </article>
  </div>
@@ -978,25 +1020,24 @@
  <!-- CAKUPAN KELURAHAN -->
   <div class="section cov" id="coverage">
   <h2 class="section-title">Cakupan Kelurahan di Jakarta Barat</h2>
-  <div class="section-sub">8 kecamatan &middot; 56 kelurahan. Pilih kelurahanmu untuk cek ketersediaan jaringan XL SATU</div>
+  <div class="section-sub">8 kecamatan &middot; 56 kelurahan. Ketuk kelurahanmu untuk langsung chat sales dan cek jaringan XL SATU. Tanpa isi form</div>
   <div class="cov-about"><p>Jakarta Barat punya campuran perumahan, cluster, kos-kosan, ruko, dan kawasan padat penduduk, dari Kebon Jeruk dan Kembangan sampai Cengkareng dan Tambora. Ketersediaan jaringan bisa berbeda di tiap kompleks dan jalan, jadi pengecekan per alamat paling akurat.</p><p>Keluarga dengan banyak perangkat, kerja dari rumah, atau anak belajar online bisa mulai dari paket 100 Mbps. Kalau ingin cepat terpasang tanpa tarik kabel, paket FWA 5G dengan router WiFi 6 layak dipertimbangkan.</p></div>
   <div class="cov-search"><input type="search" id="cov-q" placeholder="Cari kelurahan atau kecamatan..." aria-label="Cari kelurahan atau kecamatan" autocomplete="off"></div>
   <div class="cov-grid">
-<article class="cov-kec" data-kec="Cengkareng"><header><h3>Kecamatan Cengkareng</h3><span>6 kelurahan</span></header><ul><li><button type="button" class="cov-kel" data-kel="Cengkareng Barat" data-kec="Cengkareng">Cengkareng Barat</button></li><li><button type="button" class="cov-kel" data-kel="Cengkareng Timur" data-kec="Cengkareng">Cengkareng Timur</button></li><li><button type="button" class="cov-kel" data-kel="Duri Kosambi" data-kec="Cengkareng">Duri Kosambi</button></li><li><button type="button" class="cov-kel" data-kel="Kapuk" data-kec="Cengkareng">Kapuk</button></li><li><button type="button" class="cov-kel" data-kel="Kedaung Kali Angke" data-kec="Cengkareng">Kedaung Kali Angke</button></li><li><button type="button" class="cov-kel" data-kel="Rawa Buaya" data-kec="Cengkareng">Rawa Buaya</button></li></ul></article>
-<article class="cov-kec" data-kec="Grogol Petamburan"><header><h3>Kecamatan Grogol Petamburan</h3><span>7 kelurahan</span></header><ul><li><button type="button" class="cov-kel" data-kel="Grogol" data-kec="Grogol Petamburan">Grogol</button></li><li><button type="button" class="cov-kel" data-kel="Jelambar" data-kec="Grogol Petamburan">Jelambar</button></li><li><button type="button" class="cov-kel" data-kel="Jelambar Baru" data-kec="Grogol Petamburan">Jelambar Baru</button></li><li><button type="button" class="cov-kel" data-kel="Tanjung Duren Selatan" data-kec="Grogol Petamburan">Tanjung Duren Selatan</button></li><li><button type="button" class="cov-kel" data-kel="Tanjung Duren Utara" data-kec="Grogol Petamburan">Tanjung Duren Utara</button></li><li><button type="button" class="cov-kel" data-kel="Tomang" data-kec="Grogol Petamburan">Tomang</button></li><li><button type="button" class="cov-kel" data-kel="Wijaya Kusuma" data-kec="Grogol Petamburan">Wijaya Kusuma</button></li></ul></article>
-<article class="cov-kec" data-kec="Taman Sari"><header><h3>Kecamatan Taman Sari</h3><span>8 kelurahan</span></header><ul><li><button type="button" class="cov-kel" data-kel="Glodok" data-kec="Taman Sari">Glodok</button></li><li><button type="button" class="cov-kel" data-kel="Keagungan" data-kec="Taman Sari">Keagungan</button></li><li><button type="button" class="cov-kel" data-kel="Krukut" data-kec="Taman Sari">Krukut</button></li><li><button type="button" class="cov-kel" data-kel="Mangga Besar" data-kec="Taman Sari">Mangga Besar</button></li><li><button type="button" class="cov-kel" data-kel="Maphar" data-kec="Taman Sari">Maphar</button></li><li><button type="button" class="cov-kel" data-kel="Pinangsia" data-kec="Taman Sari">Pinangsia</button></li><li><button type="button" class="cov-kel" data-kel="Tangki" data-kec="Taman Sari">Tangki</button></li><li><button type="button" class="cov-kel" data-kel="Taman Sari" data-kec="Taman Sari">Taman Sari</button></li></ul></article>
-<article class="cov-kec" data-kec="Tambora"><header><h3>Kecamatan Tambora</h3><span>11 kelurahan</span></header><ul><li><button type="button" class="cov-kel" data-kel="Angke" data-kec="Tambora">Angke</button></li><li><button type="button" class="cov-kel" data-kel="Duri Selatan" data-kec="Tambora">Duri Selatan</button></li><li><button type="button" class="cov-kel" data-kel="Duri Utara" data-kec="Tambora">Duri Utara</button></li><li><button type="button" class="cov-kel" data-kel="Jembatan Besi" data-kec="Tambora">Jembatan Besi</button></li><li><button type="button" class="cov-kel" data-kel="Jembatan Lima" data-kec="Tambora">Jembatan Lima</button></li><li><button type="button" class="cov-kel" data-kel="Kali Anyar" data-kec="Tambora">Kali Anyar</button></li><li><button type="button" class="cov-kel" data-kel="Krendang" data-kec="Tambora">Krendang</button></li><li><button type="button" class="cov-kel" data-kel="Pekojan" data-kec="Tambora">Pekojan</button></li><li><button type="button" class="cov-kel" data-kel="Roa Malaka" data-kec="Tambora">Roa Malaka</button></li><li><button type="button" class="cov-kel" data-kel="Tambora" data-kec="Tambora">Tambora</button></li><li><button type="button" class="cov-kel" data-kel="Tanah Sereal" data-kec="Tambora">Tanah Sereal</button></li></ul></article>
-<article class="cov-kec" data-kec="Kebon Jeruk"><header><h3>Kecamatan Kebon Jeruk</h3><span>7 kelurahan</span></header><ul><li><button type="button" class="cov-kel" data-kel="Duri Kepa" data-kec="Kebon Jeruk">Duri Kepa</button></li><li><button type="button" class="cov-kel" data-kel="Kebon Jeruk" data-kec="Kebon Jeruk">Kebon Jeruk</button></li><li><button type="button" class="cov-kel" data-kel="Kedoya Selatan" data-kec="Kebon Jeruk">Kedoya Selatan</button></li><li><button type="button" class="cov-kel" data-kel="Kedoya Utara" data-kec="Kebon Jeruk">Kedoya Utara</button></li><li><button type="button" class="cov-kel" data-kel="Kelapa Dua" data-kec="Kebon Jeruk">Kelapa Dua</button></li><li><button type="button" class="cov-kel" data-kel="Sukabumi Selatan" data-kec="Kebon Jeruk">Sukabumi Selatan</button></li><li><button type="button" class="cov-kel" data-kel="Sukabumi Utara" data-kec="Kebon Jeruk">Sukabumi Utara</button></li></ul></article>
-<article class="cov-kec" data-kec="Kalideres"><header><h3>Kecamatan Kalideres</h3><span>5 kelurahan</span></header><ul><li><button type="button" class="cov-kel" data-kel="Kalideres" data-kec="Kalideres">Kalideres</button></li><li><button type="button" class="cov-kel" data-kel="Kamal" data-kec="Kalideres">Kamal</button></li><li><button type="button" class="cov-kel" data-kel="Pegadungan" data-kec="Kalideres">Pegadungan</button></li><li><button type="button" class="cov-kel" data-kel="Semanan" data-kec="Kalideres">Semanan</button></li><li><button type="button" class="cov-kel" data-kel="Tegal Alur" data-kec="Kalideres">Tegal Alur</button></li></ul></article>
-<article class="cov-kec" data-kec="Palmerah"><header><h3>Kecamatan Palmerah</h3><span>6 kelurahan</span></header><ul><li><button type="button" class="cov-kel" data-kel="Jati Pulo" data-kec="Palmerah">Jati Pulo</button></li><li><button type="button" class="cov-kel" data-kel="Kemanggisan" data-kec="Palmerah">Kemanggisan</button></li><li><button type="button" class="cov-kel" data-kel="Kota Bambu Selatan" data-kec="Palmerah">Kota Bambu Selatan</button></li><li><button type="button" class="cov-kel" data-kel="Kota Bambu Utara" data-kec="Palmerah">Kota Bambu Utara</button></li><li><button type="button" class="cov-kel" data-kel="Palmerah" data-kec="Palmerah">Palmerah</button></li><li><button type="button" class="cov-kel" data-kel="Slipi" data-kec="Palmerah">Slipi</button></li></ul></article>
-<article class="cov-kec" data-kec="Kembangan"><header><h3>Kecamatan Kembangan</h3><span>6 kelurahan</span></header><ul><li><button type="button" class="cov-kel" data-kel="Joglo" data-kec="Kembangan">Joglo</button></li><li><button type="button" class="cov-kel" data-kel="Kembangan Selatan" data-kec="Kembangan">Kembangan Selatan</button></li><li><button type="button" class="cov-kel" data-kel="Kembangan Utara" data-kec="Kembangan">Kembangan Utara</button></li><li><button type="button" class="cov-kel" data-kel="Meruya Selatan" data-kec="Kembangan">Meruya Selatan</button></li><li><button type="button" class="cov-kel" data-kel="Meruya Utara" data-kec="Kembangan">Meruya Utara</button></li><li><button type="button" class="cov-kel" data-kel="Srengseng" data-kec="Kembangan">Srengseng</button></li></ul></article>
+<article class="cov-kec" data-kec="Cengkareng"><header><h3>Kecamatan Cengkareng</h3><span>6 kelurahan</span></header><ul><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Cengkareng%20Barat%2C%20Kec.%20Cengkareng%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Cengkareng Barat" data-kec="Cengkareng">Cengkareng Barat</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Cengkareng%20Timur%2C%20Kec.%20Cengkareng%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Cengkareng Timur" data-kec="Cengkareng">Cengkareng Timur</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Duri%20Kosambi%2C%20Kec.%20Cengkareng%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Duri Kosambi" data-kec="Cengkareng">Duri Kosambi</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Kapuk%2C%20Kec.%20Cengkareng%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Kapuk" data-kec="Cengkareng">Kapuk</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Kedaung%20Kali%20Angke%2C%20Kec.%20Cengkareng%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Kedaung Kali Angke" data-kec="Cengkareng">Kedaung Kali Angke</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Rawa%20Buaya%2C%20Kec.%20Cengkareng%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Rawa Buaya" data-kec="Cengkareng">Rawa Buaya</a></li></ul></article>
+<article class="cov-kec" data-kec="Grogol Petamburan"><header><h3>Kecamatan Grogol Petamburan</h3><span>7 kelurahan</span></header><ul><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Grogol%2C%20Kec.%20Grogol%20Petamburan%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Grogol" data-kec="Grogol Petamburan">Grogol</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Jelambar%2C%20Kec.%20Grogol%20Petamburan%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Jelambar" data-kec="Grogol Petamburan">Jelambar</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Jelambar%20Baru%2C%20Kec.%20Grogol%20Petamburan%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Jelambar Baru" data-kec="Grogol Petamburan">Jelambar Baru</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Tanjung%20Duren%20Selatan%2C%20Kec.%20Grogol%20Petamburan%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Tanjung Duren Selatan" data-kec="Grogol Petamburan">Tanjung Duren Selatan</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Tanjung%20Duren%20Utara%2C%20Kec.%20Grogol%20Petamburan%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Tanjung Duren Utara" data-kec="Grogol Petamburan">Tanjung Duren Utara</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Tomang%2C%20Kec.%20Grogol%20Petamburan%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Tomang" data-kec="Grogol Petamburan">Tomang</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Wijaya%20Kusuma%2C%20Kec.%20Grogol%20Petamburan%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Wijaya Kusuma" data-kec="Grogol Petamburan">Wijaya Kusuma</a></li></ul></article>
+<article class="cov-kec" data-kec="Taman Sari"><header><h3>Kecamatan Taman Sari</h3><span>8 kelurahan</span></header><ul><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Glodok%2C%20Kec.%20Taman%20Sari%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Glodok" data-kec="Taman Sari">Glodok</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Keagungan%2C%20Kec.%20Taman%20Sari%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Keagungan" data-kec="Taman Sari">Keagungan</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Krukut%2C%20Kec.%20Taman%20Sari%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Krukut" data-kec="Taman Sari">Krukut</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Mangga%20Besar%2C%20Kec.%20Taman%20Sari%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Mangga Besar" data-kec="Taman Sari">Mangga Besar</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Maphar%2C%20Kec.%20Taman%20Sari%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Maphar" data-kec="Taman Sari">Maphar</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Pinangsia%2C%20Kec.%20Taman%20Sari%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Pinangsia" data-kec="Taman Sari">Pinangsia</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Tangki%2C%20Kec.%20Taman%20Sari%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Tangki" data-kec="Taman Sari">Tangki</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Taman%20Sari%2C%20Kec.%20Taman%20Sari%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Taman Sari" data-kec="Taman Sari">Taman Sari</a></li></ul></article>
+<article class="cov-kec" data-kec="Tambora"><header><h3>Kecamatan Tambora</h3><span>11 kelurahan</span></header><ul><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Angke%2C%20Kec.%20Tambora%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Angke" data-kec="Tambora">Angke</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Duri%20Selatan%2C%20Kec.%20Tambora%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Duri Selatan" data-kec="Tambora">Duri Selatan</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Duri%20Utara%2C%20Kec.%20Tambora%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Duri Utara" data-kec="Tambora">Duri Utara</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Jembatan%20Besi%2C%20Kec.%20Tambora%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Jembatan Besi" data-kec="Tambora">Jembatan Besi</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Jembatan%20Lima%2C%20Kec.%20Tambora%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Jembatan Lima" data-kec="Tambora">Jembatan Lima</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Kali%20Anyar%2C%20Kec.%20Tambora%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Kali Anyar" data-kec="Tambora">Kali Anyar</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Krendang%2C%20Kec.%20Tambora%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Krendang" data-kec="Tambora">Krendang</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Pekojan%2C%20Kec.%20Tambora%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Pekojan" data-kec="Tambora">Pekojan</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Roa%20Malaka%2C%20Kec.%20Tambora%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Roa Malaka" data-kec="Tambora">Roa Malaka</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Tambora%2C%20Kec.%20Tambora%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Tambora" data-kec="Tambora">Tambora</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Tanah%20Sereal%2C%20Kec.%20Tambora%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Tanah Sereal" data-kec="Tambora">Tanah Sereal</a></li></ul></article>
+<article class="cov-kec" data-kec="Kebon Jeruk"><header><h3>Kecamatan Kebon Jeruk</h3><span>7 kelurahan</span></header><ul><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Duri%20Kepa%2C%20Kec.%20Kebon%20Jeruk%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Duri Kepa" data-kec="Kebon Jeruk">Duri Kepa</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Kebon%20Jeruk%2C%20Kec.%20Kebon%20Jeruk%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Kebon Jeruk" data-kec="Kebon Jeruk">Kebon Jeruk</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Kedoya%20Selatan%2C%20Kec.%20Kebon%20Jeruk%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Kedoya Selatan" data-kec="Kebon Jeruk">Kedoya Selatan</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Kedoya%20Utara%2C%20Kec.%20Kebon%20Jeruk%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Kedoya Utara" data-kec="Kebon Jeruk">Kedoya Utara</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Kelapa%20Dua%2C%20Kec.%20Kebon%20Jeruk%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Kelapa Dua" data-kec="Kebon Jeruk">Kelapa Dua</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Sukabumi%20Selatan%2C%20Kec.%20Kebon%20Jeruk%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Sukabumi Selatan" data-kec="Kebon Jeruk">Sukabumi Selatan</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Sukabumi%20Utara%2C%20Kec.%20Kebon%20Jeruk%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Sukabumi Utara" data-kec="Kebon Jeruk">Sukabumi Utara</a></li></ul></article>
+<article class="cov-kec" data-kec="Kalideres"><header><h3>Kecamatan Kalideres</h3><span>5 kelurahan</span></header><ul><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Kalideres%2C%20Kec.%20Kalideres%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Kalideres" data-kec="Kalideres">Kalideres</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Kamal%2C%20Kec.%20Kalideres%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Kamal" data-kec="Kalideres">Kamal</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Pegadungan%2C%20Kec.%20Kalideres%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Pegadungan" data-kec="Kalideres">Pegadungan</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Semanan%2C%20Kec.%20Kalideres%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Semanan" data-kec="Kalideres">Semanan</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Tegal%20Alur%2C%20Kec.%20Kalideres%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Tegal Alur" data-kec="Kalideres">Tegal Alur</a></li></ul></article>
+<article class="cov-kec" data-kec="Palmerah"><header><h3>Kecamatan Palmerah</h3><span>6 kelurahan</span></header><ul><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Jati%20Pulo%2C%20Kec.%20Palmerah%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Jati Pulo" data-kec="Palmerah">Jati Pulo</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Kemanggisan%2C%20Kec.%20Palmerah%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Kemanggisan" data-kec="Palmerah">Kemanggisan</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Kota%20Bambu%20Selatan%2C%20Kec.%20Palmerah%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Kota Bambu Selatan" data-kec="Palmerah">Kota Bambu Selatan</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Kota%20Bambu%20Utara%2C%20Kec.%20Palmerah%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Kota Bambu Utara" data-kec="Palmerah">Kota Bambu Utara</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Palmerah%2C%20Kec.%20Palmerah%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Palmerah" data-kec="Palmerah">Palmerah</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Slipi%2C%20Kec.%20Palmerah%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Slipi" data-kec="Palmerah">Slipi</a></li></ul></article>
+<article class="cov-kec" data-kec="Kembangan"><header><h3>Kecamatan Kembangan</h3><span>6 kelurahan</span></header><ul><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Joglo%2C%20Kec.%20Kembangan%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Joglo" data-kec="Kembangan">Joglo</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Kembangan%20Selatan%2C%20Kec.%20Kembangan%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Kembangan Selatan" data-kec="Kembangan">Kembangan Selatan</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Kembangan%20Utara%2C%20Kec.%20Kembangan%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Kembangan Utara" data-kec="Kembangan">Kembangan Utara</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Meruya%20Selatan%2C%20Kec.%20Kembangan%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Meruya Selatan" data-kec="Kembangan">Meruya Selatan</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Meruya%20Utara%2C%20Kec.%20Kembangan%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Meruya Utara" data-kec="Kembangan">Meruya Utara</a></li><li><a class="cov-kel" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20di%20Kel.%20Srengseng%2C%20Kec.%20Kembangan%2C%20Jakarta%20Barat.%20Boleh%20dicek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20sini%3F" target="_blank" rel="noopener noreferrer" data-kel="Srengseng" data-kec="Kembangan">Srengseng</a></li></ul></article>
   </div>
   <p class="cov-empty" id="cov-empty" hidden>Kelurahan tidak ditemukan. Kirim alamatmu lewat WhatsApp, kami bantu cek manual.</p>
   <p class="cov-note">Ketersediaan Fiber atau FWA 5G berbeda di tiap gang dan tiap jalan, jadi kami cek langsung per alamat pemasangan kamu.</p>
-  <p class="cov-cta">Ketuk nama kelurahan untuk mengisi alamat di formulir cek coverage, atau <a href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20pasang%20XL%20SATU%20(XL%20HOME)%20di%20area%20Jakarta%20Barat.%20Boleh%20cek%20coverage%20dan%20info%20promo%3F%0A%0A*Nama%3A*%20%0A*Kelurahan%20%2F%20Kecamatan%3A*%20%0A*Alamat%3A*%20" target="_blank" rel="noopener noreferrer">chat WhatsApp Sales</a> langsung. Tinggal di area lain? Lihat juga <a href="jakarta-pusat.html">pasang WiFi XL SATU di Jakarta Pusat</a>.</p>
+  <p class="cov-cta">Ketuk nama kelurahanmu untuk langsung chat sales di WhatsApp, atau <a href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20pasang%20XL%20SATU%20(XL%20HOME)%20di%20area%20Jakarta%20Barat.%20Boleh%20cek%20coverage%20dan%20info%20promo%3F" target="_blank" rel="noopener noreferrer">chat WhatsApp Sales</a> tanpa memilih kelurahan. Mau kirim alamat sekalian? Buka <a href="cek-coverage.html">halaman Cek Coverage</a>. Tinggal di area lain? Lihat juga <a href="jakarta-pusat.html">pasang WiFi XL SATU di Jakarta Pusat</a>.</p>
   </div>
   <script>(function(){
-  var area="Jakarta Barat";
   var q=document.getElementById('cov-q'),empty=document.getElementById('cov-empty');
   var cards=[].slice.call(document.querySelectorAll('.cov-kec'));
   function low(s){return (s||'').toLowerCase();}
@@ -1012,13 +1053,6 @@
     });
     if(empty)empty.hidden=any;
   });
-  [].forEach.call(document.querySelectorAll('.cov-kel'),function(b){
-    b.addEventListener('click',function(){
-      var ta=document.getElementById('f-alamat');
-      if(ta&&(!ta.value.trim()||/^Kel\. /.test(ta.value)))ta.value='Kel. '+b.getAttribute('data-kel')+', Kec. '+b.getAttribute('data-kec')+', '+area+'. Nama jalan / no. rumah: ';
-      if(typeof bukaCekCoverage==='function')bukaCekCoverage();
-    });
-  });
 })();</script>
 
   <!-- FAQ -->
@@ -1028,36 +1062,22 @@
   <details><summary>Apakah XL SATU tersedia di semua wilayah Jakarta Barat?</summary><p>Ketersediaan mengikuti alamat pemasangan. Kirim alamat lengkap atau titik lokasi lewat WhatsApp, lalu tim kami memeriksa apakah Fiber atau FWA 5G tersedia di tempatmu.</p></details><details><summary>Bisa pasang di perumahan atau cluster?</summary><p>Bisa dicek. Beberapa cluster punya aturan pengelola untuk instalasi, jadi sebutkan nama perumahan dan blok saat menghubungi kami.</p></details><details><summary>Apakah bisa pasang di apartemen atau rusun?</summary><p>Mohon maaf, saat ini kami belum melayani pemasangan di apartemen dan rusun. Untuk rumah tinggal, kos, dan ruko, kirim alamat lengkap supaya kami cek ketersediaannya.</p></details><details><summary>Mana yang lebih cocok, Fiber atau FWA 5G?</summary><p>Fiber cocok untuk koneksi kabel yang stabil dan banyak perangkat. FWA 5G cocok kalau ingin cepat terpasang tanpa tarik kabel dan sinyal 5G di lokasimu mendukung.</p></details><details><summary>Apa saja syarat pendaftaran?</summary><p>Lokasi terjangkau jaringan XL SATU, KTP/SIM/Paspor/KITAS, serta nomor kontak dan email yang valid.</p></details><details><summary>Apakah harga di halaman ini sudah termasuk PPN?</summary><p>Belum. Harga adalah harga dasar per bulan belum termasuk PPN. Promo dan harga dapat berubah, jadi konfirmasi dulu lewat WhatsApp.</p></details>
   </div>
 
- <!-- FORMULIR PENDAFTARAN -->
- <div class="section reg-section" id="daftar">
+ <!-- CEK COVERAGE (ringkas). Form lengkap ada di cek-coverage.html. id="daftar" dipertahankan supaya link lama (#daftar, ?s=cekarea) tetap mendarat di sini -->
+ <div class="section reg-section cek-cta" id="daftar">
  <h2 class="section-title">Cek Ketersediaan Jaringan</h2>
- <div class="section-sub">Cukup isi nama, WhatsApp, dan alamat. Tim kami cek jangkauan di alamatmu dan kabari paket yang tersedia</div>
- <div class="reg-form-wrap">
- <form id="regForm" onsubmit="event.preventDefault(); kirimForm();">
- <label for="f-nama">Nama Lengkap</label>
- <input type="text" id="f-nama" required placeholder="Nama Lengkap">
-
- <label for="f-wa">Nomor WhatsApp Aktif</label>
- <input type="tel" id="f-wa" required placeholder="08xxxxxxxxxx">
-
- <label for="f-alamat">Alamat Lengkap Pemasangan</label>
- <div class="alamat-wrap">
- <textarea id="f-alamat" required placeholder="Ketik alamat lengkap pemasangan kamu di sini..." rows="3"></textarea>
- <button type="button" class="btn-lokasi" id="btn-lokasi" onclick="bukaPetaLokasi()"><span id="lokasi-label">Pakai Lokasi Saya</span></button>
+ <div class="section-sub">Gratis dan tanpa komitmen. Chat saja, tim kami yang cek jangkauan di alamatmu</div>
+ <div class="cek-grid">
+  <a class="cek-card cek-wa" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20mau%20cek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20area%20Jakarta%20Barat." target="_blank" rel="noopener noreferrer">
+   <strong>Chat WA, Cek Area Saya</strong>
+   <span>Langsung ke sales. Tidak perlu isi form.</span>
+  </a>
+  <a class="cek-card" href="cek-coverage.html">
+   <strong>Cek per Kelurahan / Alamat</strong>
+   <span>Pilih kelurahan atau kirim titik lokasi (opsional).</span>
+  </a>
  </div>
- <div class="lokasi-note">Berbagi lokasi. Untuk memudahkan tim kami cek jaringan di area kamu.</div>
- <div id="lokasi-error" style="display:none;color:#dc2626;font-size:12.5px;margin-top:6px;"></div>
- <div id="maps-link-wrap" style="display:none;margin-top:8px;">
- <a id="maps-link" href="#" target="_blank" rel="noopener noreferrer" style="font-size:13px;color:var(--blue);font-weight:600;">Lihat titik lokasi di Google Maps</a>
+ <p class="reg-note">Area Jakarta: <a href="jakarta-pusat.html">Jakarta Pusat</a> &middot; <a href="jakarta-barat.html">Jakarta Barat</a></p>
  </div>
-
- <div style="position:absolute;left:-9999px;" aria-hidden="true"><label for="f-website">Website</label><input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
- <label style="display:flex;gap:8px;align-items:flex-start;font-weight:400;font-size:13px;margin-top:14px;"><input type="checkbox" id="f-setuju" style="margin-top:3px;width:auto;"><span>Saya setuju dengan <a href="privacy-policy.html" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;">kebijakan privasi</a></span></label>
- <button type="submit" class="form-submit reg-submit" id="regSubmitBtn">Cek Coverage via WhatsApp</button>
- </form>
- </div>
- </div>
-
 
  <!-- VIDEO XL SATU (lazy: video baru diunduh saat tombol play ditekan) -->
  <section class="vid-section" id="video" aria-labelledby="vid-title">
@@ -1084,7 +1104,7 @@
     <details class="faq-item"><summary>Apa itu XL SATU?</summary><p>XL SATU adalah layanan internet WiFi rumah dari XL untuk kebutuhan keluarga, tersedia dalam pilihan FWA dan FTTH sesuai ketersediaan di alamat kamu.</p></details>
     <details class="faq-item"><summary>Apakah XL SATU sama dengan XL HOME?</summary><p>Ya. XL SATU kini juga dikenal dengan nama XL HOME. Layanan, paket, dan jaringannya sama. Kami tetap memakai nama XL SATU di halaman ini.</p></details>
     
-    <details class="faq-item"><summary>Siapa saja yang dapat berlangganan XL SATU?</summary><p>Siapa saja yang berada di area yang sudah terjangkau jaringan XL SATU dapat berlangganan. Cek ketersediaan lewat form pendaftaran di atas.</p></details>
+    <details class="faq-item"><summary>Siapa saja yang dapat berlangganan XL SATU?</summary><p>Siapa saja yang berada di area yang sudah terjangkau jaringan XL SATU dapat berlangganan. Cek ketersediaan gratis lewat halaman Cek Coverage atau chat WhatsApp kami.</p></details>
     <details class="faq-item"><summary>Apakah saya harus punya nomor XL prabayar atau XL Prioritas untuk menikmati Kuota HP Sekeluarga nya?</summary><p>Untuk detail syarat Kuota HP Sekeluarga, silakan hubungi Sales Center atau tim kami lewat WhatsApp.</p></details>
     <details class="faq-item"><summary>Apa saja yang dapat mempengaruhi kecepatan internet XL SATU?</summary><p>Kecepatan dipengaruhi oleh jarak perangkat ke modem/router, jumlah perangkat yang terhubung, kondisi sinyal di lokasi, dan jenis perangkat yang dipakai.</p></details>
     <a class="faq-more" href="https://wifi-xl.com" target="_blank" rel="noopener noreferrer">Lihat Pertanyaan Lainnya!</a>
@@ -1129,28 +1149,6 @@
 
 </div><!-- end page-home -->
 
-<!-- POPUP PILIH TITIK LOKASI -->
-<div id="peta-overlay" role="dialog" aria-modal="true" aria-labelledby="peta-title" onclick="if(event.target===this)tutupPeta()">
-  <div class="peta-modal">
-    <button type="button" class="peta-close" onclick="tutupPeta()" aria-label="Tutup">&times;</button>
-    <h3 id="peta-title">Tentukan Titik Lokasi Pemasangan</h3>
-    <div class="peta-sub">Geser pin atau tap di peta untuk menentukan lokasi yang tepat.</div>
-    <div class="peta-box">
-      <div class="peta-search">
-        <input type="text" id="peta-search-input" placeholder="Cari alamat atau nama tempat..." autocomplete="off">
-        <button type="button" onclick="cariAlamatPeta()">Cari</button>
-      </div>
-      <div id="peta-canvas"></div>
-      <button type="button" class="peta-locate" onclick="petaLokasiSaya()" aria-label="Lokasi saya">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0033A0" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="8"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>
-      </button>
-    </div>
-    <div class="peta-hint">Pastikan pin tepat di lokasi pemasangan agar pengecekan jaringan akurat.</div>
-    <div class="peta-err" id="peta-err"></div>
-    <button type="button" class="peta-confirm" id="peta-confirm" onclick="konfirmasiPeta()" disabled>Konfirmasi Lokasi</button>
-  </div>
-</div>
-
 <div id="page-privacy"></div>
 
 <!-- FOOTER -->
@@ -1184,12 +1182,16 @@
  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 800 800" width="46" height="46"><defs><clipPath id="waClip"><rect width="800" height="800"/></clipPath></defs><g clip-path="url(#waClip)"><path d=" M 787.59 800 L 12.41 800 C 5.556 800 0 793.332 0 785.108 L 0 14.892 C 0 6.667 5.556 0 12.41 0 L 787.59 0 C 794.444 0 800 6.667 800 14.892 L 800 785.108 C 800 793.332 794.444 800 787.59 800 Z " fill="rgb(37,211,102)"/><path d=" M 508.558 450.429 C 502.67 447.483 473.723 433.24 468.325 431.273 C 462.929 429.308 459.003 428.328 455.078 434.22 C 451.153 440.114 439.869 453.377 436.434 457.307 C 433 461.236 429.565 461.729 423.677 458.78 C 417.79 455.834 398.818 449.617 376.328 429.556 C 358.825 413.943 347.008 394.663 343.574 388.768 C 340.139 382.873 343.207 379.687 346.155 376.752 C 348.804 374.113 352.044 369.874 354.987 366.436 C 357.931 362.999 358.912 360.541 360.875 356.614 C 362.837 352.683 361.857 349.246 360.383 346.299 C 358.912 343.352 347.136 314.369 342.231 302.579 C 337.451 291.099 332.597 292.654 328.983 292.472 C 325.552 292.301 321.622 292.265 317.698 292.265 C 313.773 292.265 307.394 293.739 301.996 299.632 C 296.6 305.527 281.389 319.772 281.389 348.752 C 281.389 377.735 302.487 405.731 305.431 409.661 C 308.376 413.592 346.949 473.062 406.015 498.566 C 420.062 504.634 431.03 508.256 439.581 510.969 C 453.685 515.451 466.521 514.818 476.666 513.302 C 487.978 511.613 511.502 499.06 516.409 485.307 C 521.315 471.55 521.315 459.762 519.842 457.307 C 518.371 454.851 514.446 453.377 508.558 450.429 Z  M 401.126 597.117 L 401.047 597.117 C 365.902 597.104 331.431 587.661 301.36 569.817 L 294.208 565.572 L 220.08 585.017 L 239.866 512.743 L 235.21 505.332 C 215.604 474.149 205.248 438.108 205.264 401.1 C 205.307 293.113 293.17 205.257 401.204 205.257 C 453.518 205.275 502.693 225.674 539.673 262.696 C 576.651 299.716 597.004 348.925 596.983 401.258 C 596.939 509.254 509.078 597.117 401.126 597.117 Z  M 567.816 234.565 C 523.327 190.024 464.161 165.484 401.124 165.458 C 271.24 165.458 165.529 271.161 165.477 401.085 C 165.46 442.617 176.311 483.154 196.932 518.892 L 163.502 641 L 288.421 608.232 C 322.839 627.005 361.591 636.901 401.03 636.913 L 401.126 636.913 L 401.127 636.913 C 530.998 636.913 636.717 531.2 636.77 401.274 C 636.794 338.309 612.306 279.105 567.816 234.565" fill-rule="evenodd" fill="rgb(255,255,255)"/></g></svg>
  </span>
  <span class="wa-float-text">
- <strong>Chat WA Sales XL SATU</strong>
- <span>Konsultasi Promo &amp; Daftar Cepat</span>
+ <strong>Cek Area Gratis via WA</strong>
+ <span>Tanpa isi form &middot; tanpa komitmen</span>
  </span>
  <img src="images/logo.png" alt="" class="wa-float-brand">
 </a>
 <a class="wa-tip" href="https://wa.me/6287810963528?text=Halo%2C%20saya%20tertarik%20internet%20rumah%20FWA%205G%20(WiFi%206).%20Kalau%20daftar%20hari%20ini%2C%20bisa%20terpasang%20besok%20di%20area%20saya%3F" onclick="try{gtag_report_conversion()}catch(e){}" target="_blank" rel="noopener noreferrer" aria-label="Tanya pemasangan FWA besok via WhatsApp">Pasang besok?<small>Tanya via WhatsApp</small></a>
+<div class="wa-nudge" id="waNudge" hidden>
+ <a href="https://wa.me/6287810963528?text=Halo%2C%20saya%20mau%20cek%20apakah%20XL%20HOME%20bisa%20dipasang%20di%20area%20Jakarta%20Barat." target="_blank" rel="noopener noreferrer"><strong>Mau dicek alamatnya?</strong><small>Gratis, langsung chat sales</small></a>
+ <button type="button" aria-label="Tutup" onclick="closeWaNudge()">&times;</button>
+</div>
 
 <script>
   function goHome() {
@@ -1243,219 +1245,17 @@
     window.scrollTo(0, 0);
   }
 
-  // ── Pilih paket dari card → langsung ke WhatsApp (tanpa isi form) ──
-  // Konversi Google Ads dicatat di sini (dulu di kirimForm). window.open dipanggil
-  // langsung dari klik user supaya tidak diblokir popup blocker.
+  // Tombol card paket kini berupa link WA biasa (lihat .xp-btn-wa). Fungsi ini cadangan saja.
   function pilihPaket(paketVal) {
     try { gtag_report_conversion(); } catch (e) {}
-    var pesan = 'Halo, saya ingin mendaftar paket XL SATU:\n\n' +
-      '*Paket:* ' + paketVal + '\n' +
-      '*Nama:* \n' +
-      '*Alamat pemasangan:* \n\n' +
-      'Mohon info ketersediaan dan proses selanjutnya. Terima kasih!';
+    var pesan = 'Halo, saya tertarik paket ' + paketVal + '. Boleh dicek apakah bisa dipasang di area saya?';
     window.open('https://wa.me/6287810963528?text=' + encodeURIComponent(pesan), '_blank', 'noopener,noreferrer');
   }
 
-  // ── Popup peta: tentukan titik lokasi (Google Maps) ──
-  // Isi API key Google Maps (aktifkan Maps JavaScript API + Geocoding API).
-  // Kalau kosong, tombol "Pakai Lokasi Saya" otomatis memakai deteksi GPS biasa.
-  const GMAPS_API_KEY = 'ISI_API_KEY_GOOGLE_MAPS_DI_SINI';
-  const __pm = { map: null, marker: null, geocoder: null, lat: null, lng: null, addr: '', loading: null };
-
-  function petaError(msg) {
-    const el = document.getElementById('peta-err');
-    el.textContent = msg || '';
-    el.style.display = msg ? 'block' : 'none';
-  }
-
-  function muatGoogleMaps() {
-    if (window.google && google.maps && google.maps.Map) return Promise.resolve();
-    if (__pm.loading) return __pm.loading;
-    __pm.loading = new Promise(function (resolve, reject) {
-      window.__gmapsReady = resolve;
-      window.gm_authFailure = function () { petaError('API key Google Maps tidak valid atau belum diaktifkan.'); };
-      const sc = document.createElement('script');
-      sc.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(GMAPS_API_KEY) + '&callback=__gmapsReady&loading=async&language=id&region=ID';
-      sc.async = true;
-      sc.onerror = function () { __pm.loading = null; reject(new Error('gmaps')); };
-      document.head.appendChild(sc);
-    });
-    return __pm.loading;
-  }
-
-  function bukaPetaLokasi() {
-    if (!GMAPS_API_KEY || GMAPS_API_KEY.indexOf('ISI_') === 0) { deteksiLokasi(); return; }
-    petaError('');
-    document.getElementById('peta-overlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-    muatGoogleMaps().then(initPeta).catch(function () {
-      tutupPeta();
-      deteksiLokasi(); // fallback kalau Google Maps gagal dimuat
-    });
-  }
-
-  function tutupPeta() {
-    document.getElementById('peta-overlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function initPeta() {
-    if (!__pm.map) {
-      const start = { lat: -6.2088, lng: 106.8456 }; // Jakarta
-      __pm.geocoder = new google.maps.Geocoder();
-      __pm.map = new google.maps.Map(document.getElementById('peta-canvas'), {
-        center: start, zoom: 12, disableDefaultUI: true, zoomControl: true,
-        gestureHandling: 'greedy', clickableIcons: false
-      });
-      __pm.marker = new google.maps.Marker({ map: __pm.map, position: start, draggable: true, visible: false });
-      __pm.map.addListener('click', function (e) { setPinPeta(e.latLng, false); });
-      __pm.marker.addListener('dragend', function (e) { setPinPeta(e.latLng, false); });
-      document.getElementById('peta-search-input').addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') { e.preventDefault(); cariAlamatPeta(); }
-      });
-    } else {
-      google.maps.event.trigger(__pm.map, 'resize');
-      if (__pm.lat !== null) __pm.map.setCenter({ lat: __pm.lat, lng: __pm.lng });
-    }
-    // Tidak lagi meminta GPS otomatis; lokasi hanya diminta saat user menekan tombol "Lokasi saya"
-  }
-
-  function setPinPeta(latLng, pan) {
-    __pm.lat = latLng.lat();
-    __pm.lng = latLng.lng();
-    __pm.marker.setPosition(latLng);
-    __pm.marker.setVisible(true);
-    if (pan) { __pm.map.panTo(latLng); if (__pm.map.getZoom() < 17) __pm.map.setZoom(17); }
-    document.getElementById('peta-confirm').disabled = false;
-    petaError('');
-    __pm.addr = __pm.lat.toFixed(6) + ', ' + __pm.lng.toFixed(6);
-    const box = document.getElementById('peta-search-input');
-    box.value = __pm.addr;
-    __pm.geocoder.geocode({ location: latLng, language: 'id' }, function (res, status) {
-      if (status === 'OK' && res && res[0]) {
-        __pm.addr = res[0].formatted_address;
-        box.value = __pm.addr;
-      }
-    });
-  }
-
-  function petaLokasiSaya(silent) {
-    if (!navigator.geolocation) { if (!silent) petaError('Browser kamu tidak mendukung GPS.'); return; }
-    navigator.geolocation.getCurrentPosition(
-      function (pos) { setPinPeta(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), true); },
-      function () { if (!silent) petaError('Lokasi tidak terdeteksi. Cari alamat atau tap di peta untuk memilih titik.'); },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-    );
-  }
-
-  function cariAlamatPeta() {
-    const q = document.getElementById('peta-search-input').value.trim();
-    if (!q || !__pm.geocoder) return;
-    __pm.geocoder.geocode({ address: q, region: 'ID', language: 'id' }, function (res, status) {
-      if (status === 'OK' && res && res[0]) setPinPeta(res[0].geometry.location, true);
-      else petaError('Alamat tidak ditemukan. Coba kata kunci lain atau tap langsung di peta.');
-    });
-  }
-
-  function konfirmasiPeta() {
-    if (__pm.lat === null) return;
-    document.getElementById('f-alamat').value = __pm.addr;
-    const mapLink = document.getElementById('maps-link');
-    mapLink.href = 'https://www.google.com/maps?q=' + __pm.lat.toFixed(6) + ',' + __pm.lng.toFixed(6);
-    document.getElementById('maps-link-wrap').style.display = 'block';
-    document.getElementById('lokasi-error').style.display = 'none';
-    const btn = document.getElementById('btn-lokasi'), label = document.getElementById('lokasi-label');
-    btn.classList.add('success');
-    label.innerHTML = '✓ Lokasi terpilih';
-    setTimeout(function () { btn.classList.remove('success'); label.innerHTML = 'Pakai Lokasi Saya'; }, 3000);
-    tutupPeta();
-  }
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && document.getElementById('peta-overlay').classList.contains('open')) tutupPeta();
-  });
-
-  // ── Deteksi Lokasi GPS ──
-  function deteksiLokasi() {
-    const btn     = document.getElementById('btn-lokasi');
-    const label   = document.getElementById('lokasi-label');
-    const input   = document.getElementById('f-alamat');
-    const errEl   = document.getElementById('lokasi-error');
-    const mapWrap = document.getElementById('maps-link-wrap');
-    const mapLink = document.getElementById('maps-link');
-
-    if (!navigator.geolocation) {
-      errEl.textContent = 'Browser kamu tidak mendukung GPS. Isi alamat manual.';
-      errEl.style.display = 'block';
-      return;
-    }
-
-    btn.classList.add('loading');
-    label.innerHTML = '<span class="spin">⟳</span> Mencari lokasi...';
-    errEl.style.display  = 'none';
-    mapWrap.style.display = 'none';
-
-    navigator.geolocation.getCurrentPosition(
-      function(pos) {
-        const lat = pos.coords.latitude.toFixed(6);
-        const lng = pos.coords.longitude.toFixed(6);
-        const acc = Math.round(pos.coords.accuracy);
-
-        fetch('https://nominatim.openstreetmap.org/reverse?lat=' + lat + '&lon=' + lng + '&format=json&addressdetails=1&accept-language=id')
-          .then(r => r.json())
-          .then(data => {
-            const a = data.address || {};
-            const parts = [
-              a.road || a.pedestrian || a.footway || '',
-              a.suburb || a.neighbourhood || a.village || '',
-              a.city_district || a.district || '',
-              a.city || a.town || a.county || '',
-              a.state || ''
-            ].filter(Boolean);
-            input.value = parts.join(', ') + (acc > 100 ? ' (akurasi ±' + acc + 'm, mohon verifikasi)' : '');
-            const mapsUrl = 'https://www.google.com/maps?q=' + lat + ',' + lng;
-            mapLink.href = mapsUrl;
-            mapWrap.style.display = 'block';
-            btn.classList.remove('loading');
-            btn.classList.add('success');
-            label.innerHTML = '✓ Alamat terisi';
-            setTimeout(() => { btn.classList.remove('success'); label.innerHTML = 'Pakai Lokasi Saya'; }, 3000);
-          })
-          .catch(() => {
-            input.value = 'Koordinat: ' + lat + ', ' + lng;
-            const mapsUrl = 'https://www.google.com/maps?q=' + lat + ',' + lng;
-            mapLink.href = mapsUrl;
-            mapWrap.style.display = 'block';
-            btn.classList.remove('loading');
-            btn.classList.add('success');
-            label.innerHTML = '✓ Alamat terisi';
-            setTimeout(() => { btn.classList.remove('success'); label.innerHTML = 'Pakai Lokasi Saya'; }, 3000);
-          });
-      },
-      function(err) {
-        btn.classList.remove('loading');
-        label.innerHTML = 'Pakai Lokasi Saya';
-        const msgs = { 1: 'Izin lokasi ditolak. Aktifkan izin lokasi di browser.', 2: 'Lokasi tidak terdeteksi. Coba lagi atau isi manual.', 3: 'Timeout. Coba lagi atau isi manual.' };
-        errEl.textContent  = msgs[err.code] || 'Gagal mendeteksi lokasi.';
-        errEl.style.display = 'block';
-      },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-    );
-  }
-
-  // Form hanya untuk Cek Coverage. setModeForm dipertahankan (no-op) supaya pemanggil lama tidak error.
-  window.__modeForm = 'cek';
+  // Cek Coverage punya halaman sendiri (cek-coverage.html). Fungsi ini dipertahankan
+  // supaya pemanggil lama tidak error.
   function setModeForm() {}
-
-  // Tombol "Cek Coverage": buka mode cek dan scroll ke form (lokasi TIDAK diminta otomatis)
-  function bukaCekCoverage() {
-    setModeForm('cek');
-    goToSection('daftar');
-    setTimeout(function () {
-      const nama = document.getElementById('f-nama');
-      if (nama && !nama.value) nama.focus({ preventScroll: true });
-    }, 700);
-  }
+  function bukaCekCoverage() { window.location.href = 'cek-coverage.html'; }
 
   // ── Konversi Google Ads: "Mengirim formulir lead" ──
   // Semua link ke WhatsApp dihitung sebagai konversi (anti-dobel 1,5 detik)
@@ -1483,41 +1283,6 @@
     return false;
   }
 
-  // ── FORM CEK COVERAGE → WhatsApp ──
-  function kirimForm() {
-    const nama   = document.getElementById('f-nama').value.trim();
-    const wa     = document.getElementById('f-wa').value.trim();
-    const alamat = document.getElementById('f-alamat').value.trim();
-    const mapLink = document.getElementById('maps-link');
-    const mapsHref = (mapLink && mapLink.href && !mapLink.href.endsWith('#')) ? mapLink.href : '';
-
-    if (!nama || !wa || !alamat) { alert('Mohon lengkapi semua field terlebih dahulu.'); return; }
-    if (document.getElementById('f-website').value) return; // honeypot: bot
-    if (Date.now() - PAGE_T0 < 4000) { alert('Mohon tunggu sebentar, lalu kirim lagi.'); return; }
-    if (!document.getElementById('f-setuju').checked) { alert('Mohon centang persetujuan penggunaan data.'); return; }
-    if (!/^(\+62|62|0)8\d{8,12}$/.test(wa.replace(/[\s-]/g, ''))) { alert('Nomor WhatsApp tidak valid. Contoh: 08123456789'); return; }
-    if (nama.length > 100 || alamat.length > 300) { alert('Nama atau alamat terlalu panjang.'); return; }
-    try { const last = +localStorage.getItem('lastSubmit') || 0; if (Date.now() - last < 30000) { alert('Tunggu 30 detik sebelum mengirim lagi.'); return; } localStorage.setItem('lastSubmit', Date.now()); } catch (e) {}
-
-    try { gtag_report_conversion(); } catch (e) {}
-
-    // WA dibuka langsung dari user gesture supaya tidak diblokir popup blocker
-    const pesan = 'Halo, saya ingin cek ketersediaan jaringan XL SATU (Fiber/FWA) di alamat saya:%0A%0A' +
-      '*Nama:* '   + encodeURIComponent(nama)   + '%0A' +
-      '*No. WA:* ' + encodeURIComponent(wa)     + '%0A' +
-      '*Alamat:* ' + encodeURIComponent(alamat) + '%0A' +
-      (mapsHref ? '*Lokasi Maps:* ' + encodeURIComponent(mapsHref) + '%0A' : '') +
-      '%0AMohon dicek coverage-nya dan paket apa yang tersedia di alamat ini. Terima kasih!';
-    window.open('https://wa.me/6287810963528?text=' + pesan, '_blank', 'noopener,noreferrer');
-
-    setTimeout(() => {
-      document.getElementById('f-nama').value   = '';
-      document.getElementById('f-wa').value     = '';
-      document.getElementById('f-alamat').value = '';
-      document.getElementById('maps-link-wrap').style.display = 'none';
-    }, 800);
-  }
-
   (function() {
     var bar = document.getElementById('tabsBar');
     if (!bar) return;
@@ -1531,9 +1296,8 @@
   // (select_package, faq_open, generate_lead, nudge_click) tidak error, tapi tidak mengirim apa pun ke luar.
   function trackEvt() {}
 
-  const _pilih = pilihPaket, _kirim = kirimForm;
+  const _pilih = pilihPaket;
   pilihPaket = function (p) { trackEvt('select_package', { package: p }); return _pilih.apply(this, arguments); };
-  kirimForm  = function () { trackEvt('generate_lead', { package: (document.getElementById('f-paket') || {}).value }); return _kirim.apply(this, arguments); };
   document.querySelectorAll('.faq details').forEach(d => d.addEventListener('toggle', () => {
     if (d.open) trackEvt('faq_open', { question: d.querySelector('summary').textContent });
   }));
@@ -1565,6 +1329,18 @@ function closeNavMenu(){ var m=document.getElementById('navMoreMenu'), b=documen
 function toggleNavMenu(e){ e.stopPropagation(); var m=document.getElementById('navMoreMenu'), b=document.getElementById('navMoreBtn'); var open=m.hidden; m.hidden=!open; b.setAttribute('aria-expanded', String(open)); }
 document.addEventListener('click', function(e){ if(!e.target.closest('.nav-more')) closeNavMenu(); });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeNavMenu(); });
+</script>
+<script>
+// Bubble ajakan WA (mobile): muncul sekali per sesi setelah ~12 detik atau saat scroll melewati paket
+function closeWaNudge(){ var n=document.getElementById('waNudge'); if(n) n.hidden=true; try{sessionStorage.setItem('waNudge','1');}catch(e){} }
+(function(){
+  var n=document.getElementById('waNudge'); if(!n) return;
+  try{ if(sessionStorage.getItem('waNudge')) return; }catch(e){}
+  if(!window.matchMedia || !window.matchMedia('(max-width:720px)').matches) return;
+  var shown=false;
+  function show(){ if(shown) return; shown=true; n.hidden=false; setTimeout(function(){ if(!n.hidden){ n.hidden=true; try{sessionStorage.setItem('waNudge','1');}catch(e){} } }, 9000); }
+  setTimeout(show, 12000);
+})();
 </script>
 <!-- anti-clickjack; dijalankan di awal body supaya efektif -->
 <script>
@@ -1607,7 +1383,7 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeNavM
     if (s in tabs) {
       goToSection('paket');
     } else if (s === 'cekarea') {
-      setModeForm('cek'); goToSection('daftar');
+      goToSection('daftar');
     } else if (s === 'daftar') {
       goToSection('paket');
     } else if (s === 'faq') {

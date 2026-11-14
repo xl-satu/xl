@@ -276,7 +276,7 @@ function tool(a) {
   if (a === 'h2') line('## ', 'Subjudul'); else if (a === 'h3') line('### ', 'Sub-sub');
   else if (a === 'b') wrap('**', '**', 'teks tebal'); else if (a === 'i') wrap('*', '*', 'teks miring');
   else if (a === 'ul') line('- ', 'poin'); else if (a === 'ol') line('#. ', 'langkah');
-  else if (a === 'link') { const u = prompt('Alamat link (https://… atau index.html#daftar atau post:slug-artikel):'); if (!u) return; wrap('[', '](' + u + ')', 'teks link'); }
+  else if (a === 'link') { const u = prompt('Alamat link (https://… atau cek-coverage.html atau post:slug-artikel):'); if (!u) return; wrap('[', '](' + u + ')', 'teks link'); }
   else if (a === 'note') wrap('\n::: note\n', '\n:::\n', '**Intinya:** …');
   else if (a === 'cta') wrap('\n::: cta\n', '\n:::\n', '**Judul ajakan**  \nKalimat ajakan.');
   t.focus(); updatePreview();

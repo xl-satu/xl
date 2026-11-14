@@ -205,3 +205,25 @@ article img{max-width:100%;height:auto;border-radius:12px}
 .ar-other{text-align:center;font-size:15px;color:var(--gray-text);margin-bottom:36px}
 .ar-other a{color:var(--blue);font-weight:700}
 @media(max-width:600px){.ar{padding:18px 16px 4px}.ar-hero{padding:30px 22px;border-radius:18px}.ar-btn{width:100%;text-align:center}.ar-sec{margin-top:38px}}
+
+/* halaman Cek Coverage */
+.ck-areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:18px}
+.ck-area{display:flex;flex-direction:column;gap:4px;text-decoration:none;background:#fff;color:var(--dark);border:1.5px solid #D5E0F5;border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);transition:transform .15s,border-color .15s}
+.ck-area:hover{transform:translateY(-2px);border-color:var(--blue-mid)}
+.ck-area strong{font-size:18px;color:var(--blue)}
+.ck-area span{font-size:14.5px;color:var(--gray-text);line-height:1.5}
+.ck-form{max-width:560px;margin-top:18px;background:#fff;border:1.5px solid #E2E8F0;border-radius:18px;padding:24px;box-shadow:var(--shadow)}
+.ck-form label{display:block;font-size:14px;font-weight:700;color:var(--dark);margin:14px 0 6px}
+.ck-form label:first-child{margin-top:0}
+.ck-form textarea,.ck-form input[type=text]{width:100%;font:inherit;font-size:16px;padding:11px 13px;border:1.5px solid #CBD5E1;border-radius:10px;background:#fff;color:var(--dark)}
+.ck-form textarea{resize:vertical;min-height:84px}
+.ck-form textarea:focus,.ck-form input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,82,204,.15)}
+.ck-loc{margin-top:10px;background:var(--sky);color:var(--blue);border:1.5px solid #BBD3F5;border-radius:10px;padding:10px 16px;font:inherit;font-size:14.5px;font-weight:700;cursor:pointer}
+.ck-loc:hover{background:#fff;border-color:var(--blue)}
+.ck-loc.loading{opacity:.7;cursor:wait}
+.ck-err{color:#b42318;font-size:13.5px;margin-top:8px}
+.ck-err[hidden]{display:none}
+.ck-submit{display:block;width:100%;margin-top:20px;background:#128C4A;color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-size:16px;font-weight:800;cursor:pointer}
+.ck-submit:hover{background:#0E7A3F}
+.ck-note{font-size:12.5px;color:var(--gray-mid);margin:12px 0 0!important;line-height:1.55;text-align:center}
+.ck-note a{color:var(--blue)}

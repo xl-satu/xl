@@ -97,10 +97,11 @@ ${style}</style>${gtag}
 }
 
 // ---------- halaman artikel ----------
-const ctaButtons = (root) => `<a href="${root}index.html#daftar">Cek Coverage</a>
-<a href="https://wa.me/${cfg.wa}">Chat WhatsApp</a>`;
-const cta = (root, inner = '<p><strong>Mau pasang internet rumah XL SATU?</strong><br>Cek coverage alamatmu gratis, kami bantu sampai terpasang.</p>') =>
-  `<div class="box">\n${inner}\n${ctaButtons(root)}\n</div>`;
+const waText = (text) => `https://wa.me/${cfg.wa}?text=${encodeURIComponent(text)}`;
+const ctaButtons = (root, title) => `<a href="${root}cek-coverage.html">Cek Coverage</a>
+<a href="${waText(title ? `Halo, saya baca artikel "${title}" di blog Anda dan mau tanya soal XL HOME.` : 'Halo, saya mau tanya soal XL HOME.')}">Chat WhatsApp</a>`;
+const cta = (root, inner = '<p><strong>Mau pasang internet rumah XL SATU?</strong><br>Cek coverage alamatmu gratis, kami bantu sampai terpasang.</p>', title = '') =>
+  `<div class="box">\n${inner}\n${ctaButtons(root, title)}\n</div>`;
 
 function related(post, root) {
   const others = posts.filter((p) => p.slug !== post.slug);
@@ -125,7 +126,7 @@ function renderPost(p) {
   const extra = `<meta property="article:published_time" content="${p.date}"><script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>`;
   let body = render(p.body);
   let customCta = false;
-  body = body.replace(/<div class="cta">\n([\s\S]*?)\n<\/div>/, (_, inner) => { customCta = true; return cta(root, inner); }); // ::: cta ... :::
+  body = body.replace(/<div class="cta">\n([\s\S]*?)\n<\/div>/, (_, inner) => { customCta = true; return cta(root, inner, p.title); }); // ::: cta ... :::
   body = fixLinks(body, root);
   const showComments = cfg.comments && cfg.comments.enabled && p.comments !== false;
   const comments = showComments ? `
@@ -141,7 +142,7 @@ function renderPost(p) {
 <p class="meta"><time datetime="${p.date}">${fmtLong(p.date)}</time> &middot; Oleh ${esc(author)} &middot; ${p.minutes} menit baca</p>
 ${p.image ? `<img class="hero" src="${root}${p.image}" alt="${esc(p.imageAlt || p.title)}" width="1080" height="360">` : ''}
 ${body}
-${p.cta === false || customCta ? '' : cta(root)}
+${p.cta === false || customCta ? '' : cta(root, undefined, p.title)}
 ${related(p, root)}${comments}
 </article>
 ` + vars(footT, root) +
@@ -239,13 +240,12 @@ function renderArea(a) {
     `<div class="section-sub">Paket internet rumah XL SATU (XL HOME) untuk ${esc(a.name)}. Ketersediaan mengikuti alamat pemasangan</div>`);
 
   // ---- cakupan kelurahan + FAQ area (menggantikan FAQ beranda) ----
-  const waArea = waLink(`Halo, saya tertarik pasang XL SATU (XL HOME) di area ${a.name}. Boleh cek coverage dan info promo?\n\n*Nama:* \n*Kelurahan / Kecamatan:* \n*Alamat:* `);
-  const kecCards = kecs.map(([kec, list]) => `<article class="cov-kec" data-kec="${esc(kec)}"><header><h3>Kecamatan ${esc(kec)}</h3><span>${list.length} kelurahan</span></header><ul>${list.map((k) => `<li><button type="button" class="cov-kel${confirmed.has(k) ? ' ok' : ''}" data-kel="${esc(k)}" data-kec="${esc(kec)}">${esc(k)}${confirmed.has(k) ? '<i>Tersedia</i>' : ''}</button></li>`).join('')}</ul></article>`).join('\n');
+  const waArea = waLink(`Halo, saya tertarik pasang XL SATU (XL HOME) di area ${a.name}. Boleh cek coverage dan info promo?`);
+  const kecCards = kecs.map(([kec, list]) => `<article class="cov-kec" data-kec="${esc(kec)}"><header><h3>Kecamatan ${esc(kec)}</h3><span>${list.length} kelurahan</span></header><ul>${list.map((k) => `<li><a class="cov-kel${confirmed.has(k) ? ' ok' : ''}" href="${esc(waLink(`Halo, saya di Kel. ${k}, Kec. ${kec}, ${a.name}. Boleh dicek apakah XL HOME bisa dipasang di sini?`))}" target="_blank" rel="noopener noreferrer" data-kel="${esc(k)}" data-kec="${esc(kec)}">${esc(k)}${confirmed.has(k) ? '<i>Tersedia</i>' : ''}</a></li>`).join('')}</ul></article>`).join('\n');
   const legend = confirmed.size
     ? '<p class="cov-note">Label <b>Tersedia</b> = jaringan sudah terkonfirmasi di kelurahan tersebut. Kelurahan lain tetap bisa dicek per alamat.</p>'
     : '<p class="cov-note">Ketersediaan Fiber atau FWA 5G berbeda di tiap gang dan tiap jalan, jadi kami cek langsung per alamat pemasangan kamu.</p>';
   const covJs = `(function(){
-  var area=${JSON.stringify(a.name)};
   var q=document.getElementById('cov-q'),empty=document.getElementById('cov-empty');
   var cards=[].slice.call(document.querySelectorAll('.cov-kec'));
   function low(s){return (s||'').toLowerCase();}
@@ -261,18 +261,11 @@ function renderArea(a) {
     });
     if(empty)empty.hidden=any;
   });
-  [].forEach.call(document.querySelectorAll('.cov-kel'),function(b){
-    b.addEventListener('click',function(){
-      var ta=document.getElementById('f-alamat');
-      if(ta&&(!ta.value.trim()||/^Kel\\. /.test(ta.value)))ta.value='Kel. '+b.getAttribute('data-kel')+', Kec. '+b.getAttribute('data-kec')+', '+area+'. Nama jalan / no. rumah: ';
-      if(typeof bukaCekCoverage==='function')bukaCekCoverage();
-    });
-  });
 })();`;
   const covSection = `<!-- CAKUPAN KELURAHAN -->
   <div class="section cov" id="coverage">
   <h2 class="section-title">Cakupan Kelurahan di ${esc(a.name)}</h2>
-  <div class="section-sub">${kecs.length} kecamatan &middot; ${totalKel} kelurahan. Pilih kelurahanmu untuk cek ketersediaan jaringan XL SATU</div>
+  <div class="section-sub">${kecs.length} kecamatan &middot; ${totalKel} kelurahan. Ketuk kelurahanmu untuk langsung chat sales dan cek jaringan XL SATU. Tanpa isi form</div>
   <div class="cov-about">${a.about.map((t) => `<p>${esc(t)}</p>`).join('')}</div>
   <div class="cov-search"><input type="search" id="cov-q" placeholder="Cari kelurahan atau kecamatan..." aria-label="Cari kelurahan atau kecamatan" autocomplete="off"></div>
   <div class="cov-grid">
@@ -280,7 +273,7 @@ ${kecCards}
   </div>
   <p class="cov-empty" id="cov-empty" hidden>Kelurahan tidak ditemukan. Kirim alamatmu lewat WhatsApp, kami bantu cek manual.</p>
   ${legend}
-  <p class="cov-cta">Ketuk nama kelurahan untuk mengisi alamat di formulir cek coverage, atau <a href="${waArea}" target="_blank" rel="noopener noreferrer">chat WhatsApp Sales</a> langsung.${other ? ` Tinggal di area lain? Lihat juga <a href="${other.slug}.html">pasang WiFi XL SATU di ${esc(other.name)}</a>.` : ''}</p>
+  <p class="cov-cta">Ketuk nama kelurahanmu untuk langsung chat sales di WhatsApp, atau <a href="${waArea}" target="_blank" rel="noopener noreferrer">chat WhatsApp Sales</a> tanpa memilih kelurahan. Mau kirim alamat sekalian? Buka <a href="cek-coverage.html">halaman Cek Coverage</a>.${other ? ` Tinggal di area lain? Lihat juga <a href="${other.slug}.html">pasang WiFi XL SATU di ${esc(other.name)}</a>.` : ''}</p>
   </div>
   <script>${covJs}</script>
 
@@ -291,6 +284,14 @@ ${kecCards}
   ${a.faq.map(([qq, ans]) => `<details><summary>${esc(qq)}</summary><p>${esc(ans)}</p></details>`).join('')}
   </div>`;
   mustRe(/<!-- FAQ -->\s*<div class="section faq" id="faq">[\s\S]*?<\/script>/, covSection);
+
+  // ---- pesan WA umum di beranda -> spesifik area ----
+  const genMsg = encodeURIComponent('Halo, saya mau cek apakah XL HOME bisa dipasang di area saya.');
+  mustStr(genMsg, genMsg);
+  h = h.split(genMsg).join(encodeURIComponent(`Halo, saya mau cek apakah XL HOME bisa dipasang di area ${a.name}.`));
+  const genTail = 'bisa%20dipasang%20di%20area%20saya%3F';
+  mustStr(genTail, genTail);
+  h = h.split(genTail).join(encodeURIComponent(`bisa dipasang di area ${a.name}?`));
 
   // ---- halaman privasi beranda tidak diduplikasi di halaman area ----
   mustRe(/<!-- PRIVACY PAGE -->[\s\S]*?<!-- FOOTER -->/, '<div id="page-privacy"></div>\n\n<!-- FOOTER -->');
@@ -308,7 +309,7 @@ ${kecCards}
  .cov-kec h3 { font-size: 17px; font-weight: 800; color: var(--blue); }
  .cov-kec header span { font-size: 12px; color: var(--gray-mid); white-space: nowrap; }
  .cov-kec ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
- .cov-kel { font: inherit; font-size: 13px; color: var(--blue-mid); background: var(--sky); border: 1px solid transparent; border-radius: 999px; padding: 6px 12px; cursor: pointer; transition: border-color .15s, background .15s; }
+ .cov-kel { display: inline-block; text-decoration: none; font: inherit; font-size: 13px; color: var(--blue-mid); background: var(--sky); border: 1px solid transparent; border-radius: 999px; padding: 6px 12px; cursor: pointer; transition: border-color .15s, background .15s; }
  .cov-kel:hover { border-color: var(--blue-mid); background: #fff; }
  .cov-kel.ok { background: #E6F7F5; color: #067A72; }
  .cov-kel i { font-style: normal; font-size: 10px; font-weight: 700; margin-left: 6px; background: var(--teal); color: #fff; border-radius: 999px; padding: 1px 6px; }
@@ -324,6 +325,40 @@ ${kecCards}
   return h;
 }
 
+
+// ---------- halaman Cek Coverage (templates/cek-coverage.html) ----------
+function renderCek() {
+  const root = '';
+  const url = `${cfg.siteUrl}/cek-coverage.html`;
+  const title = 'Cek Coverage WiFi XL SATU (XL HOME) Gratis | Jakarta & Jabodetabek';
+  const desc = 'Cek ketersediaan WiFi XL SATU (XL HOME) di alamatmu. Gratis, tanpa komitmen, tanpa isi form. Chat sales via WhatsApp atau pilih kelurahan di Jakarta Pusat dan Jakarta Barat.';
+  const faq = [
+    ['Apakah cek coverage dikenakan biaya?', 'Tidak. Cek coverage gratis dan tanpa komitmen.'],
+    ['Apakah saya harus mengisi form untuk cek coverage?', 'Tidak. Kamu bisa langsung chat sales lewat WhatsApp. Mengirim kelurahan atau titik lokasi bersifat opsional, hanya supaya pengecekan lebih cepat.'],
+    ['Kenapa ketersediaan jaringan dicek per alamat?', 'Ketersediaan Fiber atau FWA 5G berbeda di tiap gang dan tiap jalan, jadi kami cek langsung per alamat pemasangan kamu.'],
+    ['Apa yang terjadi setelah saya chat?', 'Tim kami mengecek jangkauan di alamatmu, lalu mengabari paket yang tersedia.'],
+  ];
+  const ld = { '@context': 'https://schema.org', '@graph': [
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: `${cfg.siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Cek Coverage', item: url } ] },
+    { '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) } ] };
+  const extra = `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>`;
+  const areaCards = areaData.areas.map((a) => {
+    const kel = Object.values(a.kelurahan).reduce((n, v) => n + v.length, 0);
+    return `<a class="ck-area" href="${a.slug}.html#coverage"><strong>${esc(a.name)}</strong><span>${Object.keys(a.kelurahan).length} kecamatan &middot; ${kel} kelurahan. Ketuk kelurahanmu, langsung chat sales.</span></a>`;
+  }).join('\n');
+  const faqHtml = faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('\n');
+  let body = read('templates/cek-coverage.html')
+    .replace(/\{\{areaCards\}\}/g, areaCards)
+    .replace(/\{\{faq\}\}/g, faqHtml)
+    .replace(/\{\{waGeneral\}\}/g, esc(waText('Halo, saya mau cek apakah XL HOME bisa dipasang di area saya.')))
+    .replace(/\{\{waOther\}\}/g, esc(waText('Halo, saya mau cek XL HOME di area Jabodetabek di luar Jakarta Pusat dan Jakarta Barat. Bisa dibantu?')));
+  const nav = vars(navT, root).replace(' class="on"', ''); // Blog tidak aktif di halaman ini
+  return head({ title, desc, canonical: url, image: 'images/og-paket.png', type: 'website', extra, root }) +
+    nav + vars(body, root) + vars(footT, root) + '</body></html>\n';
+}
+
 // ---------- tulis ----------
 // navigasi di blog.html: link "Blog" aktif; di index/lain tidak dipakai. Nav template sudah menandai Blog "on".
 fs.mkdirSync(P('blog'), { recursive: true });
@@ -332,6 +367,7 @@ for (const f of fs.readdirSync(P('blog'))) if (f.endsWith('.html') && !wanted.ha
 for (const p of posts) fs.writeFileSync(P('blog', `${p.slug}.html`), renderPost(p));
 fs.writeFileSync(P('blog.html'), renderIndex());
 for (const a of areaData.areas) fs.writeFileSync(P(`${a.slug}.html`), renderArea(a));
+fs.writeFileSync(P('cek-coverage.html'), renderCek());
 
 const urls = [{ loc: `${cfg.siteUrl}/blog.html`, mod: posts[0]?.updated || posts[0]?.date || today },
   ...posts.map((p) => ({ loc: `${cfg.siteUrl}/blog/${p.slug}.html`, mod: p.updated || p.date }))];

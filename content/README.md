@@ -19,7 +19,7 @@ updated: 2026-10-20
 ---
 
 Isi artikel pakai markdown. **Tebal**, *miring*, [link](https://...), ## Subjudul, - daftar.
-Link ke artikel lain: [teks](post:slug-artikel). Link ke halaman situs: [daftar](index.html#daftar).
+Link ke artikel lain: [teks](post:slug-artikel). Link ke halaman situs: [daftar](cek-coverage.html).
 ```
 
 3. Commit & push ke GitHub. GitHub Action akan membuat halaman artikel, daftar blog, dan sitemap otomatis.

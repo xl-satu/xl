@@ -1,0 +1,111 @@
+<main class="ar">
+<p class="crumb"><a href="{{root}}index.html">Beranda</a> / Cek Coverage</p>
+
+<section class="ar-hero">
+<h1>Cek Coverage WiFi XL SATU (XL HOME) Gratis</h1>
+<p>Mau tahu alamatmu sudah terjangkau? Cukup chat sales kami. Tidak perlu isi form dan tidak ada komitmen. Kalau mau, kamu juga bisa kirim kelurahan atau titik lokasi supaya pengecekan lebih cepat.</p>
+<div class="ar-btns">
+<a class="ar-btn wa" href="{{waGeneral}}" target="_blank" rel="noopener noreferrer">Chat WA, Cek Area Saya</a>
+<a class="ar-btn ghost" href="#area">Pilih Area Kamu</a>
+</div>
+<div class="ar-chips"><span>Gratis</span><span>Tanpa komitmen</span><span>Tanpa isi form</span><span>Jakarta &amp; Jabodetabek</span></div>
+</section>
+
+<section class="ar-sec" id="area">
+<h2>Pilih area kamu</h2>
+<p>Buka daftar kelurahan di areamu, lalu ketuk kelurahanmu untuk langsung chat sales. Pesan WhatsApp sudah terisi otomatis.</p>
+<div class="ck-areas">
+{{areaCards}}
+<a class="ck-area" href="{{waOther}}" target="_blank" rel="noopener noreferrer"><strong>Area Jabodetabek lain</strong><span>Tidak ada di daftar? Chat saja, kami cek manual.</span></a>
+</div>
+</section>
+
+<section class="ar-sec" id="kirim-alamat">
+<h2>Atau kirim alamat sekalian (opsional)</h2>
+<p>Biar sales langsung bisa cek tanpa tanya-tanya lagi. Tidak wajib: semua kolom boleh dikosongkan dan kamu tetap bisa lanjut ke WhatsApp.</p>
+<form class="ck-form" id="ckForm" autocomplete="off">
+<label for="ck-alamat">Kelurahan atau alamat pemasangan</label>
+<textarea id="ck-alamat" rows="3" maxlength="300" placeholder="Contoh: Kel. Duri Kepa, Kec. Kebon Jeruk, Jakarta Barat"></textarea>
+<button type="button" class="ck-loc" id="ckLoc">Pakai Lokasi Saya</button>
+<div class="ck-err" id="ckErr" hidden></div>
+<label for="ck-nama">Nama (opsional)</label>
+<input type="text" id="ck-nama" maxlength="100" placeholder="Nama kamu">
+<button type="submit" class="ck-submit">Lanjut ke WhatsApp</button>
+<p class="ck-note">Isi form hanya dikirim sebagai pesan ke WhatsApp sales dan tidak disimpan di server situs ini. Lihat <a href="{{root}}privacy-policy.html" target="_blank" rel="noopener">Kebijakan Privasi</a>.</p>
+</form>
+</section>
+
+<section class="ar-sec">
+<h2>Cara kerjanya</h2>
+<div class="ar-steps">
+<div><h3>Chat atau pilih kelurahan</h3><p>Ketuk tombol WhatsApp. Pesan sudah terisi, kamu tinggal kirim.</p></div>
+<div><h3>Kami cek jangkauan</h3><p>Tim kami mengecek jaringan di alamatmu dan mengabari paket yang tersedia.</p></div>
+<div><h3>Pilih paket dan pasang</h3><p>Cocok? Lanjut pilih paket. Kalau belum, tidak apa-apa, tanpa komitmen.</p></div>
+</div>
+</section>
+
+<section class="ar-sec ar-faq">
+<h2>Pertanyaan umum cek coverage</h2>
+{{faq}}
+</section>
+
+<section class="ar-cta">
+<h2>Siap cek alamatmu?</h2>
+<p>Gratis, tanpa komitmen, dan tanpa isi form.</p>
+<div class="ar-btns">
+<a class="ar-btn wa" href="{{waGeneral}}" target="_blank" rel="noopener noreferrer">Chat WA, Cek Area Saya</a>
+<a class="ar-btn ghost" href="{{root}}index.html#paket">Lihat Paket</a>
+</div>
+</section>
+</main>
+<script>
+(function () {
+  var WA = '{{wa}}';
+  var ta = document.getElementById('ck-alamat'), nm = document.getElementById('ck-nama');
+  var btn = document.getElementById('ckLoc'), err = document.getElementById('ckErr'), form = document.getElementById('ckForm');
+  var maps = '';
+
+  // Kelurahan dari halaman lain: cek-coverage.html?kel=...&kec=...&area=...
+  try {
+    var q = new URLSearchParams(location.search), kel = q.get('kel'), kec = q.get('kec'), area = q.get('area');
+    if (kel && ta) ta.value = ('Kel. ' + kel + (kec ? ', Kec. ' + kec : '') + (area ? ', ' + area : '')).slice(0, 300);
+  } catch (e) {}
+
+  function showErr(m) { err.textContent = m; err.hidden = !m; }
+  function done(text, link) {
+    maps = link;
+    if (text && ta && !ta.value.trim()) ta.value = text.slice(0, 300);
+    btn.classList.remove('loading'); btn.textContent = 'Lokasi terpilih. Tekan lagi untuk memperbarui';
+  }
+
+  btn.addEventListener('click', function () {
+    showErr('');
+    if (!navigator.geolocation) { showErr('Browser kamu tidak mendukung GPS. Ketik alamat saja, atau langsung chat WhatsApp.'); return; }
+    btn.classList.add('loading'); btn.textContent = 'Mencari lokasi...';
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      var lat = pos.coords.latitude.toFixed(6), lng = pos.coords.longitude.toFixed(6), acc = Math.round(pos.coords.accuracy);
+      var link = 'https://www.google.com/maps?q=' + lat + ',' + lng;
+      fetch('https://nominatim.openstreetmap.org/reverse?lat=' + lat + '&lon=' + lng + '&format=json&addressdetails=1&accept-language=id')
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          var a = d.address || {};
+          var parts = [a.road || a.pedestrian || a.footway || '', a.suburb || a.neighbourhood || a.village || '', a.city_district || a.district || '', a.city || a.town || a.county || '', a.state || ''].filter(Boolean);
+          done(parts.join(', ') + (acc > 100 ? ' (akurasi sekitar ' + acc + ' m)' : ''), link);
+        })
+        .catch(function () { done('Koordinat: ' + lat + ', ' + lng, link); });
+    }, function (e) {
+      btn.classList.remove('loading'); btn.textContent = 'Pakai Lokasi Saya';
+      showErr({ 1: 'Izin lokasi ditolak. Aktifkan izin lokasi di browser, atau ketik alamat saja.', 2: 'Lokasi tidak terdeteksi. Coba lagi atau ketik alamat.', 3: 'Timeout. Coba lagi atau ketik alamat.' }[e.code] || 'Gagal mendeteksi lokasi.');
+    }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var alamat = (ta.value || '').trim(), nama = (nm.value || '').trim();
+    var t = 'Halo' + (nama ? ', saya ' + nama : '') + ', saya mau cek apakah XL HOME bisa dipasang' + (alamat ? ' di alamat ini:\n' + alamat : ' di area saya.');
+    if (maps) t += '\nLokasi: ' + maps;
+    try { gtag_report_conversion(); } catch (x) {}
+    window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(t), '_blank', 'noopener,noreferrer');
+  });
+})();
+</script>
