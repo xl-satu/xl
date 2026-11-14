@@ -67,7 +67,7 @@
       "name": "Jakarta Pusat",
       "other": "jakarta-barat",
       "title": "Pasang WiFi XL SATU Jakarta Pusat | FWA 5G & Fiber",
-      "desc": "Pasang WiFi XL SATU (XL HOME) di Jakarta Pusat: Menteng, Tanah Abang, Kemayoran, Senen. Internet rumah mulai Rp229rb/bln. Cek coverage gratis.",
+      "desc": "Pasang WiFi XL SATU (XL HOME) di Jakarta Pusat: 44 kelurahan di 8 kecamatan (Menteng, Tanah Abang, Kemayoran, Senen). Mulai Rp229rb/bln. Cek coverage gratis.",
       "h1": "Pasang WiFi XL SATU di Jakarta Pusat",
       "lead": "Cari internet rumah yang stabil untuk rumah, kos, atau ruko di Jakarta Pusat? Kami mitra penyalur resmi XL SATU (XL HOME) yang membantu cek coverage di alamat kamu, memilih paket, sampai proses pendaftaran lewat WhatsApp.",
       "about": [
@@ -119,14 +119,77 @@
           "Apakah harga di halaman ini sudah termasuk PPN?",
           "Belum. Harga adalah harga dasar per bulan belum termasuk PPN. Promo dan harga dapat berubah, jadi konfirmasi dulu lewat WhatsApp."
         ]
-      ]
+      ],
+      "kelurahan": {
+        "Gambir": [
+          "Gambir",
+          "Cideng",
+          "Petojo Utara",
+          "Petojo Selatan",
+          "Duri Pulo",
+          "Kebon Kelapa"
+        ],
+        "Sawah Besar": [
+          "Pasar Baru",
+          "Karang Anyar",
+          "Kartini",
+          "Gunung Sahari Utara",
+          "Mangga Dua Selatan"
+        ],
+        "Kemayoran": [
+          "Kemayoran",
+          "Kebon Kosong",
+          "Cempaka Baru",
+          "Harapan Mulya",
+          "Sumur Batu",
+          "Serdang",
+          "Utan Panjang",
+          "Gunung Sahari Selatan"
+        ],
+        "Senen": [
+          "Senen",
+          "Kenari",
+          "Paseban",
+          "Kramat",
+          "Kwitang",
+          "Bungur"
+        ],
+        "Cempaka Putih": [
+          "Cempaka Putih Timur",
+          "Cempaka Putih Barat",
+          "Rawasari"
+        ],
+        "Menteng": [
+          "Menteng",
+          "Pegangsaan",
+          "Cikini",
+          "Kebon Sirih",
+          "Gondangdia"
+        ],
+        "Tanah Abang": [
+          "Gelora",
+          "Bendungan Hilir",
+          "Karet Tengsin",
+          "Petamburan",
+          "Kebon Melati",
+          "Kebon Kacang",
+          "Kampung Bali"
+        ],
+        "Johar Baru": [
+          "Johar Baru",
+          "Kampung Rawa",
+          "Galur",
+          "Tanah Tinggi"
+        ]
+      },
+      "confirmed": []
     },
     {
       "slug": "jakarta-barat",
       "name": "Jakarta Barat",
       "other": "jakarta-pusat",
       "title": "Pasang WiFi XL SATU Jakarta Barat | FWA 5G & Fiber",
-      "desc": "Pasang WiFi XL SATU (XL HOME) di Jakarta Barat: Kebon Jeruk, Kembangan, Cengkareng, Grogol. Internet rumah mulai Rp229rb/bln. Cek coverage gratis.",
+      "desc": "Pasang WiFi XL SATU (XL HOME) di Jakarta Barat: 56 kelurahan di 8 kecamatan (Kebon Jeruk, Kembangan, Cengkareng, Grogol). Mulai Rp229rb/bln. Cek coverage gratis.",
       "h1": "Pasang WiFi XL SATU di Jakarta Barat",
       "lead": "Tinggal di perumahan, kos, atau punya ruko di Jakarta Barat dan butuh WiFi yang stabil? Kami mitra penyalur resmi XL SATU (XL HOME) yang membantu cek coverage alamatmu, memilih paket yang pas, dan mengurus pendaftaran lewat WhatsApp.",
       "about": [
@@ -182,7 +245,82 @@
           "Apakah harga di halaman ini sudah termasuk PPN?",
           "Belum. Harga adalah harga dasar per bulan belum termasuk PPN. Promo dan harga dapat berubah, jadi konfirmasi dulu lewat WhatsApp."
         ]
-      ]
+      ],
+      "kelurahan": {
+        "Cengkareng": [
+          "Cengkareng Barat",
+          "Cengkareng Timur",
+          "Duri Kosambi",
+          "Kapuk",
+          "Kedaung Kali Angke",
+          "Rawa Buaya"
+        ],
+        "Grogol Petamburan": [
+          "Grogol",
+          "Jelambar",
+          "Jelambar Baru",
+          "Tanjung Duren Selatan",
+          "Tanjung Duren Utara",
+          "Tomang",
+          "Wijaya Kusuma"
+        ],
+        "Taman Sari": [
+          "Glodok",
+          "Keagungan",
+          "Krukut",
+          "Mangga Besar",
+          "Maphar",
+          "Pinangsia",
+          "Tangki",
+          "Taman Sari"
+        ],
+        "Tambora": [
+          "Angke",
+          "Duri Selatan",
+          "Duri Utara",
+          "Jembatan Besi",
+          "Jembatan Lima",
+          "Kali Anyar",
+          "Krendang",
+          "Pekojan",
+          "Roa Malaka",
+          "Tambora",
+          "Tanah Sereal"
+        ],
+        "Kebon Jeruk": [
+          "Duri Kepa",
+          "Kebon Jeruk",
+          "Kedoya Selatan",
+          "Kedoya Utara",
+          "Kelapa Dua",
+          "Sukabumi Selatan",
+          "Sukabumi Utara"
+        ],
+        "Kalideres": [
+          "Kalideres",
+          "Kamal",
+          "Pegadungan",
+          "Semanan",
+          "Tegal Alur"
+        ],
+        "Palmerah": [
+          "Jati Pulo",
+          "Kemanggisan",
+          "Kota Bambu Selatan",
+          "Kota Bambu Utara",
+          "Palmerah",
+          "Slipi"
+        ],
+        "Kembangan": [
+          "Joglo",
+          "Kembangan Selatan",
+          "Kembangan Utara",
+          "Meruya Selatan",
+          "Meruya Utara",
+          "Srengseng"
+        ]
+      },
+      "confirmed": []
     }
   ]
 }

@@ -752,9 +752,9 @@
  .xp-btn:hover { background:var(--blue-mid); }
  .xp-foot { font-size:12px; color:var(--gray-mid); text-align:center; margin-top:18px; }
  @media (max-width:700px) {
-  .xp-swipe { display:block; }
-  .xp-grid { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:14px; padding:4px 4px 16px; -webkit-overflow-scrolling:touch; }
-  .xp-card { flex:0 0 80vw; max-width:310px; scroll-snap-align:start; }
+  .xp-swipe { display:none; }
+  .xp-grid { display:flex; flex-direction:column; overflow:visible; gap:16px; padding:4px 0 8px; }
+  .xp-card { flex:0 0 auto; width:100%; max-width:none; }
  }
 </style>
 <!-- Google tag (gtag.js) -->
@@ -844,7 +844,6 @@
  <h1 class="section-title">Pilih Paket Internet XL SATU</h1>
  <div class="section-sub">Melayani Jakarta Pusat, Jakarta Barat &amp; Jabodetabek. Ketersediaan mengikuti alamat</div>
  <h2 class="xp-heading">Pilihan paket sesuai kebutuhan internet rumah Anda</h2>
- <p class="xp-swipe">Geser ke kanan untuk lihat paket lainnya →</p>
  <div class="xp-grid">
  <article class="xp-card xp-value">
   <header class="xp-head"><h3>250 Mbps Internet 1 Bulan</h3></header>

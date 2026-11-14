@@ -163,16 +163,43 @@ function renderIndex() {
 }
 
 
-// ---------- halaman area: Jakarta Pusat / Jakarta Barat ----------
+// ---------- halaman area: Jakarta Pusat / Jakarta Barat (berbasis index.html) ----------
 const areaData = JSON.parse(read('content/areas.json'));
 const rp = (n) => 'Rp' + n.toLocaleString('id-ID');
 const waLink = (text) => `https://wa.me/${cfg.wa}?text=${encodeURIComponent(text)}`;
 
+// Halaman area dibuat dari index.html (tampilan sama persis dengan beranda),
+// lalu judul/meta/schema diganti dan ditambah bagian "Cakupan Kelurahan".
+// Ubah index.html -> jalankan build -> halaman area ikut berubah.
 function renderArea(a) {
-  const root = '';
   const url = `${cfg.siteUrl}/${a.slug}.html`;
   const other = areaData.areas.find((x) => x.slug === a.other);
-  const waHero = waLink(`Halo, saya tertarik pasang XL SATU (XL HOME) di area ${a.name}. Boleh cek coverage dan info promo?\n\n*Nama:* \n*Kecamatan / alamat:* `);
+  const kecs = Object.entries(a.kelurahan);
+  const totalKel = kecs.reduce((n, [, v]) => n + v.length, 0);
+  const confirmed = new Set(a.confirmed || []);
+  let h = read('index.html');
+
+  const mustRe = (re, rep) => {
+    if (!re.test(h)) throw new Error(`index.html: pola tidak ditemukan untuk halaman ${a.slug}: ${re}`);
+    h = h.replace(re, typeof rep === 'function' ? rep : () => rep);
+  };
+  const mustStr = (from, to) => {
+    if (!h.includes(from)) throw new Error(`index.html: teks tidak ditemukan untuk halaman ${a.slug}: ${from.slice(0, 60)}`);
+    h = h.replace(from, () => to);
+  };
+  const setAttr = (re, val) => mustRe(re, (m, p1, p2) => p1 + esc(val) + p2);
+
+  // ---- meta & judul ----
+  mustRe(/<title>[\s\S]*?<\/title>/, `<title>${esc(a.title)}</title>`);
+  setAttr(/(<meta name="description" content=")[^"]*(")/, a.desc);
+  setAttr(/(<meta property="og:title" content=")[^"]*(")/, a.title);
+  setAttr(/(<meta property="og:description" content=")[^"]*(")/, a.desc);
+  setAttr(/(<meta property="og:url" content=")[^"]*(")/, url);
+  setAttr(/(<link rel="canonical" href=")[^"]*(")/, url);
+  setAttr(/(<meta name="twitter:title" content=")[^"]*(")/, a.title);
+  setAttr(/(<meta name="twitter:description" content=")[^"]*(")/, a.desc);
+
+  // ---- schema.org (menggantikan JSON-LD beranda) ----
   const faqLd = a.faq.map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } }));
   const ld = {
     '@context': 'https://schema.org',
@@ -183,7 +210,9 @@ function renderArea(a) {
       { '@type': 'Service', '@id': `${url}#service`, name: `Pasang WiFi XL SATU (XL HOME) ${a.name}`,
         serviceType: 'Internet rumah FWA 5G dan Fiber Optik (FTTH)', url,
         provider: { '@type': 'Organization', '@id': `${cfg.siteUrl}/#org`, name: 'XL SATU - Sales Resmi Jabodetabek', url: `${cfg.siteUrl}/`, telephone: `+${cfg.wa}` },
-        areaServed: { '@type': 'AdministrativeArea', name: a.name, containsPlace: a.districts.map((d) => ({ '@type': 'AdministrativeArea', name: `Kecamatan ${d}, ${a.name}` })) },
+        areaServed: { '@type': 'AdministrativeArea', name: a.name,
+          containsPlace: kecs.map(([kec, list]) => ({ '@type': 'AdministrativeArea', name: `Kecamatan ${kec}, ${a.name}`,
+            containsPlace: list.map((k) => ({ '@type': 'AdministrativeArea', name: `Kelurahan ${k}, Kecamatan ${kec}, ${a.name}` })) })) },
         description: a.desc,
         hasOfferCatalog: { '@type': 'OfferCatalog', name: `Paket Internet Rumah XL SATU ${a.name}`, itemListElement: areaData.packages.map((k) => ({
           '@type': 'Offer', name: `${k.name} ${k.speed}`, description: k.schemaDesc, price: String(k.price), priceCurrency: 'IDR', url: `${url}#paket`,
@@ -191,38 +220,108 @@ function renderArea(a) {
       { '@type': 'FAQPage', mainEntity: faqLd }
     ]
   };
-  const extra = `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>`;
-  const cards = areaData.packages.map((k) => `<div class="ar-card"><span class="tag">${esc(k.tag)}</span><h3>${esc(k.name)}</h3><div class="sp">${esc(k.speed)}</div><p class="pr"><b>${rp(k.price)}</b> / bulan</p><ul>${k.points.map((x) => `<li>${esc(x)}</li>`).join('')}</ul><a href="${waLink(`Halo, saya ingin mendaftar paket XL SATU:\n\n*Paket:* ${k.name} ${k.speed}\n*Area:* ${a.name}\n*Nama:* \n*Alamat pemasangan:* \n\nMohon info ketersediaan dan proses selanjutnya. Terima kasih!`)}" target="_blank" rel="noopener noreferrer">Pesan via WhatsApp</a></div>`).join('');
-  const body = `<main class="ar">
-<p class="crumb"><a href="index.html">Beranda</a> / ${esc(a.name)}</p>
-<section class="ar-hero">
-<h1>${esc(a.h1)}</h1>
-<p>${esc(a.lead)}</p>
-<div class="ar-btns"><a class="ar-btn wa" href="${waHero}" target="_blank" rel="noopener noreferrer">Cek Coverage via WhatsApp</a><a class="ar-btn ghost" href="#paket">Lihat Paket &amp; Harga</a></div>
-<div class="ar-chips"><span>FWA 5G &amp; Fiber</span><span>Cek coverage gratis</span><span>Mitra penyalur resmi</span></div>
-</section>
-<section class="ar-sec"><h2>Internet rumah XL SATU untuk warga ${esc(a.name)}</h2>
-${a.about.map((t) => `<p>${esc(t)}</p>`).join('')}
-<div class="ar-fit">${a.fits.map((f) => `<div><h3>${esc(f.t)}</h3><p>${esc(f.d)}</p></div>`).join('')}</div></section>
-<section class="ar-sec" id="paket"><h2>Paket populer di ${esc(a.name)}</h2>
-<p>Pilihan paket yang paling sering diminta. Semua harga adalah harga dasar per bulan, belum termasuk PPN.</p>
-<div class="ar-pk">${cards}</div>
-<p class="ar-note">Ketersediaan paket mengikuti alamat pemasangan. Harga dan promo dapat berubah sewaktu-waktu.</p>
-<p class="ar-more"><a href="index.html#paket">Lihat semua paket, promo bayar di muka &amp; Combo TV &rarr;</a></p></section>
-<section class="ar-sec"><h2>Kecamatan yang bisa kami cek di ${esc(a.name)}</h2>
-<p>Kami membantu pengecekan coverage untuk alamat di kecamatan berikut. Hasil akhir tetap bergantung pada jaringan di alamat pemasangan kamu.</p>
-<div class="ar-dist">${a.districts.map((d) => `<span>${esc(d)}</span>`).join('')}</div></section>
-<section class="ar-sec"><h2>Cara pasang WiFi XL SATU di ${esc(a.name)}</h2>
-<div class="ar-steps"><div><h3>Kirim alamat</h3><p>Chat WhatsApp dengan nama dan alamat lengkap (atau titik lokasi) di ${esc(a.name)}.</p></div><div><h3>Cek coverage</h3><p>Kami cek apakah Fiber atau FWA 5G tersedia di alamat kamu dan paket mana yang cocok.</p></div><div><h3>Daftar &amp; pasang</h3><p>Lengkapi data pendaftaran, lalu teknisi menjadwalkan pemasangan di rumah kamu.</p></div></div></section>
-<section class="ar-sec ar-faq"><h2>Pertanyaan umum pasang WiFi di ${esc(a.name)}</h2>
-${a.faq.map(([q, ans]) => `<details><summary>${esc(q)}</summary><p>${esc(ans)}</p></details>`).join('\n')}</section>
-<section class="ar-cta"><h2>Siap pasang WiFi di ${esc(a.name)}?</h2><p>Kirim alamatmu sekarang, kami bantu cek coverage dan pilihkan paket yang paling pas.</p>
-<div class="ar-btns"><a class="ar-btn wa" href="${waHero}" target="_blank" rel="noopener noreferrer">Chat WhatsApp Sekarang</a><a class="ar-btn ghost" href="index.html#daftar">Isi Form Cek Coverage</a></div></section>
-${other ? `<p class="ar-other">Tinggal di area lain? Lihat juga <a href="${other.slug}.html">pasang WiFi XL SATU di ${esc(other.name)}</a>.</p>` : ''}
-</main>
-`;
-  return head({ title: a.title, desc: a.desc, canonical: url, image: 'images/og-paket.png', type: 'website', extra, root }) +
-    vars(navT.replace(' class="on"', ''), root) + body + vars(footT, root) + '</body></html>\n';
+  mustRe(/<script type="application\/ld\+json">[\s\S]*?<\/script>/,
+    `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>`);
+
+  // ---- navigasi: logo balik ke beranda, link ke bagian kelurahan ----
+  mustStr('<a href="#header" class="logo-link" onclick="goHome();return false;" aria-label="Kembali ke beranda">',
+    '<a href="index.html" class="logo-link" aria-label="Kembali ke beranda">');
+  mustStr('<a href="#header" onclick="goHome();return false;" aria-label="Kembali ke beranda">',
+    '<a href="index.html" aria-label="Kembali ke beranda">');
+  mustRe(/(<div class="nav-links">\s*<a href="#paket"[^>]*>Paket<\/a>)/,
+    (m) => `${m}\n  <a href="#coverage" onclick="goToSection('coverage');return false;">Kelurahan</a>`);
+  mustRe(/(<div class="nav-more-menu"[^>]*>\s*)(<a role="menuitem" href="#paket"[^>]*>Paket<\/a>)/,
+    (m, p1, p2) => `${p1}<a role="menuitem" href="index.html">Beranda</a>\n  ${p2}\n  <a role="menuitem" href="#coverage" onclick="closeNavMenu();goToSection('coverage');return false;">Kelurahan</a>`);
+
+  // ---- judul bagian paket ----
+  mustStr('<h1 class="section-title">Pilih Paket Internet XL SATU</h1>', `<h1 class="section-title">${esc(a.h1)}</h1>`);
+  mustStr('<div class="section-sub">Melayani Jakarta Pusat, Jakarta Barat &amp; Jabodetabek. Ketersediaan mengikuti alamat</div>',
+    `<div class="section-sub">Paket internet rumah XL SATU (XL HOME) untuk ${esc(a.name)}. Ketersediaan mengikuti alamat pemasangan</div>`);
+
+  // ---- cakupan kelurahan + FAQ area (menggantikan FAQ beranda) ----
+  const waArea = waLink(`Halo, saya tertarik pasang XL SATU (XL HOME) di area ${a.name}. Boleh cek coverage dan info promo?\n\n*Nama:* \n*Kelurahan / Kecamatan:* \n*Alamat:* `);
+  const kecCards = kecs.map(([kec, list]) => `<article class="cov-kec" data-kec="${esc(kec)}"><header><h3>Kecamatan ${esc(kec)}</h3><span>${list.length} kelurahan</span></header><ul>${list.map((k) => `<li><button type="button" class="cov-kel${confirmed.has(k) ? ' ok' : ''}" data-kel="${esc(k)}" data-kec="${esc(kec)}">${esc(k)}${confirmed.has(k) ? '<i>Tersedia</i>' : ''}</button></li>`).join('')}</ul></article>`).join('\n');
+  const legend = confirmed.size
+    ? '<p class="cov-note">Label <b>Tersedia</b> = jaringan sudah terkonfirmasi di kelurahan tersebut. Kelurahan lain tetap bisa dicek per alamat.</p>'
+    : '<p class="cov-note">Ketersediaan Fiber atau FWA 5G berbeda di tiap gang dan tiap jalan, jadi kami cek langsung per alamat pemasangan kamu.</p>';
+  const covJs = `(function(){
+  var area=${JSON.stringify(a.name)};
+  var q=document.getElementById('cov-q'),empty=document.getElementById('cov-empty');
+  var cards=[].slice.call(document.querySelectorAll('.cov-kec'));
+  function low(s){return (s||'').toLowerCase();}
+  if(q)q.addEventListener('input',function(){
+    var t=low(q.value).trim(),any=false;
+    cards.forEach(function(c){
+      var km=low(c.getAttribute('data-kec')).indexOf(t)>-1,shown=0;
+      [].forEach.call(c.querySelectorAll('.cov-kel'),function(b){
+        var m=!t||km||low(b.getAttribute('data-kel')).indexOf(t)>-1;
+        b.parentNode.hidden=!m;if(m)shown++;
+      });
+      c.hidden=shown===0;if(shown)any=true;
+    });
+    if(empty)empty.hidden=any;
+  });
+  [].forEach.call(document.querySelectorAll('.cov-kel'),function(b){
+    b.addEventListener('click',function(){
+      var ta=document.getElementById('f-alamat');
+      if(ta&&(!ta.value.trim()||/^Kel\\. /.test(ta.value)))ta.value='Kel. '+b.getAttribute('data-kel')+', Kec. '+b.getAttribute('data-kec')+', '+area+'. Nama jalan / no. rumah: ';
+      if(typeof bukaCekCoverage==='function')bukaCekCoverage();
+    });
+  });
+})();`;
+  const covSection = `<!-- CAKUPAN KELURAHAN -->
+  <div class="section cov" id="coverage">
+  <h2 class="section-title">Cakupan Kelurahan di ${esc(a.name)}</h2>
+  <div class="section-sub">${kecs.length} kecamatan &middot; ${totalKel} kelurahan. Pilih kelurahanmu untuk cek ketersediaan jaringan XL SATU</div>
+  <div class="cov-about">${a.about.map((t) => `<p>${esc(t)}</p>`).join('')}</div>
+  <div class="cov-search"><input type="search" id="cov-q" placeholder="Cari kelurahan atau kecamatan..." aria-label="Cari kelurahan atau kecamatan" autocomplete="off"></div>
+  <div class="cov-grid">
+${kecCards}
+  </div>
+  <p class="cov-empty" id="cov-empty" hidden>Kelurahan tidak ditemukan. Kirim alamatmu lewat WhatsApp, kami bantu cek manual.</p>
+  ${legend}
+  <p class="cov-cta">Ketuk nama kelurahan untuk mengisi alamat di formulir cek coverage, atau <a href="${waArea}" target="_blank" rel="noopener noreferrer">chat WhatsApp Sales</a> langsung.${other ? ` Tinggal di area lain? Lihat juga <a href="${other.slug}.html">pasang WiFi XL SATU di ${esc(other.name)}</a>.` : ''}</p>
+  </div>
+  <script>${covJs}</script>
+
+  <!-- FAQ -->
+  <div class="section faq" id="faq">
+  <h2 class="section-title">Pertanyaan Umum Pasang WiFi di ${esc(a.name)}</h2>
+  <div class="section-sub">Jawaban singkat sebelum kamu daftar</div>
+  ${a.faq.map(([qq, ans]) => `<details><summary>${esc(qq)}</summary><p>${esc(ans)}</p></details>`).join('')}
+  </div>`;
+  mustRe(/<!-- FAQ -->\s*<div class="section faq" id="faq">[\s\S]*?<\/script>/, covSection);
+
+  // ---- halaman privasi beranda tidak diduplikasi di halaman area ----
+  mustRe(/<!-- PRIVACY PAGE -->[\s\S]*?<!-- FOOTER -->/, '<div id="page-privacy"></div>\n\n<!-- FOOTER -->');
+
+  // ---- gaya bagian kelurahan ----
+  const css = `<style>
+ .cov-about { max-width: 860px; margin: 0 auto 20px; text-align: center; color: var(--gray-text); font-size: 15px; line-height: 1.7; }
+ .cov-about p + p { margin-top: 8px; }
+ .cov-search { max-width: 480px; margin: 0 auto 22px; }
+ .cov-search input { width: 100%; padding: 12px 16px; border: 1.5px solid #D5E0F5; border-radius: 12px; font: inherit; font-size: 15px; background: #fff; color: var(--dark); }
+ .cov-search input:focus { outline: none; border-color: var(--blue-mid); }
+ .cov-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+ .cov-kec { background: #fff; border: 1px solid #E2EAF8; border-radius: 16px; box-shadow: var(--shadow); padding: 18px 18px 16px; }
+ .cov-kec header { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 12px; }
+ .cov-kec h3 { font-size: 17px; font-weight: 800; color: var(--blue); }
+ .cov-kec header span { font-size: 12px; color: var(--gray-mid); white-space: nowrap; }
+ .cov-kec ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+ .cov-kel { font: inherit; font-size: 13px; color: var(--blue-mid); background: var(--sky); border: 1px solid transparent; border-radius: 999px; padding: 6px 12px; cursor: pointer; transition: border-color .15s, background .15s; }
+ .cov-kel:hover { border-color: var(--blue-mid); background: #fff; }
+ .cov-kel.ok { background: #E6F7F5; color: #067A72; }
+ .cov-kel i { font-style: normal; font-size: 10px; font-weight: 700; margin-left: 6px; background: var(--teal); color: #fff; border-radius: 999px; padding: 1px 6px; }
+ .cov-kec[hidden], .cov-kec li[hidden], .cov-empty[hidden] { display: none !important; }
+ .cov-empty { text-align: center; color: var(--gray-text); font-size: 14px; margin-top: 16px; }
+ .cov-note, .cov-cta { text-align: center; font-size: 13px; color: var(--gray-mid); margin-top: 18px; line-height: 1.6; }
+ .cov-cta a { color: var(--blue); font-weight: 600; }
+ @media (max-width: 700px) { .cov-grid { grid-template-columns: 1fr; } }
+</style>
+</head>`;
+  mustStr('</head>', css);
+
+  return h;
 }
 
 // ---------- tulis ----------
